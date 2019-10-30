@@ -31,6 +31,7 @@ class CicleButton extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: InkWell(
+        borderRadius: BorderRadius.circular(16),
         onTap: onTap,
         child: Container(
           height: height,
@@ -52,7 +53,7 @@ class CicleButton extends StatelessWidget {
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8),
-                child: icon == null ? Container() : icon,
+                child: icon == null ? null : icon,
               ),
               Text(
                 label,

@@ -21,7 +21,7 @@ class ClientService {
       Exception("Erro na requisição");
     }
     return null;
-  } */
+  }  */
 
   Future<int> isLoginPost(String login, String password) async {
     try {

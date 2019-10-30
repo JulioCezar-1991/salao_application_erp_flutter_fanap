@@ -13,7 +13,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void navigationPage() {
-    Navigator.of(context).pushReplacementNamed('/controller/HomePageLogin');
+    Navigator.of(context).pushReplacementNamed('/pages/login/LoginSignInPage');
   }
 
   @override
@@ -34,9 +34,8 @@ class _SplashScreenState extends State<SplashScreen> {
               Container(
                 height: 250,
                 child: Image.asset(
-                'assets/logo.png',),
-              
-              
+                  'assets/logo.png',
+                ),
               ),
               CircularProgressIndicator(
                 strokeWidth: 5,
@@ -46,3 +45,6 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
+
+
+ 

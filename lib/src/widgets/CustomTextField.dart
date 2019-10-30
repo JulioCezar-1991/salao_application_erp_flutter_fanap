@@ -2,9 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-
-  
-
   final controllerForm;
   final String label;
   final String hint;
@@ -28,9 +25,7 @@ class CustomTextField extends StatelessWidget {
           Text(
             label,
             style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 15),
+                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15),
           ),
           Container(
             height: 5,

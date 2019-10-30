@@ -9,8 +9,9 @@ class _SchedunlingPageState extends State<SchedunlingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-      child: Text("Agendamentos"),
-    ));
+      body: Center(
+        child: Text("Agendamentos"),
+      ),
+    );
   }
 }

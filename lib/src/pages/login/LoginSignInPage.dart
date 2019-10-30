@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:projectfanap/src/pages/home/HomePage.dart';
 import 'package:projectfanap/src/service/ClientService.dart';
 import 'package:projectfanap/src/widgets/CircleButton.dart';
-
+import 'package:projectfanap/src/widgets/CreateUserWidget.dart';
 
 class LoginSignInPage extends StatefulWidget {
   @override
@@ -43,7 +43,7 @@ class _LoginSignInPageState extends State<LoginSignInPage> {
             context, MaterialPageRoute(builder: (context) => HomePage()));
       } else {
         final snackbar = SnackBar(
-          content: Text("Usuario ou senha Invalidos"),
+          content: Text("Usuario ou senha invalido"),
           duration: Duration(seconds: 3),
         );
         _scaffoldKey.currentState.showSnackBar(snackbar);
@@ -51,183 +51,202 @@ class _LoginSignInPageState extends State<LoginSignInPage> {
     }
   }
 
+  _clearForm() {
+    _controllerLogin.clear();
+    _controllerLoginPassword.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
 
     return Scaffold(
-        key: _scaffoldKey,
-        body: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(
-              horizontal: _size.width / 14, vertical: _size.width / 14),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(
-                    top: _size.width / 18, bottom: _size.width / 50),
-                width: _size.width / 2.5,
-                child: Image.asset("assets/logo.png"),
+      key: _scaffoldKey,
+      body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(
+            horizontal: _size.width / 14, vertical: _size.width / 14),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.only(
+                  top: _size.width / 18, bottom: _size.width / 50),
+              width: _size.width / 2.5,
+              child: Image.asset("assets/logo.png"),
+            ),
+            Container(
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                color: Theme.of(context).accentColor,
+                boxShadow: [
+                  BoxShadow(
+                      color: Color.fromRGBO(92, 42, 100, 1.0), blurRadius: 1),
+                ],
               ),
-              Container(
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  color: Theme.of(context).accentColor,
-                  boxShadow: [
-                    BoxShadow(
-                        color: Color.fromRGBO(92, 42, 100, 1.0), blurRadius: 1),
-                  ],
-                ),
-                child: Column(
-                  children: <Widget>[
-                    TextField(
-                      style: TextStyle(
-                        color: Colors.white,
-                        decorationColor: Colors.white,
-                      ),
-                      cursorColor: Colors.white,
-                      maxLength: 15,
-                      decoration: InputDecoration(
-                        icon: Icon(
-                          Icons.perm_identity,
-                          color: Colors.white,
-                          size: 26,
-                        ),
-                        hintText: "Usuario",
-                        hintStyle: TextStyle(
-                          fontSize: 17.0,
-                          color: Colors.grey,
-                          letterSpacing: 2,
-                        ),
-                      ),
-                      controller: _controllerLogin,
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    TextField(
-                      style: TextStyle(
-                        color: Colors.white,
-                        decorationColor: Colors.white,
-                      ),
-                      cursorColor: Colors.white,
-                      maxLength: 8,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        fillColor: Colors.white,
-                        labelStyle: TextStyle(color: Colors.white),
-                        icon: Icon(
-                          Icons.lock_outline,
-                          color: Colors.white,
-                          size: 26,
-                        ),
-                        hintText: "Password",
-                        hintStyle: TextStyle(
-                          fontSize: 17.0,
-                          color: Colors.grey,
-                          letterSpacing: 2,
-                        ),
-                      ),
-                      controller: _controllerLoginPassword,
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 2,
-              ),
-              GestureDetector(
-                child: Container(
-                  alignment: Alignment.topRight,
-                  child: Text(
-                    "  CRIE SUA CONTA .",
+              child: Column(
+                children: <Widget>[
+                  TextField(
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).accentColor,
+                      color: Colors.white,
+                      decorationColor: Colors.white,
                     ),
+                    cursorColor: Colors.white,
+                    maxLength: 15,
+                    decoration: InputDecoration(
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
+                      disabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
+                      icon: Icon(
+                        Icons.perm_identity,
+                        color: Colors.white,
+                        size: 26,
+                      ),
+                      hintText: "Usuário",
+                      hintStyle: TextStyle(
+                        fontSize: 17.0,
+                        color: Colors.grey,
+                        letterSpacing: 2,
+                      ),
+                    ),
+                    controller: _controllerLogin,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    style: TextStyle(
+                      color: Colors.white,
+                      decorationColor: Colors.white,
+                    ),
+                    cursorColor: Colors.white,
+                    maxLength: 8,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
+                      disabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
+                      fillColor: Colors.white,
+                      labelStyle: TextStyle(color: Colors.white),
+                      icon: Icon(
+                        Icons.lock_outline,
+                        color: Colors.white,
+                        size: 26,
+                      ),
+                      hintText: "Password",
+                      hintStyle: TextStyle(
+                        fontSize: 17.0,
+                        color: Colors.grey,
+                        letterSpacing: 2,
+                      ),
+                    ),
+                    controller: _controllerLoginPassword,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 4,
+            ),
+            GestureDetector(
+              child: Container(
+                alignment: Alignment.topRight,
+                child: Text(
+                  "  CRIE SUA CONTA .",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).accentColor,
                   ),
                 ),
-                onTap: () {
-                  debugPrint("Teste");
+              ),
+              onTap: () {
+                CreateUserWidget.clientCreate(context);
+              },
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: _size.width * 0.1),
+              child: CicleButton(
+                label: "ENTRAR",
+                onTap: () async {
+                  _controllerCadastro();
+                  _clearForm();
                 },
               ),
-              Padding(
-                padding: EdgeInsets.only(top: _size.width * 0.1),
-                child: CicleButton(
-                  label: "ENTRAR",
-                  onTap: () async {
-                    _controllerCadastro();
-                  },
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: _size.width * 0.12),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                        child: Divider(
-                      color: Colors.black,
-                      height: 15,
-                    )),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Text(
-                        "NOSSAS REDES",
-                        style: TextStyle(
-                            color: Theme.of(context).accentColor,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Expanded(
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: _size.width * 0.12),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
                       child: Divider(
-                        color: Colors.black,
-                        height: 20,
-                      ),
+                    color: Colors.black,
+                    height: 15,
+                  )),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(
+                      "NOSSAS REDES",
+                      style: TextStyle(
+                          color: Theme.of(context).accentColor,
+                          fontWeight: FontWeight.bold),
                     ),
-                  ],
-                ),
+                  ),
+                  Expanded(
+                    child: Divider(
+                      color: Colors.black,
+                      height: 20,
+                    ),
+                  ),
+                ],
               ),
-              Padding(
-                padding: EdgeInsets.only(top: _size.width * 0.08),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: CicleButton(
-                        height: 45,
-                        gradientColor: false,
-                        colorGradient: Colors.blue,
-                        icon: Icon(
-                          FontAwesomeIcons.facebookF,
-                          color: Colors.white,
-                          size: 18,
-                        ),
-                        label: "FACEBOOK",
-                        onTap: () {},
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: _size.width * 0.08),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: CicleButton(
+                      height: 45,
+                      gradientColor: false,
+                      colorGradient: Colors.blue,
+                      icon: Icon(
+                        FontAwesomeIcons.facebookF,
+                        color: Colors.white,
+                        size: 18,
                       ),
+                      label: "FACEBOOK",
+                      onTap: () {},
                     ),
-                    Container(
-                      width: 20,
-                    ),
-                    Expanded(
-                      child: CicleButton(
-                        height: 45,
-                        gradientColor: false,
-                        colorGradient: Colors.red[700],
-                        icon: Icon(
-                          FontAwesomeIcons.google,
-                          color: Colors.white,
-                          size: 18,
-                        ),
-                        label: "GOOGLE",
-                        onTap: () {},
+                  ),
+                  Container(
+                    width: 20,
+                  ),
+                  Expanded(
+                    child: CicleButton(
+                      height: 45,
+                      gradientColor: false,
+                      colorGradient: Colors.red[700],
+                      icon: Icon(
+                        FontAwesomeIcons.google,
+                        color: Colors.white,
+                        size: 18,
                       ),
+                      label: "GOOGLE",
+                      onTap: () {},
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ));
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
