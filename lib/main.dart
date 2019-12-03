@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
-import 'src/AtenasScreen.dart';
-
+import 'package:projectfanap/src/screen/RouterScreen.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() => runApp(
       MaterialApp(
-        home: AtenasScreen(),
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate
+        ],
+        supportedLocales: [
+          Locale("pt"),
+        ],
+        home: RouterScreen(),
       ),
     );

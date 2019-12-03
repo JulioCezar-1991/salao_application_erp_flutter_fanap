@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:projectfanap/src/pages/home/HomePage.dart';
+import 'package:projectfanap/src/screen/home/HomeScreen.dart';
 import 'package:projectfanap/src/service/ClientService.dart';
 import 'package:projectfanap/src/widgets/CircleButton.dart';
-import 'package:projectfanap/src/widgets/CreateUserWidget.dart';
 
-class LoginSignInPage extends StatefulWidget {
+class LoginSignInScreen extends StatefulWidget {
   @override
-  _LoginSignInPageState createState() => _LoginSignInPageState();
+  _LoginSignInScreenState createState() => _LoginSignInScreenState();
 }
 
-class _LoginSignInPageState extends State<LoginSignInPage> {
+class _LoginSignInScreenState extends State<LoginSignInScreen> {
   TextEditingController _controllerLogin = TextEditingController();
   TextEditingController _controllerLoginPassword = TextEditingController();
 
@@ -40,7 +39,7 @@ class _LoginSignInPageState extends State<LoginSignInPage> {
     } else {
       if (await _islogin() > 0) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => HomePage()));
+            context, MaterialPageRoute(builder: (context) => HomeScreen()));
       } else {
         final snackbar = SnackBar(
           content: Text("Usuario ou senha invalido"),
@@ -70,7 +69,7 @@ class _LoginSignInPageState extends State<LoginSignInPage> {
           children: <Widget>[
             Container(
               padding: EdgeInsets.only(
-                  top: _size.width / 18, bottom: _size.width / 50),
+                  top: _size.width / 25, bottom: _size.width / 50),
               width: _size.width / 2.5,
               child: Image.asset("assets/logo.png"),
             ),
@@ -154,28 +153,15 @@ class _LoginSignInPageState extends State<LoginSignInPage> {
             SizedBox(
               height: 4,
             ),
-            GestureDetector(
-              child: Container(
-                alignment: Alignment.topRight,
-                child: Text(
-                  "  CRIE SUA CONTA .",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).accentColor,
-                  ),
-                ),
-              ),
-              onTap: () {
-                CreateUserWidget.clientCreate(context);
-              },
-            ),
             Padding(
               padding: EdgeInsets.only(top: _size.width * 0.1),
               child: CicleButton(
                 label: "ENTRAR",
                 onTap: () async {
-                  _controllerCadastro();
-                  _clearForm();
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()));
+                  /*       _controllerCadastro();
+                  _clearForm(); */
                 },
               ),
             ),
@@ -200,7 +186,7 @@ class _LoginSignInPageState extends State<LoginSignInPage> {
                   Expanded(
                     child: Divider(
                       color: Colors.black,
-                      height: 20,
+                      height: _size.height / 40,
                     ),
                   ),
                 ],

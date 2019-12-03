@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ClientPage extends StatefulWidget {
+class ClientScreen extends StatefulWidget {
   @override
-  _ClientPageState createState() => _ClientPageState();
+  _ClientScreenState createState() => _ClientScreenState();
 }
 
-class _ClientPageState extends State<ClientPage> {
+class _ClientScreenState extends State<ClientScreen> {
   @override
   void dispose() {
     super.dispose();
@@ -13,9 +13,8 @@ class _ClientPageState extends State<ClientPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Center(
+    return Center(
       child: Text("Clientes"),
-    ));
+    );
   }
 }

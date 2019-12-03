@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CreateUserWidget {
-  static clientCreate(BuildContext context) {
+
+  static userCreate(BuildContext context) {
     TextEditingController _controllerName = TextEditingController();
     TextEditingController _controllerLogin = TextEditingController();
     TextEditingController _controllerPassWord = TextEditingController();
@@ -13,7 +14,7 @@ class CreateUserWidget {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text("Cadastro de Usuario", textAlign: TextAlign.center,),
+          title: Text("Cadastro de Usuário", textAlign: TextAlign.center,),
           content: SingleChildScrollView(
             child: Column(
               children: <Widget>[
