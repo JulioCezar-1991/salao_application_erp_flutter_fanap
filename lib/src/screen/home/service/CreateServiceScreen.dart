@@ -9,6 +9,7 @@ class CreateServiceScreen extends StatefulWidget {
 class _CreateServiceScreenState extends State<CreateServiceScreen> {
   TextEditingController _controllerName = TextEditingController();
   TextEditingController _controllerValor = TextEditingController();
+  TextEditingController _controllerTempoGasto = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -36,13 +37,13 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
                 controller: _controllerName,
               ),
               SizedBox(
-                height: 8,
+                height: 10,
               ),
               TextField(
                 cursorColor: Colors.white,
                 maxLength: 28,
                 decoration: InputDecoration(
-                  hintText: "Valor",
+                  hintText: " Valor",
                   counterText: "",
                   icon: Icon(
                     FontAwesomeIcons.dollarSign,
@@ -52,9 +53,24 @@ class _CreateServiceScreenState extends State<CreateServiceScreen> {
                 controller: _controllerValor,
               ),
               SizedBox(
-                height: 460,
+                height: 10,
               ),
-              
+              TextField(
+                cursorColor: Colors.white,
+                maxLength: 28,
+                decoration: InputDecoration(
+                  hintText: " Tempo Médio Gasto",
+                  counterText: "",
+                  icon: Icon(
+                    FontAwesomeIcons.userClock,
+                    size: 20,
+                  ),
+                ),
+                controller: _controllerTempoGasto,
+              ),
+              SizedBox(
+                height: 400,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[

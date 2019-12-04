@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projectfanap/src/widgets/CardServiceWidget.dart';
 
 class ServiceScreen extends StatefulWidget {
   @override
@@ -8,8 +9,14 @@ class ServiceScreen extends StatefulWidget {
 class _ServiceScreenState extends State<ServiceScreen> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("Serviços"),
+    return Container(
+      padding: EdgeInsets.all(5),
+      child: ListView(
+        children: <Widget>[
+          for(int i = 0; i < 25; i++)
+          CardServiceWidget(),
+        ],
+      ),
     );
   }
 }

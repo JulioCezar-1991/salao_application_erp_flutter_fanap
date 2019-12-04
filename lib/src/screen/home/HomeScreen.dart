@@ -27,8 +27,9 @@ class _HomeScreenState extends State<HomeScreen> {
       key: _scaffoldkey,
       endDrawer: DrawerWidget(),
       appBar: AppBar(
-        centerTitle: true,
-        title: Text(_title),
+        automaticallyImplyLeading: false,
+        
+        title: Text("      ${this._title}"),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.menu),

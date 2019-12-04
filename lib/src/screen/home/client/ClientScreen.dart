@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projectfanap/src/widgets/CardClientWidget.dart';
 
 class ClientScreen extends StatefulWidget {
   @override
@@ -13,8 +14,15 @@ class _ClientScreenState extends State<ClientScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("Clientes"),
+    return Container(
+      padding: EdgeInsets.all(5),
+      child: ListView(
+        children: <Widget>[
+          for(int i = 0; i < 25; i++)
+          CardClientWidget(),
+        ],
+        
+      )
     );
   }
 }

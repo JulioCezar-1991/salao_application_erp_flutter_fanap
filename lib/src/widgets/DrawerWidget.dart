@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projectfanap/src/screen/ConfigScreen.dart';
 import 'package:projectfanap/src/screen/login/LoginSignInScreen.dart';
 import 'package:projectfanap/src/widgets/CreateUserWidget.dart';
 
@@ -77,7 +78,14 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 fontSize: 16.0,
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ConfigScreen(),
+                ),
+              );
+            },
           ),
           SizedBox(
             height: _size.width / 1.8,
