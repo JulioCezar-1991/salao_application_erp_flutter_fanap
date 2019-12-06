@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:projectfanap/src/screen/home/HomeScreen.dart';
+import 'package:projectfanap/src/controller/RouteGeneratorController.dart';
 import 'package:projectfanap/src/service/ClientService.dart';
 import 'package:projectfanap/src/widgets/CircleButton.dart';
 
@@ -38,8 +38,8 @@ class _LoginSignInScreenState extends State<LoginSignInScreen> {
       _scaffoldKey.currentState.showSnackBar(snackbar);
     } else {
       if (await _islogin() > 0) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => HomeScreen()));
+        Navigator.pushNamed(
+            context, RouteGeneratorController.ROUTE_HOME);
       } else {
         final snackbar = SnackBar(
           content: Text("Usuario ou senha invalido"),
@@ -158,8 +158,8 @@ class _LoginSignInScreenState extends State<LoginSignInScreen> {
               child: CicleButton(
                 label: "ENTRAR",
                 onTap: () async {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()));
+                  Navigator.pushReplacementNamed(context, RouteGeneratorController.ROUTE_HOME);
+                      
                   /*       _controllerCadastro();
                   _clearForm(); */
                 },

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projectfanap/src/screen/ConfigScreen.dart';
-import 'package:projectfanap/src/screen/login/LoginSignInScreen.dart';
+import 'package:projectfanap/src/controller/RouteGeneratorController.dart';
 import 'package:projectfanap/src/widgets/CreateUserWidget.dart';
 
 class DrawerWidget extends StatefulWidget {
@@ -66,7 +65,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 fontSize: 16.0,
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(
+                  context, RouteGeneratorController.ROUTE_PEMISSION);
+            },
           ),
           ListTile(
             leading: Icon(
@@ -79,12 +81,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               ),
             ),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ConfigScreen(),
-                ),
-              );
+              Navigator.pushNamed(
+                  context, RouteGeneratorController.ROUTE_CONFING);
             },
           ),
           SizedBox(
@@ -117,8 +115,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               ),
             ),
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => LoginSignInScreen()));
+              Navigator.pushNamedAndRemoveUntil(
+                  context, RouteGeneratorController.ROUTE_LOGINSINGIN, (contex) => false);
             },
           ),
         ],

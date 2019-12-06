@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projectfanap/src/screen/home/HomeScreen.dart';
+import 'package:projectfanap/src/controller/RouteGeneratorController.dart';
 import 'package:projectfanap/src/util/CNPJUtil.dart';
 import 'package:projectfanap/src/util/CPFUtil.dart';
 
@@ -33,10 +33,8 @@ class _ConfigScreenState extends State<ConfigScreen> {
         leading: IconButton(
           icon: Icon(Icons.close),
           onPressed: () {
-            Navigator.pop(
-              context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
-            );
+            Navigator.popAndPushNamed(
+                context, RouteGeneratorController.ROUTE_HOME);
           },
         ),
         title: Text("Configurações"),
@@ -67,12 +65,8 @@ class _ConfigScreenState extends State<ConfigScreen> {
                       FlatButton(
                         child: Text("Salvar"),
                         onPressed: () {
-                          Navigator.pop(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => HomeScreen(),
-                            ),
-                          );
+                          Navigator.popAndPushNamed(
+                              context, RouteGeneratorController.ROUTE_HOME);
                         },
                       )
                     ],
@@ -132,7 +126,7 @@ class _ConfigScreenState extends State<ConfigScreen> {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: Text("Digite o Endereço"),
+                      title: Text("Digite a URL"),
                       content: TextField(
                           controller: _controllerURL,
                           keyboardType: TextInputType.url),
@@ -298,7 +292,7 @@ class _ConfigScreenState extends State<ConfigScreen> {
                       alignment: Alignment.topLeft,
                       padding: EdgeInsets.only(left: 20, right: 20, top: 30),
                       child: Text(
-                        "CPF do responsavel:",
+                        "CPF do Responsavel:",
                         style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 16,

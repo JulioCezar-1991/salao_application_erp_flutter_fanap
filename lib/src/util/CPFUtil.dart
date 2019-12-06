@@ -1,5 +1,4 @@
 import 'package:cpf_cnpj_validator/cpf_validator.dart';
-import 'package:flutter/material.dart';
 class CPFUtil{
 
 String _cpf = "";

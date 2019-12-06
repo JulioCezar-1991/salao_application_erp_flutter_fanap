@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:projectfanap/src/controller/RouteGeneratorController.dart';
 import 'package:projectfanap/src/screen/home/analytic/AnalyticsScreen.dart';
 import 'package:projectfanap/src/screen/home/client/ClientScreen.dart';
-import 'package:projectfanap/src/screen/home/client/CreateClientScreen.dart';
-import 'package:projectfanap/src/screen/home/scheduling/CreateSchedulingScreen.dart';
 import 'package:projectfanap/src/screen/home/scheduling/SchedunlingScreen.dart';
-import 'package:projectfanap/src/screen/home/service/CreateServiceScreen.dart';
 import 'package:projectfanap/src/screen/home/service/ServiceScreen.dart';
 import 'package:projectfanap/src/widgets/DrawerWidget.dart';
 
@@ -28,8 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
       endDrawer: DrawerWidget(),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        
-        title: Text("      ${this._title}"),
+        title: Text("  ${this._title}"),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.menu),
@@ -41,9 +38,9 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: PageView(
         controller: _controllerPage,
-        onPageChanged: (int) {
-          controlePagina = int;
-          print('Controlador de pagina $int');
+        onPageChanged: (index) {
+          controlePagina = index;
+          print('Controlador de pagina $index');
         },
         children: <Widget>[
           Center(
@@ -68,29 +65,16 @@ class _HomeScreenState extends State<HomeScreen> {
           child: FloatingActionButton(
             onPressed: () {
               if (controlePagina == 0) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CreateClientScreen(),
-                  ),
-                );
+                Navigator.pushNamed(
+                    context, RouteGeneratorController.ROUTE_CREATECLIENT);
               } else if (controlePagina == 1) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CreateServiceScreen(),
-                  ),
-                );
+               Navigator.pushNamed(
+                    context, RouteGeneratorController.ROUTE_CREATESERVICE);
               } else if (controlePagina == 2) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CreateSchedulingScreen(),
-                  ),
-                );
+                Navigator.pushNamed(
+                    context, RouteGeneratorController.ROUTE_CREATESCHEDUNLING);
               }
             },
-
             child: Icon(
               Icons.add,
               color: Colors.white,
