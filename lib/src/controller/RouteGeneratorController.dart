@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:projectfanap/src/screen/ConfigScreen.dart';
 import 'package:projectfanap/src/screen/PermissionScreen.dart';
 import 'package:projectfanap/src/screen/home/HomeScreen.dart';
+import 'package:projectfanap/src/screen/home/agendamento/CreateSchedulingScreen.dart';
+import 'package:projectfanap/src/screen/home/agendamento/SchedunlingScreen.dart';
+import 'package:projectfanap/src/screen/home/servico/CreateServiceScreen.dart';
+import 'package:projectfanap/src/screen/home/servico/ServiceScreen.dart';
 import 'package:projectfanap/src/screen/login/LoginSignInScreen.dart';
 import 'package:projectfanap/src/screen/home/analytic/AnalyticsScreen.dart';
 import 'package:projectfanap/src/screen/home/client/ClientDetailsScreen.dart';
 import 'package:projectfanap/src/screen/home/client/ClientScreen.dart';
 import 'package:projectfanap/src/screen/home/client/CreateClientScreen.dart';
-import 'package:projectfanap/src/screen/home/scheduling/CreateSchedulingScreen.dart';
-import 'package:projectfanap/src/screen/home/scheduling/SchedunlingScreen.dart';
-import 'package:projectfanap/src/screen/home/service/CreateServiceScreen.dart';
-import 'package:projectfanap/src/screen/home/service/ServiceScreen.dart';
 
 class RouteGeneratorController {
   static const String ROUTE_CONFING = "/ConfigScreen";
@@ -51,11 +51,12 @@ class RouteGeneratorController {
       case ROUTE_SCHEDUNLING:
         return MaterialPageRoute(builder: (context) => SchedunlingScreen());
       case ROUTE_CREATESCHEDUNLING:
-        return MaterialPageRoute(builder: (context) => CreateSchedulingScreen());
+        return MaterialPageRoute(
+            builder: (context) => CreateSchedulingScreen());
       case ROUTE_SERVICE:
-        return MaterialPageRoute(builder: (context) => ServiceScreen());
+        return MaterialPageRoute(builder: (context) => ServicoScreen());
       case ROUTE_CREATESERVICE:
-        return MaterialPageRoute(builder: (context) => CreateServiceScreen());
+        return MaterialPageRoute(builder: (context) => CreateServicoScreen());
       default:
         _erroRota();
     }
@@ -64,13 +65,14 @@ class RouteGeneratorController {
 
   static Route<dynamic> _erroRota() {
     return MaterialPageRoute(
-        builder: (context) => Scaffold(
-              appBar: AppBar(
-                title: Text("Tela Não Encontrada"),
-              ),
-              body: Center(
-                child: Text("Tela Não Encontrada"),
-              ),
-            ));
+      builder: (context) => Scaffold(
+        appBar: AppBar(
+          title: Text("Tela Não Encontrada"),
+        ),
+        body: Center(
+          child: Text("Tela Não Encontrada"),
+        ),
+      ),
+    );
   }
 }

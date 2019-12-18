@@ -17,6 +17,7 @@ class _CreateClientScreenState extends State<CreateClientScreen> {
   TextEditingController _controllerEndereco = TextEditingController();
   TextEditingController _controllerBairro = TextEditingController();
   TextEditingController _controllerCidade = TextEditingController();
+  TextEditingController _controllerUF = TextEditingController();
 
   ControllerValidCpf _controllerValidCpf = ControllerValidCpf();
 
@@ -174,8 +175,24 @@ class _CreateClientScreenState extends State<CreateClientScreen> {
                 ),
                 controller: _controllerCidade,
               ),
+               SizedBox(
+                height: 12,
+              ),
+              TextField(
+                cursorColor: Colors.white,
+                maxLength: 28,
+                decoration: InputDecoration(
+                  hintText: " Cidade",
+                  counterText: "",
+                  icon: Icon(
+                    Icons.location_city,
+                    size: 20,
+                  ),
+                ),
+                controller: _controllerUF,
+              ),
               SizedBox(
-                height: 80,
+                height: 20,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,

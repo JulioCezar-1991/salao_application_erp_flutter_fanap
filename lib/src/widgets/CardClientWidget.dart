@@ -4,6 +4,7 @@ class CardClientWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      
       elevation: 3,
       child: Row(
         children: <Widget>[
@@ -19,14 +20,15 @@ class CardClientWidget extends StatelessWidget {
             ),
           ),
           Container(
+            
             width: 200,
-            height: 80,
+            height: 83,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(top: 10, bottom: 2.5),
+                  padding: EdgeInsets.only(top: 8, bottom: 2.5),
                   child: Text(
                     "Ana Maria Braga",
                     style: TextStyle(
@@ -39,7 +41,7 @@ class CardClientWidget extends StatelessWidget {
                   child: Text("Cidade Vera Cruz - AP.Goiânia"),
                 ),
                 Padding(
-                    padding: EdgeInsets.only(top: 2.5, bottom: 5),
+                    padding: EdgeInsets.only(top: 2.5, bottom: 4),
                     child: Row(
                       children: <Widget>[
                         Text(

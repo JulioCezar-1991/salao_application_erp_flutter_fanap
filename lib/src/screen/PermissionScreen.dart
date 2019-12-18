@@ -11,9 +11,8 @@ class _PermissionScreenState extends State<PermissionScreen> {
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   String _myActivity;
-  bool _estaSelecionado1 = false;
-  bool _estaSelecionadoBr = false;
-  bool _estaSelecionadoMe = false;
+  bool _estaSelecionado = false;
+
 
   final formKey = GlobalKey<FormState>();
 
@@ -131,10 +130,10 @@ class _PermissionScreenState extends State<PermissionScreen> {
                                   Row(
                                     children: <Widget>[
                                       Checkbox(
-                                          value: _estaSelecionado1,
+                                          value: _estaSelecionado,
                                           onChanged: (bool valor) {
                                             setState(() {
-                                              this._estaSelecionado1 = valor;
+                                              this._estaSelecionado = valor;
                                             });
                                           }),
                                       Text("Criar    "),
@@ -143,10 +142,10 @@ class _PermissionScreenState extends State<PermissionScreen> {
                                   Row(
                                     children: <Widget>[
                                       Checkbox(
-                                          value: _estaSelecionado1,
+                                          value: _estaSelecionado,
                                           onChanged: (bool valor) {
                                             setState(() {
-                                              this._estaSelecionado1 = valor;
+                                              this._estaSelecionado = valor;
                                             });
                                           }),
                                       Text("Excluir"),
@@ -162,10 +161,10 @@ class _PermissionScreenState extends State<PermissionScreen> {
                                   Row(
                                     children: <Widget>[
                                       Checkbox(
-                                          value: _estaSelecionado1,
+                                          value: _estaSelecionado,
                                           onChanged: (bool valor) {
                                             setState(() {
-                                              this._estaSelecionado1 = valor;
+                                              this._estaSelecionado = valor;
                                             });
                                           }),
                                       Text("Alterar     "),
@@ -174,10 +173,10 @@ class _PermissionScreenState extends State<PermissionScreen> {
                                   Row(
                                     children: <Widget>[
                                       Checkbox(
-                                          value: _estaSelecionado1,
+                                          value: _estaSelecionado,
                                           onChanged: (bool valor) {
                                             setState(() {
-                                              this._estaSelecionado1 = valor;
+                                              this._estaSelecionado = valor;
                                             });
                                           }),
                                       Text("Visualizar"),
@@ -220,10 +219,10 @@ class _PermissionScreenState extends State<PermissionScreen> {
                                   Row(
                                     children: <Widget>[
                                       Checkbox(
-                                          value: _estaSelecionado1,
+                                          value: _estaSelecionado,
                                           onChanged: (bool valor) {
                                             setState(() {
-                                              this._estaSelecionado1 = valor;
+                                              this._estaSelecionado = valor;
                                             });
                                           }),
                                       Text("Criar    "),
@@ -232,10 +231,10 @@ class _PermissionScreenState extends State<PermissionScreen> {
                                   Row(
                                     children: <Widget>[
                                       Checkbox(
-                                          value: _estaSelecionado1,
+                                          value: _estaSelecionado,
                                           onChanged: (bool valor) {
                                             setState(() {
-                                              this._estaSelecionado1 = valor;
+                                              this._estaSelecionado = valor;
                                             });
                                           }),
                                       Text("Excluir"),
@@ -251,10 +250,10 @@ class _PermissionScreenState extends State<PermissionScreen> {
                                   Row(
                                     children: <Widget>[
                                       Checkbox(
-                                          value: _estaSelecionado1,
+                                          value: _estaSelecionado,
                                           onChanged: (bool valor) {
                                             setState(() {
-                                              this._estaSelecionado1 = valor;
+                                              this._estaSelecionado = valor;
                                             });
                                           }),
                                       Text("Alterar      "),
@@ -263,10 +262,10 @@ class _PermissionScreenState extends State<PermissionScreen> {
                                   Row(
                                     children: <Widget>[
                                       Checkbox(
-                                          value: _estaSelecionado1,
+                                          value: _estaSelecionado,
                                           onChanged: (bool valor) {
                                             setState(() {
-                                              this._estaSelecionado1 = valor;
+                                              this._estaSelecionado = valor;
                                             });
                                           }),
                                       Text("Visualizar"),
@@ -309,10 +308,10 @@ class _PermissionScreenState extends State<PermissionScreen> {
                                   Row(
                                     children: <Widget>[
                                       Checkbox(
-                                          value: _estaSelecionado1,
+                                          value: _estaSelecionado,
                                           onChanged: (bool valor) {
                                             setState(() {
-                                              this._estaSelecionado1 = valor;
+                                              this._estaSelecionado = valor;
                                             });
                                           }),
                                       Text("Criar    "),
@@ -321,10 +320,10 @@ class _PermissionScreenState extends State<PermissionScreen> {
                                   Row(
                                     children: <Widget>[
                                       Checkbox(
-                                          value: _estaSelecionado1,
+                                          value: _estaSelecionado,
                                           onChanged: (bool valor) {
                                             setState(() {
-                                              this._estaSelecionado1 = valor;
+                                              this._estaSelecionado = valor;
                                             });
                                           }),
                                       Text("Excluir"),
@@ -340,10 +339,10 @@ class _PermissionScreenState extends State<PermissionScreen> {
                                   Row(
                                     children: <Widget>[
                                       Checkbox(
-                                          value: _estaSelecionado1,
+                                          value: _estaSelecionado,
                                           onChanged: (bool valor) {
                                             setState(() {
-                                              this._estaSelecionado1 = valor;
+                                              this._estaSelecionado = valor;
                                             });
                                           }),
                                       Text("Alterar     "),
@@ -352,10 +351,10 @@ class _PermissionScreenState extends State<PermissionScreen> {
                                   Row(
                                     children: <Widget>[
                                       Checkbox(
-                                          value: _estaSelecionado1,
+                                          value: _estaSelecionado,
                                           onChanged: (bool valor) {
                                             setState(() {
-                                              this._estaSelecionado1 = valor;
+                                              this._estaSelecionado = valor;
                                             });
                                           }),
                                       Text("Visualizar"),
@@ -371,10 +370,10 @@ class _PermissionScreenState extends State<PermissionScreen> {
                                   Row(
                                     children: <Widget>[
                                       Checkbox(
-                                          value: _estaSelecionado1,
+                                          value: _estaSelecionado,
                                           onChanged: (bool valor) {
                                             setState(() {
-                                              this._estaSelecionado1 = valor;
+                                              this._estaSelecionado = valor;
                                             });
                                           }),
                                       Text("Fechar"),
@@ -418,10 +417,10 @@ class _PermissionScreenState extends State<PermissionScreen> {
                                   Row(
                                     children: <Widget>[
                                       Checkbox(
-                                          value: _estaSelecionado1,
+                                          value: _estaSelecionado,
                                           onChanged: (bool valor) {
                                             setState(() {
-                                              this._estaSelecionado1 = valor;
+                                              this._estaSelecionado = valor;
                                             });
                                           }),
                                       Text("Criar    "),
@@ -430,10 +429,10 @@ class _PermissionScreenState extends State<PermissionScreen> {
                                   Row(
                                     children: <Widget>[
                                       Checkbox(
-                                          value: _estaSelecionado1,
+                                          value: _estaSelecionado,
                                           onChanged: (bool valor) {
                                             setState(() {
-                                              this._estaSelecionado1 = valor;
+                                              this._estaSelecionado = valor;
                                             });
                                           }),
                                       Text("Excluir"),
@@ -449,10 +448,10 @@ class _PermissionScreenState extends State<PermissionScreen> {
                                   Row(
                                     children: <Widget>[
                                       Checkbox(
-                                          value: _estaSelecionado1,
+                                          value: _estaSelecionado,
                                           onChanged: (bool valor) {
                                             setState(() {
-                                              this._estaSelecionado1 = valor;
+                                              this._estaSelecionado = valor;
                                             });
                                           }),
                                       Text("Alterar"),
@@ -461,10 +460,10 @@ class _PermissionScreenState extends State<PermissionScreen> {
                                   Row(
                                     children: <Widget>[
                                       Checkbox(
-                                          value: _estaSelecionado1,
+                                          value: _estaSelecionado,
                                           onChanged: (bool valor) {
                                             setState(() {
-                                              this._estaSelecionado1 = valor;
+                                              this._estaSelecionado = valor;
                                             });
                                           }),
                                       Text("Fechar"),
@@ -507,10 +506,10 @@ class _PermissionScreenState extends State<PermissionScreen> {
                                   Row(
                                     children: <Widget>[
                                       Checkbox(
-                                          value: _estaSelecionado1,
+                                          value: _estaSelecionado,
                                           onChanged: (bool valor) {
                                             setState(() {
-                                              this._estaSelecionado1 = valor;
+                                              this._estaSelecionado = valor;
                                             });
                                           }),
                                       Text("Configurações"),
@@ -519,10 +518,10 @@ class _PermissionScreenState extends State<PermissionScreen> {
                                   Row(
                                     children: <Widget>[
                                       Checkbox(
-                                          value: _estaSelecionado1,
+                                          value: _estaSelecionado,
                                           onChanged: (bool valor) {
                                             setState(() {
-                                              this._estaSelecionado1 = valor;
+                                              this._estaSelecionado = valor;
                                             });
                                           }),
                                       Text("Permissões     "),
@@ -538,10 +537,10 @@ class _PermissionScreenState extends State<PermissionScreen> {
                                   Row(
                                     children: <Widget>[
                                       Checkbox(
-                                          value: _estaSelecionado1,
+                                          value: _estaSelecionado,
                                           onChanged: (bool valor) {
                                             setState(() {
-                                              this._estaSelecionado1 = valor;
+                                              this._estaSelecionado = valor;
                                             });
                                           }),
                                       Text("Criar User      "),
@@ -550,10 +549,10 @@ class _PermissionScreenState extends State<PermissionScreen> {
                                   Row(
                                     children: <Widget>[
                                       Checkbox(
-                                          value: _estaSelecionado1,
+                                          value: _estaSelecionado,
                                           onChanged: (bool valor) {
                                             setState(() {
-                                              this._estaSelecionado1 = valor;
+                                              this._estaSelecionado = valor;
                                             });
                                           }),
                                       Text("Compartilhar"),

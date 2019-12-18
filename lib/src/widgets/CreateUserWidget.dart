@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:projectfanap/src/service/UserService.dart';
+
 
 class CreateUserWidget {
 
   static userCreate(BuildContext context) {
+
     TextEditingController _controllerName = TextEditingController();
-    TextEditingController _controllerLogin = TextEditingController();
-    TextEditingController _controllerPassWord = TextEditingController();
-    TextEditingController _controllerCelular = TextEditingController();
     TextEditingController _controllerEmail = TextEditingController();
+    TextEditingController _controllerTelefone = TextEditingController();
+    TextEditingController _controllerLogin = TextEditingController();
+    TextEditingController _controllerPassword = TextEditingController();
+    TextEditingController _controllerPermisao = TextEditingController();
+    
+
+
+    UserService _userService = UserService();
 
     showDialog(
-     
       context: context,
       builder: (context) {
         return AlertDialog(
@@ -45,7 +52,7 @@ class CreateUserWidget {
                       size: 20,
                     ),
                   ),
-                  controller: _controllerCelular,
+                  controller: _controllerTelefone,
                 ),
                 SizedBox(
                   height: 8,
@@ -93,7 +100,7 @@ class CreateUserWidget {
                       size: 20,
                     ),
                   ),
-                  controller: _controllerPassWord,
+                  controller: _controllerPassword,
                 ),
                 SizedBox(
                   height: 8,
@@ -109,7 +116,23 @@ class CreateUserWidget {
                       size: 20,
                     ),
                   ),
-                  controller: _controllerPassWord,
+                  controller: _controllerPassword,
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  cursorColor: Colors.white,
+                  maxLength: 28,
+                  decoration: InputDecoration(
+                    hintText: " Selecione uma Permissão",
+                    counterText: "",
+                    icon: Icon(
+                      Icons.perm_contact_calendar,
+                      size: 20,
+                    ),
+                  ),
+                  controller: _controllerPermisao,
                 ),
               ],
             ),
@@ -117,8 +140,8 @@ class CreateUserWidget {
           actions: <Widget>[
             FlatButton(
               child: Text("Salvar"),
-              onPressed: () {
-                Navigator.pop(context);
+              onPressed: () async {
+                _userService.createUser(_controllerName.text,_controllerEmail.text,_controllerTelefone.text,_controllerLogin.text,_controllerPassword.text);
               },
             ),
             FlatButton(

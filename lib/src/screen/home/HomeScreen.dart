@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:projectfanap/src/controller/RouteGeneratorController.dart';
+import 'package:projectfanap/src/screen/home/agendamento/SchedunlingScreen.dart';
 import 'package:projectfanap/src/screen/home/analytic/AnalyticsScreen.dart';
 import 'package:projectfanap/src/screen/home/client/ClientScreen.dart';
-import 'package:projectfanap/src/screen/home/scheduling/SchedunlingScreen.dart';
-import 'package:projectfanap/src/screen/home/service/ServiceScreen.dart';
+import 'package:projectfanap/src/screen/home/servico/ServiceScreen.dart';
 import 'package:projectfanap/src/widgets/DrawerWidget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ClientScreen(),
           ),
           Center(
-            child: ServiceScreen(),
+            child: ServicoScreen(),
           ),
           Center(
             child: SchedunlingScreen(),

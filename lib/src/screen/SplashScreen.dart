@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:projectfanap/src/controller/RouteGeneratorController.dart';
+
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -13,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void navigationPage() {
-    Navigator.of(context).pushReplacementNamed('screen/login/LoginSignInScreen');
+    Navigator.pushReplacementNamed(context, RouteGeneratorController.ROUTE_LOGINSINGIN);
   }
 
   @override

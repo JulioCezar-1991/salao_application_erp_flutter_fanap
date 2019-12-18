@@ -4,7 +4,7 @@ class CPFUtil{
 String _cpf = "";
 String _validadorCPF = "";
 
-   String formatarCPF(String cpf) {
+ String formatarCPF(String cpf) {
     
       _cpf = CPFValidator.format(cpf);
     

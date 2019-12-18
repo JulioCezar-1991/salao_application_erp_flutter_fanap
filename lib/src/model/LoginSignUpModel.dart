@@ -1,72 +1,64 @@
 class LoginSignUpModel {
-  String _empresa;
-  String _name;
+  int _codigo;
+  String _nomeCompleto;
+  String _telefone;
+  String _email;
   String _login;
   String _password;
-  String _tel;
-  String _email;
+  int _permissaoCodigo;
 
   LoginSignUpModel(
-      {String empresa,
-      String name,
+      {int codigo,
+      String nomeCompleto,
+      String telefone,
+      String email,
       String login,
-      String pass,
-      String passConfir,
-      String tel,
-      String email}) {
-    this._empresa = empresa;
-    this._name = name;
-    this._login = login;
-    this._password = pass;
-    this._tel = tel;
+      String password,
+      int permissaoCodigo}) {
+    this._codigo = codigo;
+    this._nomeCompleto = nomeCompleto;
+    this._telefone = telefone;
     this._email = email;
-  }
-
-  void setEmpresa(String empresa) {
-    this._empresa = empresa;
-  }
-
-  String getEmpresa() {
-    return this._empresa;
-  }
-
-  void setName(String name) {
-    this._name = name;
-  }
-
-  String getName() {
-    return this._name;
-  }
-
-  void setLogin(String login) {
     this._login = login;
+    this._password = password;
+    this._permissaoCodigo = permissaoCodigo;
   }
 
-  String getLogin() {
-    return this._login;
+  int get getCodigo => _codigo;
+  set setCodigo(int codigo) => _codigo = codigo;
+  String get getNomeCompleto => _nomeCompleto;
+  set setNomeCompleto(String nomeCompleto) => _nomeCompleto = nomeCompleto;
+  String get getTelefone => _telefone;
+  set setTelefone(String telefone) => _telefone = telefone;
+  String get getEmail => _email;
+  set setEmail(String email) => _email = email;
+  String get getLogin => _login;
+  set setLogin(String login) => _login = login;
+  String get getPassword => _password;
+  set setPassword(String password) => _password = password;
+  int get getPermissaoCodigo => _permissaoCodigo;
+  set setPermissaoCodigo(int permissaoCodigo) =>
+      _permissaoCodigo = permissaoCodigo;
+
+  LoginSignUpModel.fromJson(Map<String, dynamic> json) {
+    _codigo = json['codigo'];
+    _nomeCompleto = json['nome_completo'];
+    _telefone = json['telefone'];
+    _email = json['email'];
+    _login = json['login'];
+    _password = json['password'];
+    _permissaoCodigo = json['permissao_codigo'];
   }
 
-  void setPassword(String pass) {
-    this._password = pass;
-  }
-
-  String getPassword() {
-    return this._password;
-  }
-
-  void setTel(String tel) {
-    this._tel = tel;
-  }
-
-  String getTel() {
-    return this._tel;
-  }
-
-  void setEmail(String email) {
-    this._email = email;
-  }
-
-  String getEmail() {
-    return this._email;
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['codigo'] = this._codigo;
+    data['nome_completo'] = this._nomeCompleto;
+    data['telefone'] = this._telefone;
+    data['email'] = this._email;
+    data['login'] = this._login;
+    data['password'] = this._password;
+    data['permissao_codigo'] = this._permissaoCodigo;
+    return data;
   }
 }

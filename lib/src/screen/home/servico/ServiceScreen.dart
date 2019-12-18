@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:projectfanap/src/widgets/CardServiceWidget.dart';
 
-class ServiceScreen extends StatefulWidget {
+class ServicoScreen extends StatefulWidget {
   @override
-  _ServiceScreenState createState() => _ServiceScreenState();
+  _ServicoScreenState createState() => _ServicoScreenState();
 }
 
-class _ServiceScreenState extends State<ServiceScreen> {
+class _ServicoScreenState extends State<ServicoScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -1,8 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:projectfanap/src/controller/RouteGeneratorController.dart';
-import 'package:projectfanap/src/service/ClientService.dart';
-import 'package:projectfanap/src/widgets/CircleButton.dart';
+import 'package:projectfanap/src/service/UserService.dart';
+import 'package:projectfanap/src/widgets/CustomCircleButton.dart';
 
 class LoginSignInScreen extends StatefulWidget {
   @override
@@ -10,49 +12,85 @@ class LoginSignInScreen extends StatefulWidget {
 }
 
 class _LoginSignInScreenState extends State<LoginSignInScreen> {
-  TextEditingController _controllerLogin = TextEditingController();
-  TextEditingController _controllerLoginPassword = TextEditingController();
-
-  ClientService _clientService = ClientService();
-
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  Future<int> _islogin() async {
-    int response = await _clientService.isLoginPost(
-        _controllerLogin.text, _controllerLoginPassword.text);
-    return response;
+  TextEditingController _controllerLogin = TextEditingController();
+  TextEditingController _controllerPassword = TextEditingController();
+
+  UserService _userService = UserService();
+  int _state = 0;
+
+  _cleanField() {
+    _controllerLogin.clear();
+    _controllerPassword.clear();
   }
 
-  _controllerCadastro() async {
+  _setUpButtonChild() {
+    if (_state == 0) {
+      return Text(
+        "ENTRAR",
+        style: const TextStyle(
+            color: Colors.white, fontSize: 16.0, letterSpacing: 2),
+      );
+    } else if (_state == 1) {
+      return CircularProgressIndicator(
+        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+      );
+    } else {
+      return Text(
+        "ENTRAR",
+        style: const TextStyle(
+            color: Colors.white, fontSize: 16.0, letterSpacing: 2),
+      );
+    }
+  }
+
+  _validaForm() async {
     if (_controllerLogin.text == "") {
       final snackbar = SnackBar(
-        content: Text("Digite seu Login"),
+        content: Text("Digite o seu Usuário"),
         duration: Duration(seconds: 3),
       );
       _scaffoldKey.currentState.showSnackBar(snackbar);
-    } else if (_controllerLoginPassword.text == "") {
+    } else if (_controllerPassword.text == "") {
       final snackbar = SnackBar(
-        content: Text("Digite sua Senha"),
+        content: Text("Digite a sua Senha"),
         duration: Duration(seconds: 3),
       );
       _scaffoldKey.currentState.showSnackBar(snackbar);
     } else {
-      if (await _islogin() > 0) {
-        Navigator.pushNamed(
-            context, RouteGeneratorController.ROUTE_HOME);
-      } else {
-        final snackbar = SnackBar(
-          content: Text("Usuario ou senha invalido"),
-          duration: Duration(seconds: 3),
-        );
-        _scaffoldKey.currentState.showSnackBar(snackbar);
-      }
+      return _animateButton();
     }
   }
 
-  _clearForm() {
-    _controllerLogin.clear();
-    _controllerLoginPassword.clear();
+  void _animateButton() {
+    _login();
+    setState(() {
+      _state = 1;
+    });
+    Timer(Duration(seconds: 3), () {
+      setState(() {
+        _state = 2;
+      });
+    });
+  }
+
+  _login() async {
+    var entregador = await _userService.isLoginPost(
+        _controllerLogin.text, _controllerPassword.text);
+
+    if (entregador > 0) {
+      _cleanField();
+      return Navigator.pushNamedAndRemoveUntil(context,
+          RouteGeneratorController.ROUTE_HOME, (Route<dynamic> route) => false);
+    } else {
+      _cleanField();
+      final snackbar = SnackBar(
+        content: Text("Login ou Senha Inválida!"),
+        duration: Duration(seconds: 3),
+      );
+      _scaffoldKey.currentState.showSnackBar(snackbar);
+    }
   }
 
   @override
@@ -76,33 +114,27 @@ class _LoginSignInScreenState extends State<LoginSignInScreen> {
             Container(
               padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                color: Theme.of(context).accentColor,
+                borderRadius: BorderRadius.circular(14),
+                color: Theme.of(context).primaryColor,
                 boxShadow: [
                   BoxShadow(
-                      color: Color.fromRGBO(92, 42, 100, 1.0), blurRadius: 1),
+                      color: Theme.of(context).accentColor, blurRadius: 2),
                 ],
               ),
               child: Column(
                 children: <Widget>[
                   TextField(
-                    style: TextStyle(
-                      color: Colors.white,
-                      decorationColor: Colors.white,
-                    ),
                     cursorColor: Colors.white,
                     maxLength: 15,
                     decoration: InputDecoration(
+                      enabled: true,
                       enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
-                      disabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
                       ),
                       icon: Icon(
                         Icons.perm_identity,
                         color: Colors.white,
-                        size: 26,
+                        size: 28,
                       ),
                       hintText: "Usuário",
                       hintStyle: TextStyle(
@@ -117,11 +149,6 @@ class _LoginSignInScreenState extends State<LoginSignInScreen> {
                     height: 10,
                   ),
                   TextField(
-                    style: TextStyle(
-                      color: Colors.white,
-                      decorationColor: Colors.white,
-                    ),
-                    cursorColor: Colors.white,
                     maxLength: 8,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -136,7 +163,7 @@ class _LoginSignInScreenState extends State<LoginSignInScreen> {
                       icon: Icon(
                         Icons.lock_outline,
                         color: Colors.white,
-                        size: 26,
+                        size: 28,
                       ),
                       hintText: "Password",
                       hintStyle: TextStyle(
@@ -145,7 +172,7 @@ class _LoginSignInScreenState extends State<LoginSignInScreen> {
                         letterSpacing: 2,
                       ),
                     ),
-                    controller: _controllerLoginPassword,
+                    controller: _controllerPassword,
                   ),
                 ],
               ),
@@ -155,14 +182,13 @@ class _LoginSignInScreenState extends State<LoginSignInScreen> {
             ),
             Padding(
               padding: EdgeInsets.only(top: _size.width * 0.1),
-              child: CicleButton(
-                label: "ENTRAR",
-                onTap: () async {
-                  Navigator.pushReplacementNamed(context, RouteGeneratorController.ROUTE_HOME);
-                      
-                  /*       _controllerCadastro();
-                  _clearForm(); */
-                },
+              child: Container(
+                child: CustomCicleButton(
+                  child: _setUpButtonChild(),
+                  onTap: () {
+                    _validaForm();
+                  },
+                ),
               ),
             ),
             Padding(
@@ -197,10 +223,9 @@ class _LoginSignInScreenState extends State<LoginSignInScreen> {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: CicleButton(
+                    child: CustomCicleButton(
                       height: 45,
-                      gradientColor: false,
-                      colorGradient: Colors.blue,
+                      backgroundColor: Colors.blue,
                       icon: Icon(
                         FontAwesomeIcons.facebookF,
                         color: Colors.white,
@@ -214,10 +239,9 @@ class _LoginSignInScreenState extends State<LoginSignInScreen> {
                     width: 20,
                   ),
                   Expanded(
-                    child: CicleButton(
+                    child: CustomCicleButton(
                       height: 45,
-                      gradientColor: false,
-                      colorGradient: Colors.red[700],
+                      backgroundColor: Colors.red[700],
                       icon: Icon(
                         FontAwesomeIcons.google,
                         color: Colors.white,

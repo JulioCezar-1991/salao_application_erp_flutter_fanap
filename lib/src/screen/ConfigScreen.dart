@@ -77,275 +77,279 @@ class _ConfigScreenState extends State<ConfigScreen> {
           )
         ],
       ),
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            Container(
-              alignment: Alignment.topLeft,
-              padding: EdgeInsets.all(20),
-              child: Text(
-                "Servidor",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  color: Color.fromRGBO(0, 173, 238, 1),
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: <Widget>[
+              Container(
+                alignment: Alignment.topLeft,
+                padding: EdgeInsets.all(20),
+                child: Text(
+                  "Servidor",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color.fromRGBO(0, 173, 238, 1),
+                  ),
                 ),
               ),
-            ),
-            Divider(
-              height: 5,
-              indent: 20,
-              endIndent: 20,
-              thickness: 1.5,
-            ),
-            GestureDetector(
-              child: Container(
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      alignment: Alignment.topLeft,
-                      padding: EdgeInsets.only(left: 20, right: 20, top: 20),
-                      child: Text(
-                        "URL do Servidor",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: Colors.black),
+              Divider(
+                height: 5,
+                indent: 20,
+                endIndent: 20,
+                thickness: 1.5,
+              ),
+              GestureDetector(
+                child: Container(
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        alignment: Alignment.topLeft,
+                        padding: EdgeInsets.only(left: 20, right: 20, top: 20),
+                        child: Text(
+                          "URL do Servidor",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              color: Colors.black),
+                        ),
                       ),
-                    ),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      padding: EdgeInsets.only(left: 20, right: 20),
-                      child: Text(url),
-                    )
-                  ],
+                      Container(
+                        alignment: Alignment.topLeft,
+                        padding: EdgeInsets.only(left: 20, right: 20),
+                        child: Text(url),
+                      )
+                    ],
+                  ),
+                ),
+                onTap: () {
+                  return showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text("Digite a URL"),
+                        content: TextField(
+                            controller: _controllerURL,
+                            keyboardType: TextInputType.url),
+                        actions: <Widget>[
+                          FlatButton(
+                            child: Text("Cancelar"),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                          FlatButton(
+                            child: Text("Salvar"),
+                            onPressed: () {
+                              url = _controllerURL.text;
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+              ),
+              GestureDetector(
+                child: Container(
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        alignment: Alignment.topLeft,
+                        padding: EdgeInsets.only(left: 20, right: 20, top: 20),
+                        child: Text(
+                          "Porta do Servidor",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              color: Colors.black,
+                              ),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.topLeft,
+                        padding: EdgeInsets.only(left: 20, right: 20),
+                        child: Text(port),
+                      )
+                    ],
+                  ),
+                ),
+                onTap: () {
+                  return showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text("Digite a Porta"),
+                        content: TextField(
+                            controller: _controllerPort,
+                            keyboardType: TextInputType.number),
+                        actions: <Widget>[
+                          FlatButton(
+                            child: Text("Cancelar"),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                          FlatButton(
+                            child: Text("Salvar"),
+                            onPressed: () {
+                              port = _controllerPort.text;
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                alignment: Alignment.topLeft,
+                padding: EdgeInsets.all(20),
+                child: Text(
+                  "Empresa",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color.fromRGBO(0, 173, 238, 1),
+                  ),
                 ),
               ),
-              onTap: () {
-                return showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: Text("Digite a URL"),
-                      content: TextField(
-                          controller: _controllerURL,
-                          keyboardType: TextInputType.url),
-                      actions: <Widget>[
-                        FlatButton(
-                          child: Text("Cancelar"),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                        ),
-                        FlatButton(
-                          child: Text("Salvar"),
-                          onPressed: () {
-                            url = _controllerURL.text;
-                            Navigator.pop(context);
-                          },
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-            ),
-            GestureDetector(
-              child: Container(
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      alignment: Alignment.topLeft,
-                      padding: EdgeInsets.only(left: 20, right: 20, top: 20),
-                      child: Text(
-                        "Porta do Servidor",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: Colors.black),
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      padding: EdgeInsets.only(left: 20, right: 20),
-                      child: Text(port),
-                    )
-                  ],
-                ),
+              Divider(
+                height: 5,
+                indent: 20,
+                endIndent: 20,
+                thickness: 1.5,
               ),
-              onTap: () {
-                return showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: Text("Digite a Porta"),
-                      content: TextField(
-                          controller: _controllerPort,
-                          keyboardType: TextInputType.url),
-                      actions: <Widget>[
-                        FlatButton(
-                          child: Text("Cancelar"),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
+              GestureDetector(
+                child: Container(
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        alignment: Alignment.topLeft,
+                        padding: EdgeInsets.only(left: 20, right: 20, top: 30),
+                        child: Text(
+                          "CNPJ da Empresa",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              color: Colors.black),
                         ),
-                        FlatButton(
-                          child: Text("Salvar"),
-                          onPressed: () {
-                            port = _controllerPort.text;
-                            Navigator.pop(context);
-                          },
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              alignment: Alignment.topLeft,
-              padding: EdgeInsets.all(20),
-              child: Text(
-                "Empresa",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  color: Color.fromRGBO(0, 173, 238, 1),
+                      ),
+                      Container(
+                        alignment: Alignment.topLeft,
+                        padding: EdgeInsets.only(left: 20, right: 20),
+                        child:
+                            Text(_cnpjUtil.formatarCNPJ(_controllerCNPJ.text)),
+                      ),
+                    ],
+                  ),
                 ),
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text("CNPJ da Empresa"),
+                        content: SingleChildScrollView(
+                          child: ListBody(
+                            children: <Widget>[
+                              TextField(
+                                maxLength: 14,
+                                controller: _controllerCNPJ,
+                                keyboardType: TextInputType.number,
+                              ),
+                            ],
+                          ),
+                        ),
+                        actions: <Widget>[
+                          FlatButton(
+                            child: Text("Cancelar"),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                          FlatButton(
+                            child: Text("Salvar"),
+                            onPressed: () {
+                              this.cnpj =
+                                  _cnpjUtil.formatarCNPJ(_controllerCNPJ.text);
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
               ),
-            ),
-            Divider(
-              height: 5,
-              indent: 20,
-              endIndent: 20,
-              thickness: 1.5,
-            ),
-            GestureDetector(
-              child: Container(
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      alignment: Alignment.topLeft,
-                      padding: EdgeInsets.only(left: 20, right: 20, top: 30),
-                      child: Text(
-                        "CNPJ da Empresa",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: Colors.black),
+              GestureDetector(
+                child: Container(
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        alignment: Alignment.topLeft,
+                        padding: EdgeInsets.only(left: 20, right: 20, top: 30),
+                        child: Text(
+                          "CPF do Responsavel:",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              color: Colors.black),
+                        ),
                       ),
-                    ),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      padding: EdgeInsets.only(left: 20, right: 20),
-                      child: Text(_cnpjUtil.formatarCNPJ(_controllerCNPJ.text)),
-                    ),
-                  ],
+                      Container(
+                        alignment: Alignment.topLeft,
+                        padding: EdgeInsets.only(left: 20, right: 20),
+                        child: Text(_cpfUtil.formatarCPF(_controllerCPF.text)),
+                      ),
+                    ],
+                  ),
                 ),
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text("CPF do Responsavel"),
+                        content: SingleChildScrollView(
+                          child: ListBody(
+                            children: <Widget>[
+                              TextField(
+                                maxLength: 11,
+                                controller: _controllerCPF,
+                                keyboardType: TextInputType.number,
+                              ),
+                            ],
+                          ),
+                        ),
+                        actions: <Widget>[
+                          FlatButton(
+                            child: Text("Cancelar"),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                          FlatButton(
+                            child: Text("Salvar"),
+                            onPressed: () {
+                              this.cpf =
+                                  _cpfUtil.formatarCPF(_controllerCPF.text);
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
               ),
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: Text("CNPJ da Empresa"),
-                      content: SingleChildScrollView(
-                        child: ListBody(
-                          children: <Widget>[
-                            TextField(
-                              maxLength: 14,
-                              controller: _controllerCNPJ,
-                              keyboardType: TextInputType.number,
-                            ),
-                          ],
-                        ),
-                      ),
-                      actions: <Widget>[
-                        FlatButton(
-                          child: Text("Cancelar"),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                        ),
-                        FlatButton(
-                          child: Text("Salvar"),
-                          onPressed: () {
-                            this.cnpj =
-                                _cnpjUtil.formatarCNPJ(_controllerCNPJ.text);
-                            Navigator.pop(context);
-                          },
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-            ),
-            GestureDetector(
-              child: Container(
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      alignment: Alignment.topLeft,
-                      padding: EdgeInsets.only(left: 20, right: 20, top: 30),
-                      child: Text(
-                        "CPF do Responsavel:",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: Colors.black),
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      padding: EdgeInsets.only(left: 20, right: 20),
-                      child: Text(_cpfUtil.formatarCPF(_controllerCPF.text)),
-                    ),
-                  ],
-                ),
-              ),
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: Text("CPF do Responsavel"),
-                      content: SingleChildScrollView(
-                        child: ListBody(
-                          children: <Widget>[
-                            TextField(
-                              maxLength: 11,
-                              controller: _controllerCPF,
-                              keyboardType: TextInputType.number,
-                            ),
-                          ],
-                        ),
-                      ),
-                      actions: <Widget>[
-                        FlatButton(
-                          child: Text("Cancelar"),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                        ),
-                        FlatButton(
-                          child: Text("Salvar"),
-                          onPressed: () {
-                            this.cpf =
-                                _cpfUtil.formatarCPF(_controllerCPF.text);
-                            Navigator.pop(context);
-                          },
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
