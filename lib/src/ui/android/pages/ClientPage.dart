@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:projectfanap/src/widgets/CardClientWidget.dart';
+import 'package:projectfanap/src/ui/shared/widgets/CardClientWidget.dart';
 
-class ClientScreen extends StatefulWidget {
+class ClientPage extends StatefulWidget {
   @override
-  _ClientScreenState createState() => _ClientScreenState();
+  _ClientPageState createState() => _ClientPageState();
 }
 
-class _ClientScreenState extends State<ClientScreen> {
+class _ClientPageState extends State<ClientPage> {
   @override
   void dispose() {
     super.dispose();
@@ -18,7 +18,6 @@ class _ClientScreenState extends State<ClientScreen> {
       padding: EdgeInsets.all(5),
       child: ListView(
         children: <Widget>[
-          for(int i = 0; i < 25; i++)
           CardClientWidget(),
         ],
         

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:projectfanap/src/controller/RouteGeneratorController.dart';
-import 'package:projectfanap/src/screen/home/agendamento/SchedunlingScreen.dart';
-import 'package:projectfanap/src/screen/home/analytic/AnalyticsScreen.dart';
-import 'package:projectfanap/src/screen/home/client/ClientScreen.dart';
-import 'package:projectfanap/src/screen/home/servico/ServiceScreen.dart';
-import 'package:projectfanap/src/widgets/DrawerWidget.dart';
+import 'package:projectfanap/src/ui/android/pages/AnalyticsPage.dart';
+import 'package:projectfanap/src/ui/android/pages/ClientPage.dart';
+import 'package:projectfanap/src/ui/android/pages/SchedunlingPage.dart';
+import 'package:projectfanap/src/ui/android/pages/ServicePage.dart';
+import 'package:projectfanap/src/ui/shared/widgets/DrawerWidget.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomePageState extends State<HomePage> {
   PageController _controllerPage = PageController(initialPage: 0);
 
   var _scaffoldkey = GlobalKey<ScaffoldState>();
@@ -44,16 +44,16 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         children: <Widget>[
           Center(
-            child: ClientScreen(),
+            child: ClientPage(),
           ),
           Center(
-            child: ServicoScreen(),
+            child: ServicePage(),
           ),
           Center(
-            child: SchedunlingScreen(),
+            child: SchedunlingPage(),
           ),
           Center(
-            child: AnalyticsScreen(),
+            child: AnalyticsPage(),
           ),
         ],
         physics: NeverScrollableScrollPhysics(),

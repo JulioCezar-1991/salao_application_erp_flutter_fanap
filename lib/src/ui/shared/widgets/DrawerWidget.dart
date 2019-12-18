@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:projectfanap/src/controller/RouteGeneratorController.dart';
-import 'package:projectfanap/src/widgets/CreateUserWidget.dart';
 
 class DrawerWidget extends StatefulWidget {
   @override
@@ -52,7 +51,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               ),
             ),
             onTap: () {
-              CreateUserWidget.userCreate(context);
+              Navigator.pushNamed(context, RouteGeneratorController.ROUTE_USERCREATE);
             },
           ),
           ListTile(

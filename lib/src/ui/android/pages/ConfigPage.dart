@@ -3,12 +3,12 @@ import 'package:projectfanap/src/controller/RouteGeneratorController.dart';
 import 'package:projectfanap/src/util/CNPJUtil.dart';
 import 'package:projectfanap/src/util/CPFUtil.dart';
 
-class ConfigScreen extends StatefulWidget {
+class ConfigPage extends StatefulWidget {
   @override
-  _ConfigScreenState createState() => _ConfigScreenState();
+  _ConfigPageState createState() => _ConfigPageState();
 }
 
-class _ConfigScreenState extends State<ConfigScreen> {
+class _ConfigPageState extends State<ConfigPage> {
   static TextEditingController _controllerURL = TextEditingController();
   static TextEditingController _controllerPort = TextEditingController();
   static TextEditingController _controllerCNPJ = TextEditingController();

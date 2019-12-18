@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:projectfanap/src/controller/RouteGeneratorController.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
 
-class PermissionScreen extends StatefulWidget {
+class PermissionPage extends StatefulWidget {
   @override
-  _PermissionScreenState createState() => _PermissionScreenState();
+  _PermissionPageState createState() => _PermissionPageState();
 }
 
-class _PermissionScreenState extends State<PermissionScreen> {
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+class _PermissionPageState extends State<PermissionPage> {
 
   String _myActivity;
   bool _estaSelecionado = false;
@@ -25,7 +24,6 @@ class _PermissionScreenState extends State<PermissionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: IconButton(
@@ -45,33 +43,7 @@ class _PermissionScreenState extends State<PermissionScreen> {
                 size: 30,
               ),
               onPressed: () {
-                print(_myActivity);
-                /*  return showDialog(
-                  context: context,
-                  builder: (BuildContext context) => AlertDialog(
-                    title: Text("Salvar Dados"),
-                    content: Text(
-                      "Salvar Permissões?",
-                      textAlign: TextAlign.justify,
-                    ),
-                    actions: <Widget>[
-                      FlatButton(
-                        child: Text("Cancelar"),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                      FlatButton(
-                        child: Text("Salvar"),
-                        onPressed: () {
-                          
-                          Navigator.popAndPushNamed(
-                              context, RouteGeneratorController.ROUTE_HOME);
-                        },
-                      )
-                    ],
-                  ),
-                ); */
+                
               },
             ),
           )

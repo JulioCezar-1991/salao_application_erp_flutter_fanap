@@ -1,17 +1,16 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:projectfanap/src/controller/RouteGeneratorController.dart';
 import 'package:projectfanap/src/service/UserService.dart';
-import 'package:projectfanap/src/widgets/CustomCircleButton.dart';
+import 'package:projectfanap/src/ui/shared/widgets/CustomCircleButton.dart';
 
-class LoginSignInScreen extends StatefulWidget {
+class LoginSignInPage extends StatefulWidget {
   @override
-  _LoginSignInScreenState createState() => _LoginSignInScreenState();
+  _LoginSignInPageState createState() => _LoginSignInPageState();
 }
 
-class _LoginSignInScreenState extends State<LoginSignInScreen> {
+class _LoginSignInPageState extends State<LoginSignInPage> {
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   TextEditingController _controllerLogin = TextEditingController();
@@ -186,7 +185,8 @@ class _LoginSignInScreenState extends State<LoginSignInScreen> {
                 child: CustomCicleButton(
                   child: _setUpButtonChild(),
                   onTap: () {
-                    _validaForm();
+                    Navigator.pushNamed(context, RouteGeneratorController.ROUTE_HOME);
+                    //_validaForm();
                   },
                 ),
               ),

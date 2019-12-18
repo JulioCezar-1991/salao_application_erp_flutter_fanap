@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class CreateServicoScreen extends StatefulWidget {
+class ServiceCreatePage extends StatefulWidget {
   @override
-  _CreateServicoScreenState createState() => _CreateServicoScreenState();
+  _ServiceCreatePageState createState() => _ServiceCreatePageState();
 }
 
-class _CreateServicoScreenState extends State<CreateServicoScreen> {
+class _ServiceCreatePageState extends State<ServiceCreatePage> {
+  
   TextEditingController _controllerName = TextEditingController();
   TextEditingController _controllerValor = TextEditingController();
   TextEditingController _controllerTempoGasto = TextEditingController();

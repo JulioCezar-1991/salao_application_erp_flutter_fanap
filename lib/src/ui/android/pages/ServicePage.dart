@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:projectfanap/src/widgets/CardServiceWidget.dart';
+import 'package:projectfanap/src/ui/shared/widgets/CardServiceWidget.dart';
 
-class ServicoScreen extends StatefulWidget {
+class ServicePage extends StatefulWidget {
   @override
-  _ServicoScreenState createState() => _ServicoScreenState();
+  _ServicePageState createState() => _ServicePageState();
 }
 
-class _ServicoScreenState extends State<ServicoScreen> {
+class _ServicePageState extends State<ServicePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(5),
       child: ListView(
         children: <Widget>[
-          for(int i = 0; i < 25; i++)
           CardServiceWidget(),
         ],
       ),

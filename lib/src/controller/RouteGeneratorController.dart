@@ -1,62 +1,66 @@
 import 'package:flutter/material.dart';
-import 'package:projectfanap/src/screen/ConfigScreen.dart';
-import 'package:projectfanap/src/screen/PermissionScreen.dart';
-import 'package:projectfanap/src/screen/home/HomeScreen.dart';
-import 'package:projectfanap/src/screen/home/agendamento/CreateSchedulingScreen.dart';
-import 'package:projectfanap/src/screen/home/agendamento/SchedunlingScreen.dart';
-import 'package:projectfanap/src/screen/home/servico/CreateServiceScreen.dart';
-import 'package:projectfanap/src/screen/home/servico/ServiceScreen.dart';
-import 'package:projectfanap/src/screen/login/LoginSignInScreen.dart';
-import 'package:projectfanap/src/screen/home/analytic/AnalyticsScreen.dart';
-import 'package:projectfanap/src/screen/home/client/ClientDetailsScreen.dart';
-import 'package:projectfanap/src/screen/home/client/ClientScreen.dart';
-import 'package:projectfanap/src/screen/home/client/CreateClientScreen.dart';
+import 'package:projectfanap/src/ui/android/pages/AnalyticsPage.dart';
+import 'package:projectfanap/src/ui/android/pages/ClientCreatePage.dart';
+import 'package:projectfanap/src/ui/android/pages/ClientDetailsPage.dart';
+import 'package:projectfanap/src/ui/android/pages/ClientPage.dart';
+import 'package:projectfanap/src/ui/android/pages/ConfigPage.dart';
+import 'package:projectfanap/src/ui/android/pages/CreateSchedulingPage.dart';
+import 'package:projectfanap/src/ui/android/pages/HomeScreen.dart';
+import 'package:projectfanap/src/ui/android/pages/LoginSignInPage.dart';
+import 'package:projectfanap/src/ui/android/pages/PermissionPage.dart';
+import 'package:projectfanap/src/ui/android/pages/SchedunlingPage.dart';
+import 'package:projectfanap/src/ui/android/pages/ServiceCreatePage.dart';
+import 'package:projectfanap/src/ui/android/pages/ServicePage.dart';
 
-class RouteGeneratorController {
-  static const String ROUTE_CONFING = "/ConfigScreen";
-  static const String ROUTE_LOGINSINGIN = "/LoginSignInScreen";
-  static const String ROUTE_HOME = "/HomeScreen";
-  static const String ROUTE_PEMISSION = "/PermissionScreen";
+import 'package:projectfanap/src/ui/android/pages/UserCreatePage.dart';
 
-  static const String ROUTE_ANALYTICS = "/AnaliticsScreen";
+class RouteGeneratorController{
+  static const String ROUTE_CONFING = "/ConfigPage";
+  static const String ROUTE_USERCREATE = "/UserCreatePage";
+  static const String ROUTE_LOGINSINGIN = "/LoginSignInPage";
+  static const String ROUTE_HOME = "/HomePage";
+  static const String ROUTE_PEMISSION = "/PermissionPage";
 
-  static const String ROUTE_CLIENT = "/ClientScreen";
-  static const String ROUTE_CLIENTDETAILS = "/ClientDetailsScreen";
-  static const String ROUTE_CREATECLIENT = "/CreateClientScreen";
+  static const String ROUTE_ANALYTICS = "/AnaliticsPage";
 
-  static const String ROUTE_SCHEDUNLING = "/SchedunlingScreen";
-  static const String ROUTE_CREATESCHEDUNLING = "/CreateSchedulingScreen";
+  static const String ROUTE_CLIENT = "/ClientPage";
+  static const String ROUTE_CLIENTDETAILS = "/ClientDetailsPage";
+  static const String ROUTE_CREATECLIENT = "/CreateClientPage";
 
-  static const String ROUTE_SERVICE = "/ServiceScreen";
-  static const String ROUTE_CREATESERVICE = "/CreateServiceScreen";
+  static const String ROUTE_SCHEDUNLING = "/SchedunlingPage";
+  static const String ROUTE_CREATESCHEDUNLING = "/CreateSchedulingPage";
+
+  static const String ROUTE_SERVICE = "/ServicePage";
+  static const String ROUTE_CREATESERVICE = "/CreateServicePage";
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case ROUTE_CONFING:
-        return MaterialPageRoute(builder: (context) => ConfigScreen());
+        return MaterialPageRoute(builder: (context) => ConfigPage());
+      case ROUTE_USERCREATE:
+        return MaterialPageRoute(builder: (context) => UserCreatePage());
       case ROUTE_LOGINSINGIN:
-        return MaterialPageRoute(builder: (context) => LoginSignInScreen());
+        return MaterialPageRoute(builder: (context) => LoginSignInPage());
       case ROUTE_HOME:
-        return MaterialPageRoute(builder: (context) => HomeScreen());
+        return MaterialPageRoute(builder: (context) => HomePage());
       case ROUTE_PEMISSION:
-        return MaterialPageRoute(builder: (context) => PermissionScreen());
+        return MaterialPageRoute(builder: (context) => PermissionPage());
       case ROUTE_ANALYTICS:
-        return MaterialPageRoute(builder: (context) => AnalyticsScreen());
+        return MaterialPageRoute(builder: (context) => AnalyticsPage());
       case ROUTE_CLIENT:
-        return MaterialPageRoute(builder: (context) => ClientScreen());
+        return MaterialPageRoute(builder: (context) => ClientPage());
       case ROUTE_CLIENTDETAILS:
-        return MaterialPageRoute(builder: (context) => ClientDetailsScreen());
+        return MaterialPageRoute(builder: (context) => ClientDetailsPage());
       case ROUTE_CREATECLIENT:
-        return MaterialPageRoute(builder: (context) => CreateClientScreen());
+        return MaterialPageRoute(builder: (context) => ClientCreatePage());
       case ROUTE_SCHEDUNLING:
-        return MaterialPageRoute(builder: (context) => SchedunlingScreen());
+        return MaterialPageRoute(builder: (context) => SchedunlingPage());
       case ROUTE_CREATESCHEDUNLING:
-        return MaterialPageRoute(
-            builder: (context) => CreateSchedulingScreen());
+        return MaterialPageRoute(builder: (context) => SchedulingCreatePage());
       case ROUTE_SERVICE:
-        return MaterialPageRoute(builder: (context) => ServicoScreen());
+        return MaterialPageRoute(builder: (context) => ServicePage());
       case ROUTE_CREATESERVICE:
-        return MaterialPageRoute(builder: (context) => CreateServicoScreen());
+        return MaterialPageRoute(builder: (context) => ServiceCreatePage());
       default:
         _erroRota();
     }

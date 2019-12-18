@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:projectfanap/src/controller/RouteGeneratorController.dart';
-import 'package:projectfanap/src/screen/SplashScreen.dart';
 import 'package:projectfanap/src/theme/Theme.dart';
+import 'package:projectfanap/src/ui/android/pages/SplashPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: [
         Locale("pt"),
       ],
-      home: SplashScreen(),
+      home: SplashPage(),
       theme: appTheme(),
       initialRoute: "/",
       onGenerateRoute: RouteGeneratorController.generateRoute,

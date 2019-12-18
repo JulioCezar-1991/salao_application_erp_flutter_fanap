@@ -48,8 +48,15 @@ class CustomCicleButton extends MaterialButton {
                   ? Center(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[icon,SizedBox(width: 10,), Text(label)],
-                    ))
+                        children: <Widget>[
+                          icon,
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(label)
+                        ],
+                      ),
+                    )
                   : child),
         ),
       ),

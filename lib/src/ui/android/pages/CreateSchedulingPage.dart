@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class CreateSchedulingScreen extends StatefulWidget {
+class SchedulingCreatePage extends StatefulWidget {
   @override
-  _CreateSchedulingScreenState createState() => _CreateSchedulingScreenState();
+  _SchedulingCreatePageState createState() => _SchedulingCreatePageState();
 }
 
-class _CreateSchedulingScreenState extends State<CreateSchedulingScreen> {
+class _SchedulingCreatePageState extends State<SchedulingCreatePage> {
   TextEditingController _controllerName = TextEditingController();
   TextEditingController _controllerCelular = TextEditingController();
   TextEditingController _controllerFixo = TextEditingController();

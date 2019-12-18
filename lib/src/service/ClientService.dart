@@ -1,5 +1,5 @@
-import 'package:dio/dio.dart';
-import 'package:projectfanap/src/model/URLModel.dart';
+/* import 'package:dio/dio.dart';
+import 'package:projectfanap/src/models/URLModel.dart';
 
 class ClientService {
   Dio dio = Dio();
@@ -34,3 +34,4 @@ class ClientService {
   }
 }
 
+ */

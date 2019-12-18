@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-
 import 'package:projectfanap/src/controller/RouteGeneratorController.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashPage extends StatefulWidget {
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  _SplashPageState createState() => _SplashPageState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashPageState extends State<SplashPage> {
   startTime() async {
     var _duration = Duration(seconds: 3);
     return Timer(_duration, navigationPage);

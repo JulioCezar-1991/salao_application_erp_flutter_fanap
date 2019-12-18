@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:projectfanap/src/model/URLModel.dart';
+import 'package:projectfanap/src/models/URLModel.dart';
 
 class UserService {
   Dio dio = Dio();

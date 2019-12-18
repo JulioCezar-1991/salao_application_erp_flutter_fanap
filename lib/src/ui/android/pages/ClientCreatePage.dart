@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:projectfanap/src/controller/ControllerValidCpf.dart';
 
-class CreateClientScreen extends StatefulWidget {
+class ClientCreatePage extends StatefulWidget {
   @override
-  _CreateClientScreenState createState() => _CreateClientScreenState();
+  _ClientCreatePageState createState() => _ClientCreatePageState();
 }
 
-class _CreateClientScreenState extends State<CreateClientScreen> {
+class _ClientCreatePageState extends State<ClientCreatePage> {
   TextEditingController _controllerName = TextEditingController();
   TextEditingController _controllerCpf = TextEditingController();
   TextEditingController _controllerCelular = TextEditingController();
