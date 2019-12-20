@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+/* import 'package:dio/dio.dart';
 import 'package:projectfanap/src/models/URLModel.dart';
 
 class UserService {
@@ -43,4 +43,4 @@ class UserService {
     }
   }
 }
-
+ */

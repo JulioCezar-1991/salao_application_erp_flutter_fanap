@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 const brightness = Brightness.light;
-
-const primaryColor = const Color.fromRGBO(56, 32, 52, 1.0);
+const primaryColor = Colors.white;
+const backgroundColor = const Color.fromRGBO(56, 32, 52, 1.0);
 const accentColor = const Color.fromRGBO(92, 42, 100, 1.0);
 const bottomAppBarColor = const Color.fromRGBO(56, 32, 52, 1.0);
 const buttonColor = const Color.fromRGBO(56, 32, 52, 1.0);
@@ -13,16 +13,18 @@ ThemeData appTheme() {
     brightness: brightness,
     primaryColor: primaryColor,
     accentColor: accentColor,
+    backgroundColor: backgroundColor,
     bottomAppBarColor: bottomAppBarColor,
     buttonColor: buttonColor,
     cursorColor: cursorColor,
+    disabledColor: Colors.white,
     textTheme: TextTheme(
       body1: TextStyle(
-        
+        color: Colors.white,
         fontFamily: "Montserrat",
       ),
       body2: TextStyle(
-        
+        color: Colors.white,
         fontFamily: "Montserrat",
       ),
       button: TextStyle(
@@ -30,7 +32,7 @@ ThemeData appTheme() {
         fontFamily: "Montserrat",
       ),
       caption: TextStyle(
-        
+        color: Colors.white,
         fontFamily: "Montserrat",
       ),
       display1: TextStyle(
@@ -69,7 +71,6 @@ ThemeData appTheme() {
         color: Colors.white,
         fontFamily: "Montserrat",
       ),
-      
     ),
   );
 }

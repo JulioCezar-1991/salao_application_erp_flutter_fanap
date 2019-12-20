@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:projectfanap/src/controller/ControllerValidCpf.dart';
+import 'package:projectfanap/src/ui/shared/validator/ControllerValidCpf.dart';
 
 class ClientCreatePage extends StatefulWidget {
   @override

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projectfanap/src/controller/RouteGeneratorController.dart';
+import 'package:projectfanap/src/RouteGeneratorController.dart';
 import 'package:projectfanap/src/ui/android/pages/AnalyticsPage.dart';
 import 'package:projectfanap/src/ui/android/pages/ClientPage.dart';
 import 'package:projectfanap/src/ui/android/pages/SchedunlingPage.dart';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:projectfanap/src/controller/RouteGeneratorController.dart';
+
+import 'package:projectfanap/src/RouteGeneratorController.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -14,7 +15,8 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   void navigationPage() {
-    Navigator.pushReplacementNamed(context, RouteGeneratorController.ROUTE_LOGINSINGIN);
+    Navigator.pushReplacementNamed(
+        context, RouteGeneratorController.ROUTE_LOGINSINGIN);
   }
 
   @override
@@ -46,6 +48,3 @@ class _SplashPageState extends State<SplashPage> {
     );
   }
 }
-
-
- 

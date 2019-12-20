@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../controller/RouteGeneratorController.dart';
+import 'package:projectfanap/src/RouteGeneratorController.dart';
 
 class UserCreatePage extends StatefulWidget {
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projectfanap/src/controller/RouteGeneratorController.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
+import 'package:projectfanap/src/RouteGeneratorController.dart';
 
 class PermissionPage extends StatefulWidget {
   @override

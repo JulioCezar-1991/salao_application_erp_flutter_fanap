@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:projectfanap/src/controller/RouteGeneratorController.dart';
-import 'package:projectfanap/src/util/CNPJUtil.dart';
-import 'package:projectfanap/src/util/CPFUtil.dart';
+import 'package:projectfanap/src/RouteGeneratorController.dart';
+import 'package:projectfanap/src/ui/shared/validator/CNPJUtil.dart';
+import 'package:projectfanap/src/ui/shared/validator/CPFUtil.dart';
 
 class ConfigPage extends StatefulWidget {
   @override

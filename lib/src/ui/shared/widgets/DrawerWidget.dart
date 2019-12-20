@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projectfanap/src/controller/RouteGeneratorController.dart';
+import 'package:projectfanap/src/RouteGeneratorController.dart';
 
 class DrawerWidget extends StatefulWidget {
   @override
