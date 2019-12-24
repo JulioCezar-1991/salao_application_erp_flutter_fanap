@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:projectfanap/src/RouteGeneratorController.dart';
 import 'package:projectfanap/src/ui/android/pages/AnalyticsPage.dart';
-import 'package:projectfanap/src/ui/android/pages/ClientPage.dart';
 import 'package:projectfanap/src/ui/android/pages/SchedunlingPage.dart';
-import 'package:projectfanap/src/ui/android/pages/ServicePage.dart';
-import 'package:projectfanap/src/ui/shared/widgets/DrawerWidget.dart';
+import 'package:projectfanap/src/ui/android/pages/client.page.dart';
+import 'package:projectfanap/src/ui/android/pages/service-page.dart';
+import 'package:projectfanap/src/ui/shared/widgets/drawer.widget.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -12,9 +12,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  
   PageController _controllerPage = PageController(initialPage: 0);
 
   var _scaffoldkey = GlobalKey<ScaffoldState>();
+
   int controlePagina = 0;
   String _title = "Clientes";
   IconData icon;
@@ -25,8 +27,11 @@ class _HomePageState extends State<HomePage> {
       key: _scaffoldkey,
       endDrawer: DrawerWidget(),
       appBar: AppBar(
+        backgroundColor: Theme.of(context).backgroundColor,
         automaticallyImplyLeading: false,
-        title: Text("  ${this._title}"),
+        title: Text(
+          "  ${this._title}",
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.menu),
@@ -68,7 +73,7 @@ class _HomePageState extends State<HomePage> {
                 Navigator.pushNamed(
                     context, RouteGeneratorController.ROUTE_CREATECLIENT);
               } else if (controlePagina == 1) {
-               Navigator.pushNamed(
+                Navigator.pushNamed(
                     context, RouteGeneratorController.ROUTE_CREATESERVICE);
               } else if (controlePagina == 2) {
                 Navigator.pushNamed(

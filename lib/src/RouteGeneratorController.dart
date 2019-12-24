@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:projectfanap/src/ui/android/pages/AnalyticsPage.dart';
-import 'package:projectfanap/src/ui/android/pages/ClientCreatePage.dart';
 import 'package:projectfanap/src/ui/android/pages/ClientDetailsPage.dart';
-import 'package:projectfanap/src/ui/android/pages/ClientPage.dart';
 import 'package:projectfanap/src/ui/android/pages/ConfigPage.dart';
-import 'package:projectfanap/src/ui/android/pages/HomeScreen.dart';
-import 'package:projectfanap/src/ui/android/pages/LoginSignInPage.dart';
 import 'package:projectfanap/src/ui/android/pages/PermissionPage.dart';
 import 'package:projectfanap/src/ui/android/pages/SchedulingCreatePage.dart';
 import 'package:projectfanap/src/ui/android/pages/SchedunlingPage.dart';
-import 'package:projectfanap/src/ui/android/pages/ServiceCreatePage.dart';
-import 'package:projectfanap/src/ui/android/pages/ServicePage.dart';
-
-import 'package:projectfanap/src/ui/android/pages/UserCreatePage.dart';
+import 'package:projectfanap/src/ui/android/pages/client-create.page.dart';
+import 'package:projectfanap/src/ui/android/pages/client.page.dart';
+import 'package:projectfanap/src/ui/android/pages/home.page.dart';
+import 'package:projectfanap/src/ui/android/pages/login-signIn.page.dart';
+import 'package:projectfanap/src/ui/android/pages/service-create.page.dart';
+import 'package:projectfanap/src/ui/android/pages/service-page.dart';
+import 'package:projectfanap/src/ui/android/pages/user-create.page.dart';
 
 class RouteGeneratorController{
   static const String ROUTE_CONFING = "/ConfigPage";

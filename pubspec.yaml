@@ -30,9 +30,9 @@ dependencies:
   dio: ^2.0.0
   provider: ^3.2.0
   intl: ^0.16.0
-  shared_preferences: ^0.5.3
   cpf_cnpj_validator: ^1.0.5
   dropdown_formfield: ^0.1.1
+  shared_preferences: ^0.5.3
 
 dev_dependencies:
   flutter_launcher_icons: "^0.7.3"

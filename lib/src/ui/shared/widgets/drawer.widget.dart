@@ -43,11 +43,13 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           ListTile(
             leading: Icon(
               Icons.person_add,
+              color: Theme.of(context).accentColor
             ),
             title: Text(
               "Criar Usuário",
               style: TextStyle(
                 fontSize: 16.0,
+                color: Theme.of(context).accentColor
               ),
             ),
             onTap: () {
@@ -57,11 +59,13 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           ListTile(
             leading: Icon(
               Icons.lock_open,
+              color: Theme.of(context).accentColor
             ),
             title: Text(
               "Permissões",
               style: TextStyle(
                 fontSize: 16.0,
+                color: Theme.of(context).accentColor
               ),
             ),
             onTap: () {
@@ -72,11 +76,13 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           ListTile(
             leading: Icon(
               Icons.build,
+              color: Theme.of(context).accentColor
             ),
             title: Text(
               "Configurações",
               style: TextStyle(
                 fontSize: 16.0,
+                color: Theme.of(context).accentColor
               ),
             ),
             onTap: () {
@@ -94,11 +100,13 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           ListTile(
             leading: Icon(
               Icons.share,
+              color: Theme.of(context).accentColor
             ),
             title: Text(
               "Compartilhar",
               style: TextStyle(
                 fontSize: 16.0,
+                color: Theme.of(context).accentColor
               ),
             ),
             onTap: () {},
@@ -106,11 +114,13 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           ListTile(
             leading: Icon(
               Icons.send,
+              color: Theme.of(context).accentColor
             ),
             title: Text(
               "Sair",
               style: TextStyle(
                 fontSize: 16.0,
+                color: Theme.of(context).accentColor
               ),
             ),
             onTap: () {

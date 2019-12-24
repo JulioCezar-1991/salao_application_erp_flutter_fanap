@@ -1,4 +1,4 @@
-class CreateUserModel {
+class UserModel {
   int codigo;
   String nomeCompleto;
   String telefone;
@@ -7,20 +7,18 @@ class CreateUserModel {
   String password;
   int permissaoCodigo;
 
-  CreateUserModel({
-    this.codigo,
-    this.nomeCompleto,
-    this.telefone,
-    this.email,
-    this.login,
-    this.password,
-    this.permissaoCodigo,
-  });
-  
+  UserModel(
+      {this.codigo,
+      this.nomeCompleto,
+      this.telefone,
+      this.email,
+      this.login,
+      this.password,
+      this.permissaoCodigo});
 
-  CreateUserModel.fromJson(Map<String, dynamic> json) {
+  UserModel.fromJson(Map<String, dynamic> json) {
     codigo = json['codigo'];
-    nomeCompleto = json['nome_completo'];
+    nomeCompleto = json['nomeCompleto'];
     telefone = json['telefone'];
     email = json['email'];
     login = json['login'];
@@ -31,12 +29,12 @@ class CreateUserModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['codigo'] = this.codigo;
-    data['nome_completo'] = this.nomeCompleto;
+    data['nomeCompleto'] = this.nomeCompleto;
     data['telefone'] = this.telefone;
     data['email'] = this.email;
     data['login'] = this.login;
     data['password'] = this.password;
-    data['permissao_codigo'] = this.permissaoCodigo;
+    data['Permissao_codigo'] = this.permissaoCodigo;
     return data;
   }
 }

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:projectfanap/src/RouteGeneratorController.dart';
-import 'package:projectfanap/src/blocs/UserBloc.dart';
-import 'package:projectfanap/src/models/AuthenticateModel.dart';
-
-import 'package:projectfanap/src/ui/shared/widgets/CustomCircleButton.dart';
+import 'package:projectfanap/src/bloc/user.bloc.dart';
+import 'package:projectfanap/src/models/user-authenticate.model.dart';
+import 'package:projectfanap/src/ui/shared/widgets/circle-button.widget.dart';
 import 'package:provider/provider.dart';
 
 class LoginSignInPage extends StatefulWidget {
@@ -79,7 +78,7 @@ class _LoginSignInPageState extends State<LoginSignInPage> {
                       ),
                       validator: (value) {
                         if (value.isEmpty) {
-                          return 'Usuário Inválido';
+                          return 'Digite seu usuário';
                         }
                         return null;
                       },
@@ -116,7 +115,7 @@ class _LoginSignInPageState extends State<LoginSignInPage> {
                       ),
                       validator: (value) {
                         if (value.isEmpty) {
-                          return 'Senha';
+                          return 'Digite sua senha';
                         }
                         return null;
                       },
@@ -134,18 +133,18 @@ class _LoginSignInPageState extends State<LoginSignInPage> {
             SizedBox(
               height: 25,
             ),
-            CustomCicleButton(
-              textColor: Theme.of(context).primaryColor,
+            CircleButtonWidget(
+              textColor: Colors.white,
               icon: null,
               height: 50,
               label: "ENTRAR",
               onTap: () {
                 if (_formKey.currentState.validate()) {
-                    _formKey.currentState.save();
-                    authenticate(context);
+                  _formKey.currentState.save();
+                  authenticate(context);
                 }
               },
-            ), 
+            ),
             Padding(
               padding: EdgeInsets.only(top: _size.width * 0.12),
               child: Row(
@@ -178,7 +177,7 @@ class _LoginSignInPageState extends State<LoginSignInPage> {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: CustomCicleButton(
+                    child: CircleButtonWidget(
                       height: 45,
                       backgroundColor: Colors.blue,
                       icon: Icon(
@@ -194,7 +193,7 @@ class _LoginSignInPageState extends State<LoginSignInPage> {
                     width: 20,
                   ),
                   Expanded(
-                    child: CustomCicleButton(
+                    child: CircleButtonWidget(
                       height: 45,
                       backgroundColor: Colors.red[700],
                       icon: Icon(
@@ -219,14 +218,15 @@ class _LoginSignInPageState extends State<LoginSignInPage> {
     var bloc = Provider.of<UserBloc>(context);
 
     var user = await bloc.authenticate(
-      AuthenticateModel(
+      UserAuthenticateModel(
         login: login,
         password: password,
       ),
     );
 
     if (user != null) {
-      Navigator.pushReplacementNamed(context, RouteGeneratorController.ROUTE_HOME);
+      Navigator.pushReplacementNamed(
+          context, RouteGeneratorController.ROUTE_HOME);
       return;
     }
 

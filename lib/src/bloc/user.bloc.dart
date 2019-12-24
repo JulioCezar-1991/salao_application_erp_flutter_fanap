@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:projectfanap/src/Setting.dart';
-import 'package:projectfanap/src/models/AuthenticateModel.dart';
-import 'package:projectfanap/src/models/CreateUserModel.dart';
-import 'package:projectfanap/src/models/UserModel.dart';
-import 'package:projectfanap/src/repositories/AccountRepository.dart';
+import 'package:projectfanap/src/models/user-authenticate.model.dart';
+import 'package:projectfanap/src/models/user-create.model.dart';
+import 'package:projectfanap/src/models/user.model.dart';
+import 'package:projectfanap/src/repositorie/account.repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserBloc extends ChangeNotifier {
@@ -15,13 +15,13 @@ class UserBloc extends ChangeNotifier {
     loadUser();
   }
 
-  Future<UserModel> authenticate(AuthenticateModel model) async {
+  Future<UserModel> authenticate(UserAuthenticateModel model) async {
     try {
       var prefs = await SharedPreferences.getInstance();
       var repository = AccountRepository();
-      
+
       var res = await repository.authenticate(model);
-      
+
       user = res;
       await prefs.setString('user', jsonEncode(res));
 
@@ -33,10 +33,10 @@ class UserBloc extends ChangeNotifier {
     }
   }
 
-  Future<UserModel> create(CreateUserModel model) async {
+  Future<UserModel> userCreate(CreateUserModel model) async {
     try {
       var repository = AccountRepository();
-      var res = await repository.create(model);
+      var res = await repository.userCreate(model);
       return res;
     } catch (ex) {
       print(ex);

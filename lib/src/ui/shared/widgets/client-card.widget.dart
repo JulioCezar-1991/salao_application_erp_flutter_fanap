@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class CardServiceWidget extends StatelessWidget {
+class ClientCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -13,42 +12,54 @@ class CardServiceWidget extends StatelessWidget {
             height: 80,
             child: Center(
               child: Icon(
-                FontAwesomeIcons.cut,
-                color: Colors.pinkAccent[100],
-                size: 50,
+                Icons.person,
+                color: Colors.teal,
+                size: 60,
               ),
             ),
           ),
           Container(
-            width: 200,
+            width: 240,
             height: 80,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(top: 10, bottom: 2.5),
+                  padding: EdgeInsets.only(top: 8, bottom: 4),
                   child: Text(
-                    "Corte de Cabelo",
+                    "Ana Maria Braga",
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).accentColor),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.zero,
-                  child: Text("Valor: R\$35,00"),
+                  child: Text(
+                    "Cidade Vera Cruz - AP.Goiânia",
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Theme.of(context).accentColor,
+                    ),
+                  ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 2.5, bottom: 5),
+                  padding: EdgeInsets.only(top: 2.5, bottom: 4),
                   child: Row(
                     children: <Widget>[
                       Text(
-                        "Tempo Médio: 30 Minutos",
-                        style: TextStyle(fontSize: 12),
+                        "(62) 99699-3020",
+                        style: TextStyle(
+                            fontSize: 12, color: Theme.of(context).accentColor),
                       ),
                       SizedBox(
                         width: 8,
+                      ),
+                      Text(
+                        "(62) 3242-1020",
+                        style: TextStyle(
+                            fontSize: 12, color: Theme.of(context).accentColor),
                       ),
                     ],
                   ),

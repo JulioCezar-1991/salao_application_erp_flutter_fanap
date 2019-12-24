@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projectfanap/src/ui/shared/widgets/CardServiceWidget.dart';
+import 'package:projectfanap/src/ui/shared/widgets/service-card.widget.dart';
 
 class ServicePage extends StatefulWidget {
   @override
@@ -13,7 +13,7 @@ class _ServicePageState extends State<ServicePage> {
       padding: EdgeInsets.all(5),
       child: ListView(
         children: <Widget>[
-          CardServiceWidget(),
+          ServiceCardWidget(),
         ],
       ),
     );

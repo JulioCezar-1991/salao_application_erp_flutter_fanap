@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projectfanap/src/ui/shared/widgets/CardClientWidget.dart';
+import 'package:projectfanap/src/ui/shared/widgets/client-card.widget.dart';
 
 class ClientPage extends StatefulWidget {
   @override
@@ -18,7 +18,7 @@ class _ClientPageState extends State<ClientPage> {
       padding: EdgeInsets.all(5),
       child: ListView(
         children: <Widget>[
-          CardClientWidget(),
+          ClientCardWidget(),
         ],
         
       )

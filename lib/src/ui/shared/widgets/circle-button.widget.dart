@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomCicleButton extends StatelessWidget {
+class CircleButtonWidget extends StatelessWidget {
   final dynamic label;
   final Color backgroundColor;
   final Color textColor;
@@ -10,7 +10,7 @@ class CustomCicleButton extends StatelessWidget {
   final Widget icon;
   final Function onTap;
 
-  const CustomCicleButton(
+  const CircleButtonWidget(
       {@required this.label,
       this.backgroundColor,
       this.textColor = Colors.white,
@@ -49,10 +49,12 @@ class CustomCicleButton extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                Text(label),
-                
+                Text(
+                  label,
+                  style: TextStyle(color: Colors.white),
+                ),
               ],
-            )
+            ),
           ),
         ),
       ),

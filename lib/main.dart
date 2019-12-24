@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:projectfanap/src/RouteGeneratorController.dart';
-import 'package:projectfanap/src/blocs/UserBloc.dart';
+import 'package:projectfanap/src/bloc/user.bloc.dart';
 import 'package:projectfanap/src/theme/Theme.dart';
-import 'package:projectfanap/src/ui/android/pages/SplashPage.dart';
+import 'package:projectfanap/src/ui/android/pages/splash.page.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
@@ -25,7 +25,7 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Sistema Gerancial",
+      title: "Sistema Gerencial",
       debugShowCheckedModeBanner: false,
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:projectfanap/src/RouteGeneratorController.dart';
 
 class ServiceCreatePage extends StatefulWidget {
   @override
@@ -7,7 +8,6 @@ class ServiceCreatePage extends StatefulWidget {
 }
 
 class _ServiceCreatePageState extends State<ServiceCreatePage> {
-
   TextEditingController _controllerName = TextEditingController();
   TextEditingController _controllerValor = TextEditingController();
   TextEditingController _controllerTempoGasto = TextEditingController();
@@ -16,7 +16,30 @@ class _ServiceCreatePageState extends State<ServiceCreatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cadastrar Serviços"),
+        leading: IconButton(
+          icon: Icon(
+            Icons.close,
+          ),
+          onPressed: () {
+            Navigator.pushReplacementNamed(
+                context, RouteGeneratorController.ROUTE_HOME);
+          },
+        ),
+        title: Text(
+          "Criar Serviço",
+        ),
+        actions: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(right: 4),
+            child: IconButton(
+              icon: Icon(
+                Icons.check,
+              ),
+              onPressed: () {    
+              },
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -69,40 +92,7 @@ class _ServiceCreatePageState extends State<ServiceCreatePage> {
                 ),
                 controller: _controllerTempoGasto,
               ),
-              SizedBox(
-                height: 400,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Container(
-                    height: 40,
-                    width: 150,
-                    child: RaisedButton(
-                      child: Text(
-                        "Cancelar",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ),
-                  Container(
-                    height: 40,
-                    width: 150,
-                    child: RaisedButton(
-                      child: Text(
-                        "Salvar",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-                      onPressed: () {},
-                    ),
-                  )
-                ],
-              )
+              
             ],
           ),
         ),
