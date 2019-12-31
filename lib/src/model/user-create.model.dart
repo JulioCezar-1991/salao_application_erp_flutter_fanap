@@ -1,4 +1,4 @@
-class CreateUserModel {
+class UserCreaterModel {
   int codigo;
   String nomeCompleto;
   String telefone;
@@ -7,7 +7,7 @@ class CreateUserModel {
   String password;
   int permissaoCodigo;
 
-  CreateUserModel({
+  UserCreaterModel({
     this.codigo,
     this.nomeCompleto,
     this.telefone,
@@ -18,7 +18,7 @@ class CreateUserModel {
   });
   
 
-  CreateUserModel.fromJson(Map<String, dynamic> json) {
+  UserCreaterModel.fromJson(Map<String, dynamic> json) {
     codigo = json['codigo'];
     nomeCompleto = json['nomeCompleto'];
     telefone = json['telefone'];

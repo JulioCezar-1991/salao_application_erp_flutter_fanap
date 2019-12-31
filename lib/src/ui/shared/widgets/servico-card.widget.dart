@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:projectfanap/src/model/servico-list.model.dart';
 
-class ServiceCardWidget extends StatelessWidget {
+
+class ServicoCard extends StatelessWidget {
+
+  final ServicoListModel item;
+
+  const ServicoCard({ @required this.item});
+  
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 3,
       child: Row(
         children: <Widget>[
           Container(
@@ -29,7 +35,7 @@ class ServiceCardWidget extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(top: 8, bottom: 4),
                   child: Text(
-                    "Corte de Cabelo",
+                    item.descricao,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Theme.of(context).accentColor),
@@ -38,7 +44,7 @@ class ServiceCardWidget extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.zero,
                   child: Text(
-                    "Valor: R\$35,00",
+                    "Valor: ${item.valor}",
                     style: TextStyle(
                       fontSize: 12,
                       color: Theme.of(context).accentColor,
@@ -50,7 +56,7 @@ class ServiceCardWidget extends StatelessWidget {
                   child: Row(
                     children: <Widget>[
                       Text(
-                        "Tempo Médio: 30 Minutos",
+                        "Tempo Médio: ${item.tempoGasto}",
                         style: TextStyle(
                           fontSize: 12,
                           color: Theme.of(context).accentColor,

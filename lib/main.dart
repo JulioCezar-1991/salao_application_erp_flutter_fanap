@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:projectfanap/src/RouteGeneratorController.dart';
+import 'package:projectfanap/src/bloc/home.bloc.dart';
+import 'package:projectfanap/src/bloc/servico.bloc.dart';
 import 'package:projectfanap/src/bloc/user.bloc.dart';
+import 'package:projectfanap/src/route-generator.controller.dart';
 import 'package:projectfanap/src/theme/Theme.dart';
-import 'package:projectfanap/src/ui/android/pages/splash.page.dart';
+import 'package:projectfanap/src/ui/android/page/splash.page.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
@@ -15,6 +17,12 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<UserBloc>.value(
           value: UserBloc(),
+        ),
+        ChangeNotifierProvider<HomeBloc>.value(
+          value: HomeBloc(),
+        ),
+        ChangeNotifierProvider<ServicoBloc>.value(
+          value: ServicoBloc(),
         ),
       ],
       child: Main(),

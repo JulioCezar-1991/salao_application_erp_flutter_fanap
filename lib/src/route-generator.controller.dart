@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:projectfanap/src/ui/android/pages/AnalyticsPage.dart';
-import 'package:projectfanap/src/ui/android/pages/ClientDetailsPage.dart';
-import 'package:projectfanap/src/ui/android/pages/ConfigPage.dart';
-import 'package:projectfanap/src/ui/android/pages/PermissionPage.dart';
-import 'package:projectfanap/src/ui/android/pages/SchedulingCreatePage.dart';
-import 'package:projectfanap/src/ui/android/pages/SchedunlingPage.dart';
-import 'package:projectfanap/src/ui/android/pages/client-create.page.dart';
-import 'package:projectfanap/src/ui/android/pages/client.page.dart';
-import 'package:projectfanap/src/ui/android/pages/home.page.dart';
-import 'package:projectfanap/src/ui/android/pages/login-signIn.page.dart';
-import 'package:projectfanap/src/ui/android/pages/service-create.page.dart';
-import 'package:projectfanap/src/ui/android/pages/service-page.dart';
-import 'package:projectfanap/src/ui/android/pages/user-create.page.dart';
+import 'package:projectfanap/src/ui/android/page/AnalyticsPage.dart';
+import 'package:projectfanap/src/ui/android/page/ConfigPage.dart';
+import 'package:projectfanap/src/ui/android/page/PermissionPage.dart';
+import 'package:projectfanap/src/ui/android/page/client.page/client-create.page.dart';
+import 'package:projectfanap/src/ui/android/page/client.page/client.page.dart';
+import 'package:projectfanap/src/ui/android/page/home.page.dart';
+import 'package:projectfanap/src/ui/android/page/login-signIn.page.dart';
+import 'package:projectfanap/src/ui/android/page/schedunling.page/SchedulingCreatePage.dart';
+import 'package:projectfanap/src/ui/android/page/schedunling.page/SchedunlingPage.dart';
+import 'package:projectfanap/src/ui/android/page/servico.page.dart';
+import 'package:projectfanap/src/ui/android/page/servico.page/servico-create.page.dart';
+import 'package:projectfanap/src/ui/android/page/user.page/user-create.page.dart';
 
 class RouteGeneratorController{
   static const String ROUTE_CONFING = "/ConfigPage";
@@ -29,8 +28,8 @@ class RouteGeneratorController{
   static const String ROUTE_SCHEDUNLING = "/SchedunlingPage";
   static const String ROUTE_CREATESCHEDUNLING = "/CreateSchedulingPage";
 
-  static const String ROUTE_SERVICE = "/ServicePage";
-  static const String ROUTE_CREATESERVICE = "/CreateServicePage";
+  static const String ROUTE_SERVICE = "/ServicoPage";
+  static const String ROUTE_CREATESERVICE = "/CreateServicoPage";
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -48,8 +47,6 @@ class RouteGeneratorController{
         return MaterialPageRoute(builder: (context) => AnalyticsPage());
       case ROUTE_CLIENT:
         return MaterialPageRoute(builder: (context) => ClientPage());
-      case ROUTE_CLIENTDETAILS:
-        return MaterialPageRoute(builder: (context) => ClientDetailsPage());
       case ROUTE_CREATECLIENT:
         return MaterialPageRoute(builder: (context) => ClientCreatePage());
       case ROUTE_SCHEDUNLING:
@@ -57,9 +54,9 @@ class RouteGeneratorController{
       case ROUTE_CREATESCHEDUNLING:
         return MaterialPageRoute(builder: (context) => SchedulingCreatePage());
       case ROUTE_SERVICE:
-        return MaterialPageRoute(builder: (context) => ServicePage());
+        return MaterialPageRoute(builder: (context) => ServicoPage());
       case ROUTE_CREATESERVICE:
-        return MaterialPageRoute(builder: (context) => ServiceCreatePage());
+        return MaterialPageRoute(builder: (context) => ServicoCreatePage());
       default:
         _erroRota();
     }

@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:projectfanap/src/Setting.dart';
-import 'package:projectfanap/src/models/user-authenticate.model.dart';
-import 'package:projectfanap/src/models/user-create.model.dart';
-import 'package:projectfanap/src/models/user.model.dart';
+import 'package:projectfanap/src/model/user-authenticate.model.dart';
+import 'package:projectfanap/src/model/user-create.model.dart';
+import 'package:projectfanap/src/model/user.model.dart';
 import 'package:projectfanap/src/repositorie/account.repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -26,14 +26,13 @@ class UserBloc extends ChangeNotifier {
       await prefs.setString('user', jsonEncode(res));
 
       return res;
-    } catch (ex) {
-      print(ex);
+    } catch (e) {
       user = null;
       return null;
     }
   }
 
-  Future<UserModel> userCreate(CreateUserModel model) async {
+  Future<UserModel> userCreate(UserCreaterModel model) async {
     try {
       var repository = AccountRepository();
       var res = await repository.userCreate(model);

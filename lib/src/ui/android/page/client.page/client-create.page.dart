@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:projectfanap/src/RouteGeneratorController.dart';
-import 'package:projectfanap/src/bloc/client.bloc.dart';
 import 'package:projectfanap/src/model/client-create.model.dart';
-import 'package:projectfanap/src/ui/shared/widgets/text-field.widget.dart';
-import 'package:provider/provider.dart';
+import 'package:projectfanap/src/route-generator.controller.dart';
+import 'package:projectfanap/src/ui/android/widgets/text-field.widget.dart';
 
 class ClientCreatePage extends StatefulWidget {
   @override
@@ -158,7 +156,7 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
     );
   }
 
-  createClient(BuildContext context) async {
+  /* createClient(BuildContext context) async {
     var bloc = Provider.of<ClientBloc>(context);
     var res = await bloc.createClient(client);
 
@@ -196,4 +194,6 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
       );
     }
   }
+}
+ */
 }

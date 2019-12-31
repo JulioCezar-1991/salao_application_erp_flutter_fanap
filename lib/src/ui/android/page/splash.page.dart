@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:projectfanap/src/RouteGeneratorController.dart';
+import 'package:projectfanap/src/route-generator.controller.dart';
 
 class SplashPage extends StatefulWidget {
   @override

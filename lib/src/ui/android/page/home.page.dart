@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:projectfanap/src/RouteGeneratorController.dart';
-import 'package:projectfanap/src/ui/android/pages/AnalyticsPage.dart';
-import 'package:projectfanap/src/ui/android/pages/SchedunlingPage.dart';
-import 'package:projectfanap/src/ui/android/pages/client.page.dart';
-import 'package:projectfanap/src/ui/android/pages/service-page.dart';
-import 'package:projectfanap/src/ui/shared/widgets/drawer.widget.dart';
+import 'package:projectfanap/src/bloc/home.bloc.dart';
+import 'package:projectfanap/src/route-generator.controller.dart';
+import 'package:projectfanap/src/ui/android/page/AnalyticsPage.dart';
+import 'package:projectfanap/src/ui/android/page/client.page/client.page.dart';
+import 'package:projectfanap/src/ui/android/page/schedunling.page/SchedunlingPage.dart';
+import 'package:projectfanap/src/ui/android/widgets/drawer.widget.dart';
+import 'package:projectfanap/src/ui/shared/widgets/servico-list.widget.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -23,6 +25,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = Provider.of<HomeBloc>(context);
     return Scaffold(
       key: _scaffoldkey,
       endDrawer: DrawerWidget(),
@@ -45,15 +48,14 @@ class _HomePageState extends State<HomePage> {
         controller: _controllerPage,
         onPageChanged: (index) {
           controlePagina = index;
-          print('Controlador de pagina $index');
         },
         children: <Widget>[
           Center(
             child: ClientPage(),
           ),
-          Center(
-            child: ServicePage(),
-          ),
+          ServicoList(
+              servicos: bloc.servicos,
+            ),
           Center(
             child: SchedunlingPage(),
           ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:projectfanap/src/RouteGeneratorController.dart';
 import 'package:projectfanap/src/bloc/user.bloc.dart';
-import 'package:projectfanap/src/models/user-create.model.dart';
-import 'package:projectfanap/src/ui/shared/widgets/text-field.widget.dart';
+import 'package:projectfanap/src/model/user-create.model.dart';
+import 'package:projectfanap/src/route-generator.controller.dart';
+import 'package:projectfanap/src/ui/android/widgets/text-field.widget.dart';
 import 'package:provider/provider.dart';
 
 class UserCreatePage extends StatefulWidget {
@@ -13,7 +13,7 @@ class UserCreatePage extends StatefulWidget {
 class _UserCreatePageState extends State<UserCreatePage> {
   final _formKey = GlobalKey<FormState>();
   final _scaffolKey = GlobalKey<ScaffoldState>();
-  var user = CreateUserModel();
+  var user = UserCreaterModel();
 
   @override
   Widget build(BuildContext context) {
