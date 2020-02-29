@@ -5,14 +5,13 @@ import 'package:projectfanap/src/model/servico-list.model.dart';
 import 'package:projectfanap/src/model/servico.model.dart';
 import 'package:projectfanap/src/setting.dart';
 
-class ServicoRepository{
-
+class ServicoRepository {
   Future<List<ServicoListModel>> getServico() async {
     var url = "${Settings.apiUrl}/servico";
     Response response = await Dio().get(url);
     return (response.data as List)
-    .map((item) => ServicoListModel.fromJson(item))
-    .toList();
+        .map((item) => ServicoListModel.fromJson(item))
+        .toList();
   }
 
   Future<ServicoModel> postServico(ServicoCreateModel model) async {
@@ -25,7 +24,7 @@ class ServicoRepository{
     var url = "${Settings.apiUrl}/categoria";
     Response response = await Dio().get(url);
     return (response.data as List)
-    .map((item) => ServiceCategory.fromJson(item))
-    .toList();
+        .map((item) => ServiceCategory.fromJson(item))
+        .toList();
   }
 }

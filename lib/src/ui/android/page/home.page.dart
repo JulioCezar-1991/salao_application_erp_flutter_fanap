@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:projectfanap/src/bloc/home.bloc.dart';
 import 'package:projectfanap/src/route-generator.controller.dart';
-import 'package:projectfanap/src/ui/android/page/AnalyticsPage.dart';
-import 'package:projectfanap/src/ui/android/page/client.page/client.page.dart';
-import 'package:projectfanap/src/ui/android/page/schedunling.page/SchedunlingPage.dart';
+import 'package:projectfanap/src/ui/android/page/analytics/analytics.page.dart';
+
+import 'package:projectfanap/src/ui/android/page/client/client.page.dart';
+import 'package:projectfanap/src/ui/android/page/schedunling/schedunling.page.dart';
 import 'package:projectfanap/src/ui/android/widgets/drawer.widget.dart';
 import 'package:projectfanap/src/ui/shared/widgets/servico-list.widget.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +15,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
   PageController _controllerPage = PageController(initialPage: 0);
 
   var _scaffoldkey = GlobalKey<ScaffoldState>();
@@ -54,8 +54,8 @@ class _HomePageState extends State<HomePage> {
             child: ClientPage(),
           ),
           ServicoList(
-              servicos: bloc.servicos,
-            ),
+            servicos: bloc.servicos,
+          ),
           Center(
             child: SchedunlingPage(),
           ),
