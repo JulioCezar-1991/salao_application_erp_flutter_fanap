@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:projectfanap/src/model/client-create.model.dart';
+import 'package:projectfanap/src/components/text-field.widget.dart';
+import 'package:projectfanap/src/models/client-create.model.dart';
 import 'package:projectfanap/src/route-generator.controller.dart';
-import 'package:projectfanap/src/ui/android/widgets/text-field.widget.dart';
 
 class ClientCreatePage extends StatefulWidget {
   @override

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:projectfanap/src/bloc/home.bloc.dart';
-import 'package:projectfanap/src/route-generator.controller.dart';
-import 'package:projectfanap/src/ui/android/page/analytics/analytics.page.dart';
+import 'package:projectfanap/src/components/drawer.widget.dart';
+import 'package:projectfanap/src/components/servico-list.widget.dart';
+import 'package:projectfanap/src/pages/analytics.page.dart';
+import 'package:projectfanap/src/pages/client.page.dart';
+import 'package:projectfanap/src/pages/schedunling.page.dart';
 
-import 'package:projectfanap/src/ui/android/page/client/client.page.dart';
-import 'package:projectfanap/src/ui/android/page/schedunling/schedunling.page.dart';
-import 'package:projectfanap/src/ui/android/widgets/drawer.widget.dart';
-import 'package:projectfanap/src/ui/shared/widgets/servico-list.widget.dart';
+import 'package:projectfanap/src/route-generator.controller.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {

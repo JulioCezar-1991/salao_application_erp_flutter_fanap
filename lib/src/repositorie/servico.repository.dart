@@ -1,13 +1,13 @@
 import 'package:dio/dio.dart';
-import 'package:projectfanap/src/model/category.model.dart';
-import 'package:projectfanap/src/model/servico-create.model.dart';
-import 'package:projectfanap/src/model/servico-list.model.dart';
-import 'package:projectfanap/src/model/servico.model.dart';
+import 'package:projectfanap/src/models/category.model.dart';
+import 'package:projectfanap/src/models/servico-create.model.dart';
+import 'package:projectfanap/src/models/servico-list.model.dart';
+import 'package:projectfanap/src/models/servico.model.dart';
 import 'package:projectfanap/src/setting.dart';
 
 class ServicoRepository {
   Future<List<ServicoListModel>> getServico() async {
-    var url = "${Settings.apiUrl}/servico";
+    var url = "${Settings.apiUrl}/products";
     Response response = await Dio().get(url);
     return (response.data as List)
         .map((item) => ServicoListModel.fromJson(item))

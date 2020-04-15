@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projectfanap/src/route-generator.controller.dart';
-import 'package:projectfanap/src/ui/shared/validator/CNPJUtil.dart';
-import 'package:projectfanap/src/ui/shared/validator/CPFUtil.dart';
+import 'package:projectfanap/src/validator/CNPJUtil.dart';
+import 'package:projectfanap/src/validator/CPFUtil.dart';
 
 class ConfigPage extends StatefulWidget {
   @override
@@ -161,10 +161,10 @@ class _ConfigPageState extends State<ConfigPage> {
                         child: Text(
                           "Porta do Servidor",
                           style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
-                              color: Colors.black,
-                              ),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                       Container(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projectfanap/src/ui/shared/widgets/progress-indicator.widget.dart';
+import 'package:projectfanap/src/components/progress-indicator.widget.dart';
 
 class Loader extends StatelessWidget {
   final object;

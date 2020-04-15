@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projectfanap/src/bloc/user.bloc.dart';
-import 'package:projectfanap/src/model/user-create.model.dart';
+import 'package:projectfanap/src/components/text-field.widget.dart';
+import 'package:projectfanap/src/models/user-create.model.dart';
 import 'package:projectfanap/src/route-generator.controller.dart';
-import 'package:projectfanap/src/ui/android/widgets/text-field.widget.dart';
 import 'package:provider/provider.dart';
 
 class UserCreatePage extends StatefulWidget {

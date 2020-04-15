@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:projectfanap/src/model/servico-list.model.dart';
-import 'package:projectfanap/src/ui/shared/widgets/loader.widget.dart';
-import 'package:projectfanap/src/ui/shared/widgets/servico-card.widget.dart';
+import 'package:projectfanap/src/components/loader.widget.dart';
+import 'package:projectfanap/src/components/servico-card.widget.dart';
+import 'package:projectfanap/src/models/servico-list.model.dart';
 
 class ServicoList extends StatelessWidget {
   final List<ServicoListModel> servicos;
@@ -24,7 +24,6 @@ class ServicoList extends StatelessWidget {
       itemCount: servicos.length,
       itemBuilder: (context, index) {
         ServicoListModel item = servicos[index];
-
         return Padding(
           padding: EdgeInsets.all(5),
           child: ServicoCard(
@@ -35,5 +34,3 @@ class ServicoList extends StatelessWidget {
     );
   }
 }
-
-

@@ -41,32 +41,25 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             decoration: BoxDecoration(color: Colors.black26),
           ),
           ListTile(
-            leading: Icon(
-              Icons.person_add,
-              color: Theme.of(context).accentColor
-            ),
+            leading:
+                Icon(Icons.person_add, color: Theme.of(context).accentColor),
             title: Text(
               "Criar Usuário",
               style: TextStyle(
-                fontSize: 16.0,
-                color: Theme.of(context).accentColor
-              ),
+                  fontSize: 16.0, color: Theme.of(context).accentColor),
             ),
             onTap: () {
-              Navigator.pushNamed(context, RouteGeneratorController.ROUTE_USERCREATE);
+              Navigator.pushNamed(
+                  context, RouteGeneratorController.ROUTE_USERCREATE);
             },
           ),
           ListTile(
-            leading: Icon(
-              Icons.lock_open,
-              color: Theme.of(context).accentColor
-            ),
+            leading:
+                Icon(Icons.lock_open, color: Theme.of(context).accentColor),
             title: Text(
               "Permissões",
               style: TextStyle(
-                fontSize: 16.0,
-                color: Theme.of(context).accentColor
-              ),
+                  fontSize: 16.0, color: Theme.of(context).accentColor),
             ),
             onTap: () {
               Navigator.pushNamed(
@@ -74,16 +67,11 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             },
           ),
           ListTile(
-            leading: Icon(
-              Icons.build,
-              color: Theme.of(context).accentColor
-            ),
+            leading: Icon(Icons.build, color: Theme.of(context).accentColor),
             title: Text(
               "Configurações",
               style: TextStyle(
-                fontSize: 16.0,
-                color: Theme.of(context).accentColor
-              ),
+                  fontSize: 16.0, color: Theme.of(context).accentColor),
             ),
             onTap: () {
               Navigator.pushNamed(
@@ -98,34 +86,26 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             indent: 18,
           ),
           ListTile(
-            leading: Icon(
-              Icons.share,
-              color: Theme.of(context).accentColor
-            ),
+            leading: Icon(Icons.share, color: Theme.of(context).accentColor),
             title: Text(
               "Compartilhar",
               style: TextStyle(
-                fontSize: 16.0,
-                color: Theme.of(context).accentColor
-              ),
+                  fontSize: 16.0, color: Theme.of(context).accentColor),
             ),
             onTap: () {},
           ),
           ListTile(
-            leading: Icon(
-              Icons.send,
-              color: Theme.of(context).accentColor
-            ),
+            leading: Icon(Icons.send, color: Theme.of(context).accentColor),
             title: Text(
               "Sair",
               style: TextStyle(
-                fontSize: 16.0,
-                color: Theme.of(context).accentColor
-              ),
+                  fontSize: 16.0, color: Theme.of(context).accentColor),
             ),
             onTap: () {
               Navigator.pushNamedAndRemoveUntil(
-                  context, RouteGeneratorController.ROUTE_LOGINSINGIN, (contex) => false);
+                  context,
+                  RouteGeneratorController.ROUTE_LOGINSINGIN,
+                  (contex) => false);
             },
           ),
         ],

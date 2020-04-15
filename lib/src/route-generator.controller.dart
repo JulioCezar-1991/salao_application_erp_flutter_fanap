@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'ui/android/page/analytics/analytics.page.dart';
+import 'package:projectfanap/src/pages/analytics.page.dart';
+import 'package:projectfanap/src/pages/client-create.page.dart';
+import 'package:projectfanap/src/pages/client.page.dart';
+import 'package:projectfanap/src/pages/scheduling-create.page.dart';
+import 'package:projectfanap/src/pages/schedunling.page.dart';
+import 'package:projectfanap/src/pages/servico-create.page.dart';
+import 'package:projectfanap/src/pages/servico.page.dart';
+import 'package:projectfanap/src/pages/user-create.page.dart';
 
-import 'ui/android/page/client/client-create.page.dart';
-import 'ui/android/page/client/client.page.dart';
-import 'ui/android/page/config.page.dart';
-import 'ui/android/page/home.page.dart';
-import 'ui/android/page/login-signIn.page.dart';
-import 'ui/android/page/schedunling/scheduling-create.page.dart';
-import 'ui/android/page/schedunling/schedunling.page.dart';
-import 'ui/android/page/permission.page.dart';
-import 'ui/android/page/servico/servico-create.page.dart';
-import 'ui/android/page/servico/servico.page.dart';
-import 'ui/android/page/user/user-create.page.dart';
+import 'pages/config.page.dart';
+import 'pages/home.page.dart';
+import 'pages/login-signIn.page.dart';
+
+import 'pages/permission.page.dart';
 
 class RouteGeneratorController {
   static const String ROUTE_CONFING = "/ConfigPage";

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'dart:async';
 
 import 'package:projectfanap/src/route-generator.controller.dart';
@@ -15,8 +16,8 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   void navigationPage() {
-    Navigator.pushReplacementNamed(
-        context, RouteGeneratorController.ROUTE_LOGINSINGIN);
+    Navigator.pushReplacementNamed(context, RouteGeneratorController.ROUTE_HOME
+        /* RouteGeneratorController.ROUTE_LOGINSINGIN */);
   }
 
   @override
@@ -27,24 +28,28 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
-          alignment: Alignment.center,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Container(
-                height: 250,
-                child: Image.asset(
-                  'assets/logo.png',
-                ),
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Container(
+              height: 250,
+              child: Image.asset(
+                'assets/logo.png',
               ),
-              CircularProgressIndicator(
-                strokeWidth: 5,
-              )
-            ],
-          )),
+            ),
+            CircularProgressIndicator(
+              strokeWidth: 5,
+            )
+          ],
+        ),
+      ),
     );
   }
 }

@@ -33,6 +33,7 @@ dependencies:
   cpf_cnpj_validator: ^1.0.5
   dropdown_formfield: ^0.1.1
   shared_preferences: ^0.5.3
+  syncfusion_flutter_calendar: ^17.4.39-beta
 
 dev_dependencies:
   flutter_launcher_icons: "^0.7.3"

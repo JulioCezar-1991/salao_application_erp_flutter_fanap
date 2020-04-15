@@ -1,6 +1,6 @@
-import 'package:projectfanap/src/model/user.model.dart';
+import 'package:projectfanap/src/models/user.model.dart';
 
 class Settings {
-  static String apiUrl = "http://187.114.248.98:3000";
+  static String apiUrl = "http://200.175.249.150:2212";
   static UserModel user;
 }

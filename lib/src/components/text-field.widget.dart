@@ -28,11 +28,7 @@ class TextFormFieldCustom extends StatelessWidget {
         hoverColor: Colors.red,
         focusColor: Colors.red,
         alignLabelWithHint: false,
-        counterStyle: TextStyle(
-          color: Colors.red
-          
-        ),
-        
+        counterStyle: TextStyle(color: Colors.red),
         icon: icon,
         labelText: labelText,
         labelStyle: TextStyle(
