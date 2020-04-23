@@ -1,4 +1,4 @@
-# projectfanap
+# projeto_fanap
 
 A new Flutter project.
 

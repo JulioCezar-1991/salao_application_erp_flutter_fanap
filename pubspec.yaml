@@ -1,4 +1,4 @@
-name: projectfanap
+name: projeto_fanap
 description: A new Flutter project.
 
 # The following defines the version and build number for your application.
@@ -11,8 +11,6 @@ description: A new Flutter project.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+1
-
 environment:
   sdk: ">=2.1.0 <3.0.0"
 
@@ -34,9 +32,18 @@ dependencies:
   dropdown_formfield: ^0.1.1
   shared_preferences: ^0.5.3
   syncfusion_flutter_calendar: ^17.4.39-beta
+  flutter_mobx: ^0.3.6
+  mobx: ^0.4.0+1
+  flutter_modular: ^1.1.2
+  email_validator: '^1.0.0'
+  validators: ^2.0.0
+
 
 dev_dependencies:
   flutter_launcher_icons: "^0.7.3"
+  mockito: ^4.1.1
+  mobx_codegen: ^0.4.1
+  build_runner: ^1.7.3
   flutter_test:
     sdk: flutter
 
