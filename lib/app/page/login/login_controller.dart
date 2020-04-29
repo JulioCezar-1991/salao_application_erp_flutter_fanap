@@ -56,19 +56,17 @@ abstract class _LoginControllerBase with Store {
     }
   }
 
-  dynamic enterPage() async {
-    authenticate().then((user) async {
-      if (user != null) {
-        return Modular.to.pushReplacementNamed('/home');
-      }
-      return null;
-    });
-  }
-
   void validateAll() async {
-    /* validatePassword(password); */
-    /* validateEmail(email); */
-    enterPage();
+    validatePassword(password);
+    validateEmail(email);
+    if (error.password == null && error.email == null) {
+      authenticate().then((user) async {
+        if (user != null) {
+          return Modular.to.pushReplacementNamed('/home');
+        }
+        return null;
+      });
+    }
   }
 }
 

@@ -162,10 +162,10 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _textFild(
-      {@required context,
+      {@required icon,
+      @required context,
       @required labelText,
       @required hintText,
-      @required icon,
       bool obscureText = false,
       Function onChanged,
       errorText}) {

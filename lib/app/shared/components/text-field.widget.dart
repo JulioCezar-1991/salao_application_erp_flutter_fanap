@@ -1,34 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class TextFormFieldCustom extends StatelessWidget {
+class TextFieldCustom extends StatelessWidget {
   final Icon icon;
   final String labelText;
-  final String subLabelText;
-  final String inputValue;
+  final String hintText;
+  final int maxLength;
   final TextInputType keyboardType;
-  final FormFieldSetter<String> onSaved;
+  final Function onChanged;
+  final String errorText;
+  final Function onTap;
 
-  const TextFormFieldCustom({
-    Key key,
+  const TextFieldCustom({
     @required this.icon,
     @required this.labelText,
-    @required this.subLabelText,
-    @required this.onSaved,
-    this.inputValue,
-    this.keyboardType,
-  }) : super(key: key);
+    @required this.hintText,
+    this.maxLength,
+    @required this.keyboardType,
+    this.onChanged,
+    this.errorText,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      keyboardType: TextInputType.text,
+    return TextField(
+      inputFormatters: [LengthLimitingTextInputFormatter(maxLength)],
+      keyboardType: keyboardType,
       cursorColor: Theme.of(context).accentColor,
       decoration: InputDecoration(
+        errorText: errorText,
+        hintText: hintText,
         hoverColor: Colors.red,
         focusColor: Colors.red,
         alignLabelWithHint: false,
-        counterStyle: TextStyle(color: Colors.red),
+        counterStyle: TextStyle(color: Colors.transparent),
         icon: icon,
         labelText: labelText,
         labelStyle: TextStyle(
@@ -41,13 +47,8 @@ class TextFormFieldCustom extends StatelessWidget {
         fontSize: 20,
         color: Colors.black,
       ),
-      validator: (value) {
-        if (value.isEmpty) {
-          return subLabelText;
-        }
-        return null;
-      },
-      onSaved: onSaved,
+      onChanged: onChanged,
+      onTap: onTap,
     );
   }
 }

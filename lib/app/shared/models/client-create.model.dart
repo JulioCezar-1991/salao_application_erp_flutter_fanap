@@ -9,20 +9,18 @@ class ClientCreateModel {
   String sector;
   String city;
   String state;
-  int iV;
 
-  ClientCreateModel({
-    this.name,
-    this.cpf,
-    this.date,
-    this.telcel,
-    this.telfix,
-    this.email,
-    this.address,
-    this.sector,
-    this.city,
-    this.state,
-  });
+  ClientCreateModel(
+      {this.name,
+      this.cpf,
+      this.date,
+      this.telcel,
+      this.telfix,
+      this.email,
+      this.address,
+      this.sector,
+      this.city,
+      this.state});
 
   ClientCreateModel.fromJson(Map<String, dynamic> json) {
     name = json['name'];

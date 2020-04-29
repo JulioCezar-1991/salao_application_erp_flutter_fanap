@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_fanap/app/page/analytics/analytics.page.dart';
+import 'package:projeto_fanap/app/page/client/client_create_page.dart';
 import 'package:projeto_fanap/app/page/client/client_page.dart';
 import 'package:projeto_fanap/app/page/product/product.page.dart';
 import 'package:projeto_fanap/app/page/sheduling/shedunling.dart';
@@ -66,8 +67,12 @@ class _HomePageState extends State<HomePage> {
           child: FloatingActionButton(
             onPressed: () {
               if (controlePagina == 0) {
-                /* Navigator.pushNamed(
-                    context, RouteGeneratorController.ROUTE_CREATESCHEDUNLING); */
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ClientCreatePage(),
+                  ),
+                );
               } else if (controlePagina == 1) {
                 /* Navigator.pushNamed(
                     context, RouteGeneratorController.ROUTE_CREATESERVICE); */

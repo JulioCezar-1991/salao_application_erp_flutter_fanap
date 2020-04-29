@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 
 import 'package:projeto_fanap/app/shared/models/client-create.model.dart';
 import 'package:projeto_fanap/app/shared/models/client-list.model.dart';
+import 'package:projeto_fanap/app/shared/models/client.model.dart';
 
 class ClientRepository {
   final Dio dio;
@@ -15,8 +16,8 @@ class ClientRepository {
         .toList();
   }
 
-  Future<ClientListModel> postClient(ClientCreateModel model) async {
-    Response response = await dio.post('/client/create', data: model);
-    return ClientListModel.fromJson(response.data[0]);
+  Future<ClientModel> postClient(ClientCreateModel model) async {
+    Response response = await dio.post('/client', data: model);
+    return ClientModel.fromJson(response.data);
   }
 }
