@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:projeto_fanap/app/shared/utils/theme.dart';
+import 'package:projeto_fanap/app/shared/utils/theme_util.dart';
 
 class AppWidget extends StatelessWidget {
   @override

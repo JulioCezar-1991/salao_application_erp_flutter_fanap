@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:projeto_fanap/app/app_controller.dart';
-import 'package:projeto_fanap/app/page/splash/splash_module.dart';
-import 'package:projeto_fanap/app/shared/utils/setting.dart';
+import 'package:projeto_fanap/app/modules/splash/splash_module.dart';
+import 'package:projeto_fanap/app/shared/utils/setting_util.dart';
 import 'app_widget.dart';
 
 class AppModule extends MainModule {

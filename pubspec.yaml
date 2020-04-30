@@ -39,7 +39,7 @@ dependencies:
   validators: ^2.0.0
   brasil_fields: ^0.0.8
   datetime_picker_formfield: ^1.0.0
-  http: ^0.12.1
+  fab_circular_menu: any
 
 
 dev_dependencies:
