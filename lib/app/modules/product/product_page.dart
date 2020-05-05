@@ -3,7 +3,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:projeto_fanap/app/modules/product/product_controller.dart';
 import 'package:projeto_fanap/app/shared/components/product_card_widget.dart';
-import 'package:projeto_fanap/app/shared/models/product_list_model.dart';
 
 class ProductPage extends StatelessWidget {
   @override
@@ -13,12 +12,22 @@ class ProductPage extends StatelessWidget {
       body: Observer(
         builder: (_) {
           if (_productController.products.error != null) {
-            return Center(child: Text('Erro'));
+            return Center(
+              child: IconButton(
+                icon: Icon(
+                  Icons.replay,
+                  size: 40,
+                ),
+                onPressed: () {
+                  _productController.fetchProduct();
+                },
+              ),
+            );
           }
           if (_productController.products.value == null) {
             return Center(child: CircularProgressIndicator());
           }
-          List<ProductListModel> list = _productController.products.value;
+          var list = _productController.products.value;
           return ListView.builder(
             itemCount: list.length,
             itemBuilder: (context, index) {
@@ -26,7 +35,6 @@ class ProductPage extends StatelessWidget {
                 title: ProductCard(
                   item: list[index],
                 ),
-                onTap: () {},
               );
             },
           );

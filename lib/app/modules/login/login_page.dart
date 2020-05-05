@@ -4,7 +4,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:projeto_fanap/app/modules/login/login_controller.dart';
 import 'package:projeto_fanap/app/shared/components/circle_button_widget.dart';
-import 'package:projeto_fanap/app/shared/components/floating_button_menu.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -159,7 +158,6 @@ class _LoginPageState extends State<LoginPage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingButtonMenu(),
     );
   }
 

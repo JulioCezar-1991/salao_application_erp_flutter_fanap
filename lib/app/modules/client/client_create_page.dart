@@ -5,7 +5,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:projeto_fanap/app/modules/client/client_controller.dart';
-import 'package:projeto_fanap/app/shared/components/text_field_widget.dart';
+import 'package:projeto_fanap/app/shared/components/text_field_create_widget.dart';
 
 class ClientCreatePage extends StatefulWidget {
   @override
@@ -34,7 +34,7 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
           },
         ),
         title: Text(
-          "Criar Usuário",
+          "Criar Cliente",
         ),
         actions: <Widget>[
           Padding(
@@ -44,7 +44,40 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                 Icons.check,
               ),
               onPressed: () {
-                _clientController.validateAll();
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text("Confirmar Cadastro do Cliente"),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text(
+                            "Salvar",
+                            style:
+                                TextStyle(color: Theme.of(context).accentColor),
+                          ),
+                          onPressed: () {
+                            _clientController.validateCreateAll();
+                            _clientController.fetchClient();
+                            Modular.to.popAndPushNamed(
+                              '/home',
+                            );
+                          },
+                        ),
+                        FlatButton(
+                          child: Text(
+                            "Cancelar",
+                            style:
+                                TextStyle(color: Theme.of(context).accentColor),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
               },
             ),
           ),
@@ -56,7 +89,7 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
           children: <Widget>[
             Observer(
               builder: (_) {
-                return TextFieldCustom(
+                return TextFieldCreate(
                   keyboardType: TextInputType.text,
                   maxLength: 38,
                   icon: Icon(
@@ -73,9 +106,9 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
             ),
             Observer(
               builder: (_) {
-                return TextFieldCustom(
+                return TextFieldCreate(
                   keyboardType: TextInputType.number,
-                  maxLength: 14,
+                  maxLength: 11,
                   icon: Icon(
                     Icons.perm_identity,
                   ),
@@ -129,7 +162,7 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
             ),
             Observer(
               builder: (_) {
-                return TextFieldCustom(
+                return TextFieldCreate(
                   keyboardType: TextInputType.emailAddress,
                   maxLength: 38,
                   icon: Icon(
@@ -146,9 +179,9 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
             ),
             Observer(
               builder: (_) {
-                return TextFieldCustom(
+                return TextFieldCreate(
                   keyboardType: TextInputType.phone,
-                  maxLength: 38,
+                  maxLength: 12,
                   icon: Icon(
                     Icons.smartphone,
                   ),
@@ -163,9 +196,9 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
             ),
             Observer(
               builder: (_) {
-                return TextFieldCustom(
+                return TextFieldCreate(
                   keyboardType: TextInputType.phone,
-                  maxLength: 38,
+                  maxLength: 12,
                   icon: Icon(
                     Icons.phone,
                   ),
@@ -180,7 +213,7 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
             ),
             Observer(
               builder: (_) {
-                return TextFieldCustom(
+                return TextFieldCreate(
                   keyboardType: TextInputType.text,
                   maxLength: 38,
                   icon: Icon(Icons.home),
@@ -195,7 +228,7 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
             ),
             Observer(
               builder: (_) {
-                return TextFieldCustom(
+                return TextFieldCreate(
                   keyboardType: TextInputType.text,
                   maxLength: 38,
                   icon: Icon(FontAwesomeIcons.streetView),
@@ -210,7 +243,7 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
             ),
             Observer(
               builder: (_) {
-                return TextFieldCustom(
+                return TextFieldCreate(
                   icon: Icon(
                     Icons.location_city,
                   ),
@@ -226,7 +259,7 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
             ),
             Observer(
               builder: (_) {
-                return TextFieldCustom(
+                return TextFieldCreate(
                   icon: Icon(
                     FontAwesomeIcons.mapMarkedAlt,
                   ),

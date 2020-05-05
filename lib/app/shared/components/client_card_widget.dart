@@ -100,7 +100,7 @@ class ClientCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ClientDetails(
+            builder: (context) => ClientDetailsPage(
               item: item,
             ),
           ),

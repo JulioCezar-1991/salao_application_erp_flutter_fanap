@@ -1,10 +1,10 @@
-import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:mobx/mobx.dart';
 import 'package:projeto_fanap/app/shared/models/client_create_model.dart';
 import 'package:projeto_fanap/app/shared/models/client_list_model.dart';
 import 'package:projeto_fanap/app/shared/models/client_model.dart';
 import 'package:projeto_fanap/app/shared/repositories/client_repository.dart';
 import 'package:validators/validators.dart';
+import 'package:cpf_cnpj_validator/cpf_validator.dart';
 
 part 'client_controller.g.dart';
 
@@ -18,12 +18,12 @@ abstract class _ClientControllerBase with Store {
   ObservableFuture<List<ClientListModel>> clients;
 
   @action
-  fetchData() {
+  fetchClient() {
     clients = repository.getAllClient().asObservable();
   }
 
   _ClientControllerBase(this.repository) {
-    fetchData();
+    fetchClient();
   }
 
   @observable
@@ -31,7 +31,7 @@ abstract class _ClientControllerBase with Store {
 
   @action
   void validateName(String value) {
-    error.name = isNull(value) || value.isEmpty ? 'Nome invalido' : null;
+    error.name = isNull(value) || value.isEmpty ? 'Nome inválido' : null;
   }
 
   @observable
@@ -39,7 +39,7 @@ abstract class _ClientControllerBase with Store {
 
   @action
   void validateCPF(String value) {
-    error.cpf = CPFValidator.isValid(value) ? null : 'CPFs invalido';
+    error.cpf = CPFValidator.isValid(value) ? null : 'CPF inválido';
   }
 
   // Metodos Data Nascimento
@@ -48,7 +48,7 @@ abstract class _ClientControllerBase with Store {
 
   @action
   void validateDate(String value) {
-    error.date = isNull(value) || value.isEmpty ? 'Data invalida' : null;
+    error.date = isNull(value) || value.isEmpty ? 'Data inválida' : null;
   }
 
   @observable
@@ -56,7 +56,7 @@ abstract class _ClientControllerBase with Store {
 
   @action
   void validateEmail(String value) {
-    error.email = isEmail(value) ? null : 'Email invalido';
+    error.email = isEmail(value) ? null : 'Email inválido';
   }
 
   @observable
@@ -64,7 +64,7 @@ abstract class _ClientControllerBase with Store {
 
   @action
   void validateTelCel(String value) {
-    error.telcel = isNull(value) || value.isEmpty ? 'Telefone invalido' : null;
+    error.telcel = isNull(value) || value.isEmpty ? 'Telefone inválido' : null;
   }
 
   @observable
@@ -72,7 +72,7 @@ abstract class _ClientControllerBase with Store {
 
   @action
   void validateTelFix(String value) {
-    error.telfix = isNull(value) || value.isEmpty ? 'Telefone invalido' : null;
+    error.telfix = isNull(value) || value.isEmpty ? 'Telefone inválido' : null;
   }
 
   @observable
@@ -80,7 +80,7 @@ abstract class _ClientControllerBase with Store {
 
   @action
   void validateAddress(String value) {
-    error.address = isNull(value) || value.isEmpty ? 'Endereco invalido' : null;
+    error.address = isNull(value) || value.isEmpty ? 'Endereco inválido' : null;
   }
 
   @observable
@@ -88,7 +88,7 @@ abstract class _ClientControllerBase with Store {
 
   @action
   void validateSector(String value) {
-    error.sector = isNull(value) || value.isEmpty ? 'Setor invalido' : null;
+    error.sector = isNull(value) || value.isEmpty ? 'Setor inválido' : null;
   }
 
   @observable
@@ -96,7 +96,7 @@ abstract class _ClientControllerBase with Store {
 
   @action
   void validateCity(String value) {
-    error.city = isNull(value) || value.isEmpty ? 'Cidade invalida' : null;
+    error.city = isNull(value) || value.isEmpty ? 'Cidade inválida' : null;
   }
 
   @observable
@@ -104,7 +104,7 @@ abstract class _ClientControllerBase with Store {
 
   @action
   void validateState(String value) {
-    error.state = isNull(value) || value.isEmpty ? 'Estado invalido' : null;
+    error.state = isNull(value) || value.isEmpty ? 'Estado inválido' : null;
   }
 
   @observable
@@ -132,7 +132,7 @@ abstract class _ClientControllerBase with Store {
     return null;
   }
 
-  void validateAll() async {
+  void validateCreateAll() async {
     validateName(name);
     validateCPF(cpf);
     validateDate(date);
@@ -159,6 +159,35 @@ abstract class _ClientControllerBase with Store {
         }
       });
     }
+  }
+
+  void deleteClient() async {
+    _deleteClient();
+  }
+
+  Future<ClientModel> _deleteClient() async {
+    try {
+      var res = await repository.deleteClient();
+      return res;
+    } catch (error) {
+      dataClientModel = null;
+      print(error);
+    }
+    return null;
+  }
+
+  void patchClient() async {
+    _patchClient(dataClientModel);
+  }
+
+  Future<ClientModel> _patchClient(ClientCreateModel model) async {
+    try {
+      var res = await repository.patchClient(model);
+      return res;
+    } catch (error) {
+      dataClientModel = null;
+    }
+    return null;
   }
 }
 

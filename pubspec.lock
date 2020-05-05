@@ -43,13 +43,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
-  brasil_fields:
-    dependency: "direct main"
-    description:
-      name: brasil_fields
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.8+1"
   build:
     dependency: transitive
     description:
@@ -197,13 +190,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.2"
-  dropdown_formfield:
-    dependency: "direct main"
-    description:
-      name: dropdown_formfield
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.2"
   email_validator:
     dependency: "direct main"
     description:
@@ -211,13 +197,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
-  fab_circular_menu:
-    dependency: "direct main"
-    description:
-      name: fab_circular_menu
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   fixnum:
     dependency: transitive
     description:
@@ -455,13 +434,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.4.0"
-  provider:
-    dependency: "direct main"
-    description:
-      name: provider
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.2.0"
   pub_semver:
     dependency: transitive
     description:

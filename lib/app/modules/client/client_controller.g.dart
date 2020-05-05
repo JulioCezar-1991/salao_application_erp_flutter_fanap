@@ -218,10 +218,10 @@ mixin _$ClientController on _ClientControllerBase, Store {
       ActionController(name: '_ClientControllerBase');
 
   @override
-  dynamic fetchData() {
+  dynamic fetchClient() {
     final _$actionInfo = _$_ClientControllerBaseActionController.startAction();
     try {
-      return super.fetchData();
+      return super.fetchClient();
     } finally {
       _$_ClientControllerBaseActionController.endAction(_$actionInfo);
     }

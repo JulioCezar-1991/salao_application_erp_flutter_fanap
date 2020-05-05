@@ -28,7 +28,7 @@ abstract class _LoginControllerBase with Store {
 
   @action
   void validateEmail(String value) {
-    error.email = isEmail(value) ? null : 'E-mail invalido';
+    error.email = isEmail(value) ? null : 'E-mail inválido';
   }
 
   @action

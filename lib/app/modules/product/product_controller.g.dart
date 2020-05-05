@@ -26,21 +26,21 @@ mixin _$ProductController on _ProductControllerBase, Store {
     }, _$productsAtom, name: '${_$productsAtom.name}_set');
   }
 
-  final _$nameAtom = Atom(name: '_ProductControllerBase.name');
+  final _$titleAtom = Atom(name: '_ProductControllerBase.title');
 
   @override
-  String get name {
-    _$nameAtom.context.enforceReadPolicy(_$nameAtom);
-    _$nameAtom.reportObserved();
-    return super.name;
+  String get title {
+    _$titleAtom.context.enforceReadPolicy(_$titleAtom);
+    _$titleAtom.reportObserved();
+    return super.title;
   }
 
   @override
-  set name(String value) {
-    _$nameAtom.context.conditionallyRunInAction(() {
-      super.name = value;
-      _$nameAtom.reportChanged();
-    }, _$nameAtom, name: '${_$nameAtom.name}_set');
+  set title(String value) {
+    _$titleAtom.context.conditionallyRunInAction(() {
+      super.title = value;
+      _$titleAtom.reportChanged();
+    }, _$titleAtom, name: '${_$titleAtom.name}_set');
   }
 
   final _$descriptionAtom = Atom(name: '_ProductControllerBase.description');
@@ -94,14 +94,32 @@ mixin _$ProductController on _ProductControllerBase, Store {
     }, _$averagetimeAtom, name: '${_$averagetimeAtom.name}_set');
   }
 
+  final _$dataProductModelAtom =
+      Atom(name: '_ProductControllerBase.dataProductModel');
+
+  @override
+  ProductCreateModel get dataProductModel {
+    _$dataProductModelAtom.context.enforceReadPolicy(_$dataProductModelAtom);
+    _$dataProductModelAtom.reportObserved();
+    return super.dataProductModel;
+  }
+
+  @override
+  set dataProductModel(ProductCreateModel value) {
+    _$dataProductModelAtom.context.conditionallyRunInAction(() {
+      super.dataProductModel = value;
+      _$dataProductModelAtom.reportChanged();
+    }, _$dataProductModelAtom, name: '${_$dataProductModelAtom.name}_set');
+  }
+
   final _$_ProductControllerBaseActionController =
       ActionController(name: '_ProductControllerBase');
 
   @override
-  dynamic fetchData() {
+  dynamic fetchProduct() {
     final _$actionInfo = _$_ProductControllerBaseActionController.startAction();
     try {
-      return super.fetchData();
+      return super.fetchProduct();
     } finally {
       _$_ProductControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -128,10 +146,10 @@ mixin _$ProductController on _ProductControllerBase, Store {
   }
 
   @override
-  void validatePrince(String value) {
+  void validatePrice(String value) {
     final _$actionInfo = _$_ProductControllerBaseActionController.startAction();
     try {
-      return super.validatePrince(value);
+      return super.validatePrice(value);
     } finally {
       _$_ProductControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -155,21 +173,21 @@ mixin _$FormProductErrorState on _FormProductErrorState, Store {
   bool get hasErrors =>
       (_$hasErrorsComputed ??= Computed<bool>(() => super.hasErrors)).value;
 
-  final _$nameAtom = Atom(name: '_FormProductErrorState.name');
+  final _$titleAtom = Atom(name: '_FormProductErrorState.title');
 
   @override
-  String get name {
-    _$nameAtom.context.enforceReadPolicy(_$nameAtom);
-    _$nameAtom.reportObserved();
-    return super.name;
+  String get title {
+    _$titleAtom.context.enforceReadPolicy(_$titleAtom);
+    _$titleAtom.reportObserved();
+    return super.title;
   }
 
   @override
-  set name(String value) {
-    _$nameAtom.context.conditionallyRunInAction(() {
-      super.name = value;
-      _$nameAtom.reportChanged();
-    }, _$nameAtom, name: '${_$nameAtom.name}_set');
+  set title(String value) {
+    _$titleAtom.context.conditionallyRunInAction(() {
+      super.title = value;
+      _$titleAtom.reportChanged();
+    }, _$titleAtom, name: '${_$titleAtom.name}_set');
   }
 
   final _$descriptionAtom = Atom(name: '_FormProductErrorState.description');

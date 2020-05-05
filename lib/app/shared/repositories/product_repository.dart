@@ -17,9 +17,9 @@ class ProductRepository {
         .toList();
   }
 
-  Future<ServicoModel> postServico(ProductCreateModel model) async {
-    Response response = await dio.post('/products/create', data: model);
-    return ServicoModel.fromJson(response.data[0]);
+  Future<ProductModel> postProduct(ProductCreateModel model) async {
+    Response response = await dio.post('/products', data: model);
+    return ProductModel.fromJson(response.data[0]);
   }
 
   Future<List<ServiceCategory>> getCategory() async {

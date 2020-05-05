@@ -26,20 +26,21 @@ dependencies:
   cupertino_icons: ^0.1.2
   font_awesome_flutter: ^8.4.0
   dio: ^2.0.0
-  provider: ^3.2.0
+ 
   intl: ^0.16.0
   cpf_cnpj_validator: ^1.0.5
-  dropdown_formfield: ^0.1.1
+  email_validator: '^1.0.0'
+  validators: ^2.0.0
+  
   shared_preferences: ^0.5.3
+
   syncfusion_flutter_calendar: ^17.4.39-beta
   flutter_mobx: ^0.3.6
   mobx: ^0.4.0+1
   flutter_modular: ^1.1.2
-  email_validator: '^1.0.0'
-  validators: ^2.0.0
-  brasil_fields: ^0.0.8
+  
   datetime_picker_formfield: ^1.0.0
-  fab_circular_menu: any
+  
 
 
 dev_dependencies:

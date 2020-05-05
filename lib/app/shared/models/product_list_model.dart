@@ -19,7 +19,7 @@ class ProductListModel {
     title = json['title'];
     slug = json['slug'];
     description = json['description'];
-    price = json['price'];
+    price = json[price];
     averagetime = json['averagetime'];
   }
 

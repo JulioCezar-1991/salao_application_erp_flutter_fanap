@@ -2,9 +2,10 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:projeto_fanap/app/modules/product/product_controller.dart';
-import 'package:projeto_fanap/app/shared/components/text_field_widget.dart';
+import 'package:projeto_fanap/app/shared/components/text_field_create_widget.dart';
 
 class ProductCreatePage extends StatefulWidget {
   @override
@@ -16,7 +17,7 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
 
   final formKey = GlobalKey<FormState>();
 
-  final format = DateFormat("dd/MM/yyyy");
+  final format = DateFormat("HH:mm");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +27,10 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
             Icons.close,
           ),
           onPressed: () {
-            //Router Voltar para home
+            Modular.to.pushReplacementNamed(
+              '/home',
+              arguments: 1,
+            );
           },
         ),
         title: Text(
@@ -39,7 +43,41 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
               icon: Icon(
                 Icons.check,
               ),
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text("Confirmar Cadastro do Produto"),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text(
+                            "Salvar",
+                            style:
+                                TextStyle(color: Theme.of(context).accentColor),
+                          ),
+                          onPressed: () {
+                            _productController.validateAll();
+                            Modular.to.pushReplacementNamed(
+                              '/home',
+                            );
+                          },
+                        ),
+                        FlatButton(
+                          child: Text(
+                            "Cancelar",
+                            style:
+                                TextStyle(color: Theme.of(context).accentColor),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
             ),
           ),
         ],
@@ -51,52 +89,40 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
             children: <Widget>[
               Observer(
                 builder: (_) {
-                  return TextFieldCustom(
+                  return TextFieldCreate(
                     keyboardType: TextInputType.text,
                     maxLength: 38,
                     icon: Icon(
-                      Icons.perm_identity,
+                      FontAwesomeIcons.cut,
+                      size: 22,
                     ),
-                    hintText: 'Nome do Serviço',
-                    labelText: 'Digite o Serviço',
+                    hintText: 'Digite o serviço',
+                    labelText: 'Nome do serviço',
                     onChanged: (value) {
-                      _productController.name = value;
+                      _productController.title = value;
                     },
-                    errorText: _productController.error.name,
+                    errorText: _productController.error.title,
                   );
                 },
               ),
               Observer(
                 builder: (_) {
-                  return TextFieldCustom(
-                    keyboardType: TextInputType.text,
-                    maxLength: 14,
-                    icon: Icon(
-                      Icons.perm_identity,
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: TextFieldCreate(
+                      keyboardType: TextInputType.number,
+                      maxLength: 5,
+                      icon: Icon(
+                        Icons.attach_money,
+                        size: 26,
+                      ),
+                      hintText: 'Digite o valor',
+                      labelText: 'Valor do produto',
+                      onChanged: (value) {
+                        _productController.price = value;
+                      },
+                      errorText: _productController.error.price,
                     ),
-                    hintText: 'Detalhes do produto',
-                    labelText: 'Maiores informações',
-                    onChanged: (value) {
-                      _productController.description = value;
-                    },
-                    errorText: _productController.error.description,
-                  );
-                },
-              ),
-              Observer(
-                builder: (_) {
-                  return TextFieldCustom(
-                    keyboardType: TextInputType.number,
-                    maxLength: 14,
-                    icon: Icon(
-                      Icons.perm_identity,
-                    ),
-                    hintText: 'Valor do produto',
-                    labelText: 'Digite o valor',
-                    onChanged: (value) {
-                      _productController.price = value;
-                    },
-                    errorText: _productController.error.price,
                   );
                 },
               ),
@@ -110,7 +136,7 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
                         height: 16,
                       ),
                       Text(
-                        '           Tempo Médio Gasto',
+                        '            Tempo Médio Gasto',
                         style: TextStyle(
                             color: Theme.of(context).primaryColor,
                             fontSize: 12),
@@ -120,23 +146,46 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
                         key: formKey,
                         initialValue: DateTime.now(),
                         decoration: InputDecoration(
-                          icon: Icon(Icons.calendar_today),
+                          icon: Icon(
+                            Icons.hourglass_empty,
+                            size: 26,
+                          ),
                         ),
                         format: format,
                         onShowPicker: (context, currentValue) async {
-                          final date = await showDatePicker(
+                          final time = await showTimePicker(
                               context: context,
-                              firstDate: DateTime(1900),
-                              initialDate: currentValue ?? DateTime.now(),
-                              lastDate: DateTime(2100));
-                          if (date != null) {
-                            _productController.averagetime = date.toString();
-                            print(date);
+                              initialTime: TimeOfDay.fromDateTime(
+                                  currentValue ?? DateTime.now()));
+                          if (time != null) {
+                            _productController.averagetime = time.toString();
+                            print(time);
                           }
-                          return date;
+                          return DateTimeField.convert(time);
                         },
                       ),
                     ],
+                  );
+                },
+              ),
+              Observer(
+                builder: (_) {
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: TextFieldCreate(
+                      keyboardType: TextInputType.text,
+                      maxLength: 67,
+                      icon: Icon(
+                        Icons.details,
+                        size: 26,
+                      ),
+                      hintText: 'Detalhes do produto',
+                      labelText: 'Observações',
+                      onChanged: (value) {
+                        _productController.description = value;
+                      },
+                      errorText: _productController.error.description,
+                    ),
                   );
                 },
               ),

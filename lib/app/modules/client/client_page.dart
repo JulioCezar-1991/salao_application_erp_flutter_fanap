@@ -19,7 +19,7 @@ class ClientPage extends StatelessWidget {
                   size: 40,
                 ),
                 onPressed: () {
-                  _clientController.fetchData();
+                  _clientController.fetchClient();
                 },
               ),
             );

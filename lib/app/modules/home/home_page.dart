@@ -41,10 +41,10 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.refresh),
             onPressed: () {
               if (_controlePagina == 0) {
-                _clientController.fetchData();
+                _clientController.fetchClient();
               }
-              if (_controlePagina == 0) {
-                _productController.fetchData();
+              if (_controlePagina == 1) {
+                _productController.fetchProduct();
               }
             },
           ),

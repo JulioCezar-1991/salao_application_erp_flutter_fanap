@@ -1,5 +1,7 @@
 import 'package:mobx/mobx.dart';
+import 'package:projeto_fanap/app/shared/models/product_create_model.dart';
 import 'package:projeto_fanap/app/shared/models/product_list_model.dart';
+import 'package:projeto_fanap/app/shared/models/product_model.dart';
 import 'package:projeto_fanap/app/shared/repositories/product_repository.dart';
 import 'package:validators/validators.dart';
 
@@ -15,20 +17,20 @@ abstract class _ProductControllerBase with Store {
   ObservableFuture<List<ProductListModel>> products;
 
   @action
-  fetchData() {
+  fetchProduct() {
     products = _repository.getAllProduct().asObservable();
   }
 
   _ProductControllerBase(this._repository) {
-    fetchData();
+    fetchProduct();
   }
 
   @observable
-  String name = '';
+  String title = '';
 
   @action
   void validateTitle(String value) {
-    error.name = isNull(value) || value.isEmpty ? 'Nome invalido' : null;
+    error.title = isNull(value) || value.isEmpty ? 'Nome inválido' : null;
   }
 
   @observable
@@ -44,8 +46,8 @@ abstract class _ProductControllerBase with Store {
   String price = '';
 
   @action
-  void validatePrince(String value) {
-    error.price = isNull(value) || value.isEmpty ? 'Valor invalido' : null;
+  void validatePrice(String value) {
+    error.price = isNull(value) || value.isEmpty ? 'Valor invalida' : null;
   }
 
   @observable
@@ -54,7 +56,43 @@ abstract class _ProductControllerBase with Store {
   @action
   void validateAverageTime(String value) {
     error.averagetime =
-        isEmail(value) || value.isEmpty ? 'Valor invalido' : null;
+        isNull(value) || value.isEmpty ? 'Valor inválido' : null;
+  }
+
+  @observable
+  var dataProductModel = ProductCreateModel();
+
+  Future<ProductModel> _postCreate() async {
+    var model = ProductCreateModel(
+        title: title,
+        description: description,
+        averagetime: averagetime,
+        price: double.parse(price));
+    try {
+      var res = await _repository.postProduct(model);
+      return res;
+    } catch (ex) {
+      print(ex);
+      dataProductModel = null;
+    }
+    return null;
+  }
+
+  void validateAll() async {
+    validateTitle(title);
+    validateDescription(description);
+    validateAverageTime(averagetime);
+    validatePrice(price);
+    if (error.title == null &&
+        error.description == null &&
+        error.averagetime == null &&
+        error.price == null) {
+      _postCreate().then((procuct) async {
+        if (procuct != null) {
+          _postCreate();
+        }
+      });
+    }
   }
 }
 
@@ -63,7 +101,7 @@ class FormProductErrorState = _FormProductErrorState
 
 abstract class _FormProductErrorState with Store {
   @observable
-  String name;
+  String title;
 
   @observable
   String description;
@@ -76,7 +114,7 @@ abstract class _FormProductErrorState with Store {
 
   @computed
   bool get hasErrors =>
-      name != null ||
+      title != null ||
       description != null ||
       price != null ||
       averagetime != null;
