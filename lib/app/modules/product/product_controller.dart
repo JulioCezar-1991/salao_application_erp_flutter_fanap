@@ -94,6 +94,42 @@ abstract class _ProductControllerBase with Store {
       });
     }
   }
+
+  void deleteProduct() async {
+    _deleteProduct();
+  }
+
+  Future<ProductModel> _deleteProduct() async {
+    try {
+      var res = await _repository.deleteProduct();
+      return res;
+    } catch (error) {
+      dataProductModel = null;
+      print(error);
+    }
+    return null;
+  }
+
+  void patchProduct(String id) async {
+    _patchProduct(dataProductModel, id);
+  }
+
+  Future<ProductModel> _patchProduct(ProductCreateModel model, id) async {
+    var model = ProductCreateModel(
+      id: id,
+      title: this.title,
+      /* price: this.price.toString(), */
+      averagetime: this.averagetime,
+      description: this.description,
+    );
+    try {
+      var res = await _repository.patchProduct(model);
+      return res;
+    } catch (error) {
+      dataProductModel = null;
+    }
+    return null;
+  }
 }
 
 class FormProductErrorState = _FormProductErrorState

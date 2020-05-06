@@ -10,25 +10,27 @@ class ClientRepository {
   ClientRepository(this.dio);
 
   Future<List<ClientListModel>> getAllClient() async {
-    Response response = await dio.get('/client');
+    Response response = await dio.get('/clients');
+
     return (response.data as List)
         .map((item) => ClientListModel.fromJson(item))
         .toList();
   }
 
   Future<ClientModel> postClient(ClientCreateModel model) async {
-    Response response = await dio.post('/client', data: model);
+    Response response = await dio.post('/clients', data: model);
+    debugPrint("resposta: ${response.data}");
     return ClientModel.fromJson(response.data);
   }
 
   Future<ClientModel> deleteClient() async {
-    Response response = await dio.delete('/client');
+    Response response = await dio.delete('/clients');
+    debugPrint("resposta: ${response.statusCode}");
     return ClientModel.fromJson(response.data);
   }
 
   Future<ClientModel> patchClient(ClientCreateModel model) async {
-    Response response = await dio.patch('/client', data: model);
-    debugPrint("resposta: ${response.statusCode}");
+    Response response = await dio.patch('/clients', data: model);
     debugPrint("resposta: ${response.data}");
     return ClientModel.fromJson(response.data);
   }

@@ -11,6 +11,7 @@ class ClientListModel {
   String sector;
   String city;
   String state;
+  String createDate;
   int iV;
 
   ClientListModel(
@@ -26,6 +27,7 @@ class ClientListModel {
       this.sector,
       this.city,
       this.state,
+      this.createDate,
       this.iV});
 
   ClientListModel.fromJson(Map<String, dynamic> json) {
@@ -41,6 +43,7 @@ class ClientListModel {
     sector = json['sector'];
     city = json['city'];
     state = json['state'];
+    createDate = json['createDate'];
     iV = json['__v'];
   }
 
@@ -58,6 +61,7 @@ class ClientListModel {
     data['sector'] = this.sector;
     data['city'] = this.city;
     data['state'] = this.state;
+    data['createDate'] = this.createDate;
     data['__v'] = this.iV;
     return data;
   }

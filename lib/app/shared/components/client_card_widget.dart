@@ -35,7 +35,7 @@ class ClientCard extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(top: 3, bottom: 4),
                     child: Text(
-                      item.name = item.name = item.name.length > 36
+                      item.name.length > 36
                           ? item.name.substring(0, 32) + '...'
                           : item.name,
                       style: TextStyle(
@@ -46,7 +46,7 @@ class ClientCard extends StatelessWidget {
                   Row(
                     children: <Widget>[
                       Text(
-                        item.sector = item.sector.length > 23
+                        item.sector.length > 23
                             ? item.sector.substring(0, 20) + '...'
                             : item.sector,
                         style: TextStyle(
@@ -58,7 +58,7 @@ class ClientCard extends StatelessWidget {
                         child: Text(" - "),
                       ),
                       Text(
-                        item.city = item.city.length > 14
+                        item.city.length > 12
                             ? item.city.substring(0, 12) + '...'
                             : item.city,
                         style: TextStyle(

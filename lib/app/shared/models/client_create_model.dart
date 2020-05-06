@@ -1,4 +1,5 @@
 class ClientCreateModel {
+  String id;
   String name;
   String cpf;
   String date;
@@ -11,7 +12,8 @@ class ClientCreateModel {
   String state;
 
   ClientCreateModel(
-      {this.name,
+      {this.id,
+      this.name,
       this.cpf,
       this.date,
       this.telcel,
@@ -23,6 +25,7 @@ class ClientCreateModel {
       this.state});
 
   ClientCreateModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     name = json['name'];
     cpf = json['cpf'];
     date = json['date'];
@@ -37,6 +40,7 @@ class ClientCreateModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
     data['name'] = this.name;
     data['cpf'] = this.cpf;
     data['date'] = this.date;

@@ -1,4 +1,10 @@
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:intl/intl.dart';
+import 'package:projeto_fanap/app/modules/product/product_controller.dart';
+import 'package:projeto_fanap/app/shared/components/text_field_update_widget.dart';
 import 'package:projeto_fanap/app/shared/models/product_list_model.dart';
 
 class ProductDetailsPage extends StatefulWidget {
@@ -10,8 +16,213 @@ class ProductDetailsPage extends StatefulWidget {
 }
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
+  final _productController = Modular.get<ProductController>();
+
+  final formKey = GlobalKey<FormState>();
+  final format = DateFormat("HH:mm");
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(
+            Icons.close,
+          ),
+          onPressed: () {
+            Modular.to.pushReplacementNamed(
+              '/home',
+            );
+          },
+        ),
+        title: Text(
+          "Detalhes do Produto",
+          style: TextStyle(fontSize: 18),
+        ),
+        actions: <Widget>[
+          // Icone de Atualização //
+          Padding(
+            padding: EdgeInsets.only(right: 2),
+            child: IconButton(
+              icon: Icon(
+                Icons.update,
+              ),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text("Confirmar Atualização do Produto"),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text(
+                            "Confirmar",
+                            style:
+                                TextStyle(color: Theme.of(context).accentColor),
+                          ),
+                          onPressed: () {
+                            try {
+                              _productController.patchProduct(widget.item.sId);
+                              _productController.fetchProduct();
+                              Modular.to.popAndPushNamed(
+                                '/home',
+                              );
+                            } catch (e) {}
+                          },
+                        ),
+                        FlatButton(
+                          child: Text(
+                            "Cancelar",
+                            style:
+                                TextStyle(color: Theme.of(context).accentColor),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+          // Icone de Delete //
+          Padding(
+            padding: EdgeInsets.only(right: 2),
+            child: IconButton(
+              icon: Icon(
+                Icons.delete_outline,
+              ),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text("Confirmar Exclusão do Produto"),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text(
+                            "Confirmar",
+                            style:
+                                TextStyle(color: Theme.of(context).accentColor),
+                          ),
+                          onPressed: () {
+                            try {
+                              _productController.deleteProduct();
+                              _productController.fetchProduct();
+                              Modular.to.popAndPushNamed(
+                                '/home',
+                              );
+                            } catch (e) {}
+                          },
+                        ),
+                        FlatButton(
+                          child: Text(
+                            "Cancelar",
+                            style:
+                                TextStyle(color: Theme.of(context).accentColor),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.only(top: 12, left: 20, bottom: 6, right: 20),
+        child: Column(
+          children: <Widget>[
+            Observer(
+              builder: (_) {
+                return TextFieldUpdate(
+                  keyboardType: TextInputType.text,
+                  initialValue: widget.item.title,
+                  labelText: 'Titulo',
+                  onChanged: (value) {
+                    _productController.title = value;
+                  },
+                  errorText: _productController.error.title,
+                  maxLength: 38,
+                );
+              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Observer(
+              builder: (_) {
+                return TextFieldUpdate(
+                  keyboardType: TextInputType.text,
+                  initialValue: widget.item.price.toString(),
+                  labelText: 'Valor',
+                  onChanged: (value) {
+                    _productController.price = value;
+                  },
+                  errorText: _productController.error.price,
+                  maxLength: 11,
+                );
+              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            // Data de Aniversario
+            Observer(
+              builder: (_) {
+                return DateTimeField(
+                  key: formKey,
+                  initialValue: DateTime.now(),
+                  decoration: InputDecoration(
+                    labelText: "Tempo Médio Gasto",
+                    labelStyle:
+                        TextStyle(color: Theme.of(context).primaryColor),
+                    border: OutlineInputBorder(),
+                  ),
+                  format: format,
+                  onShowPicker: (context, currentValue) async {
+                    final time = await showTimePicker(
+                      context: context,
+                      initialTime: TimeOfDay.fromDateTime(
+                        currentValue ?? DateTime.now(),
+                      ),
+                    );
+                    if (time != null) {
+                      _productController.averagetime = time.toString();
+                      print(time);
+                    }
+                    return DateTimeField.convert(time);
+                  },
+                );
+              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Observer(
+              builder: (_) {
+                return TextFieldUpdate(
+                  keyboardType: TextInputType.text,
+                  initialValue: widget.item.description,
+                  labelText: 'Observação',
+                  onChanged: (value) {
+                    _productController.description = value;
+                  },
+                  errorText: _productController.error.description,
+                  maxLength: 32,
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

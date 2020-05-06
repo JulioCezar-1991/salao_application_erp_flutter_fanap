@@ -228,6 +228,16 @@ mixin _$ClientController on _ClientControllerBase, Store {
   }
 
   @override
+  dynamic setName(String name) {
+    final _$actionInfo = _$_ClientControllerBaseActionController.startAction();
+    try {
+      return super.setName(name);
+    } finally {
+      _$_ClientControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void validateName(String value) {
     final _$actionInfo = _$_ClientControllerBaseActionController.startAction();
     try {

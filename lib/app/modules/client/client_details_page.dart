@@ -1,8 +1,10 @@
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:intl/intl.dart';
 import 'package:projeto_fanap/app/modules/client/client_controller.dart';
-import 'package:projeto_fanap/app/shared/components/text_field_create_widget.dart';
 import 'package:projeto_fanap/app/shared/components/text_field_update_widget.dart';
 import 'package:projeto_fanap/app/shared/models/client_list_model.dart';
 
@@ -19,6 +21,10 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
   @override
   Widget build(BuildContext context) {
     final _clientController = Modular.get<ClientController>();
+
+    final formKey = GlobalKey<FormState>();
+
+    final format = DateFormat("dd/MM/yyyy");
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -58,7 +64,7 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
                           ),
                           onPressed: () {
                             try {
-                              _clientController.patchClient();
+                              _clientController.patchClient(widget.item.sId);
                               _clientController.fetchClient();
                               Modular.to.popAndPushNamed(
                                 '/home',
@@ -136,23 +142,187 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
         padding: EdgeInsets.only(top: 12, left: 20, bottom: 6, right: 20),
         child: Column(
           children: <Widget>[
-            TextFormField(
-              decoration: InputDecoration(
-                  errorText: _clientController.error.cpf,
-                  border: OutlineInputBorder(),
-                  hintText: 'Cpf',
-                  labelText: 'CPF'),
-
-              initialValue: widget.item.cpf,
-              onChanged: (value) {
-                _clientController.cpf = value;
+            Observer(
+              builder: (_) {
+                return TextFieldUpdate(
+                  keyboardType: TextInputType.text,
+                  initialValue: widget.item.name,
+                  labelText: 'Nome Completo',
+                  onChanged: (value) {
+                    _clientController.name = value;
+                  },
+                  errorText: _clientController.error.name,
+                  maxLength: 38,
+                );
               },
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.black,
-              ),
-              //Controlador de entada de dado
-            )
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Observer(
+              builder: (_) {
+                return TextFieldUpdate(
+                  keyboardType: TextInputType.text,
+                  initialValue: widget.item.cpf,
+                  labelText: 'CPF',
+                  onChanged: (value) {
+                    _clientController.cpf = value;
+                  },
+                  errorText: _clientController.error.cpf,
+                  maxLength: 11,
+                );
+              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            // Data de Aniversario
+            Observer(
+              builder: (_) {
+                return DateTimeField(
+                  key: formKey,
+                  initialValue: DateTime.now(),
+                  decoration: InputDecoration(
+                    labelText: "Data de anivesário",
+                    labelStyle:
+                        TextStyle(color: Theme.of(context).primaryColor),
+                    border: OutlineInputBorder(),
+                  ),
+                  format: format,
+                  onShowPicker: (context, currentValue) async {
+                    final date = await showDatePicker(
+                        context: context,
+                        firstDate: DateTime(1900),
+                        initialDate: currentValue ?? DateTime.now(),
+                        lastDate: DateTime(2100));
+                    if (date != null) {
+                      _clientController.date = date.toString();
+                      print(date);
+                    }
+                    return date;
+                  },
+                );
+              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Observer(
+              builder: (_) {
+                return TextFieldUpdate(
+                  keyboardType: TextInputType.text,
+                  initialValue: widget.item.email,
+                  labelText: 'E-mail',
+                  onChanged: (value) {
+                    _clientController.email = value;
+                  },
+                  errorText: _clientController.error.email,
+                  maxLength: 32,
+                );
+              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Observer(
+              builder: (_) {
+                return TextFieldUpdate(
+                  keyboardType: TextInputType.text,
+                  initialValue: widget.item.telcel,
+                  labelText: 'Telefone Celular',
+                  onChanged: (value) {
+                    _clientController.telcel = value;
+                  },
+                  errorText: _clientController.error.telcel,
+                  maxLength: 12,
+                );
+              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Observer(
+              builder: (_) {
+                return TextFieldUpdate(
+                  keyboardType: TextInputType.text,
+                  initialValue: widget.item.telfix,
+                  labelText: 'Telefone fixo',
+                  onChanged: (value) {
+                    _clientController.telfix = value;
+                  },
+                  errorText: _clientController.error.telfix,
+                  maxLength: 12,
+                );
+              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Observer(
+              builder: (_) {
+                return TextFieldUpdate(
+                  keyboardType: TextInputType.text,
+                  initialValue: widget.item.address,
+                  labelText: 'Endereço',
+                  onChanged: (value) {
+                    _clientController.address = value;
+                  },
+                  errorText: _clientController.error.address,
+                  maxLength: 38,
+                );
+              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Observer(
+              builder: (_) {
+                return TextFieldUpdate(
+                  keyboardType: TextInputType.text,
+                  initialValue: widget.item.sector,
+                  labelText: 'Bairro',
+                  onChanged: (value) {
+                    _clientController.sector = value;
+                  },
+                  errorText: _clientController.error.sector,
+                  maxLength: 38,
+                );
+              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Observer(
+              builder: (_) {
+                return TextFieldUpdate(
+                  keyboardType: TextInputType.text,
+                  initialValue: widget.item.city,
+                  labelText: 'Cidade',
+                  onChanged: (value) {
+                    _clientController.city = value;
+                  },
+                  errorText: _clientController.error.city,
+                  maxLength: 48,
+                );
+              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Observer(
+              builder: (_) {
+                return TextFieldUpdate(
+                  keyboardType: TextInputType.text,
+                  initialValue: widget.item.state,
+                  labelText: 'Estado',
+                  onChanged: (value) {
+                    _clientController.state = value;
+                  },
+                  errorText: _clientController.error.state,
+                  maxLength: 38,
+                );
+              },
+            ),
           ],
         ),
       ),

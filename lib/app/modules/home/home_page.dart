@@ -7,7 +7,7 @@ import 'package:projeto_fanap/app/modules/client/client_page.dart';
 import 'package:projeto_fanap/app/modules/product/product_page.dart';
 import 'package:projeto_fanap/app/modules/product/product_controller.dart';
 import 'package:projeto_fanap/app/modules/product/product_create.page.dart';
-import 'package:projeto_fanap/app/modules/sheduling/shedunling_page.dart';
+import 'package:projeto_fanap/app/modules/sheduling/scheduling_page.dart';
 import 'package:projeto_fanap/app/shared/components/drawer_home_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
             child: ProductPage(),
           ),
           Center(
-            child: SchedunlingPage(),
+            child: SchedulingPage(),
           ),
           Center(
             child: AnalyticsPage(),

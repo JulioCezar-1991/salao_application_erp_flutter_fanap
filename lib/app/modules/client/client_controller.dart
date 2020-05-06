@@ -30,6 +30,8 @@ abstract class _ClientControllerBase with Store {
   String name = '';
 
   @action
+  setName(String name) {}
+  @action
   void validateName(String value) {
     error.name = isNull(value) || value.isEmpty ? 'Nome inválido' : null;
   }
@@ -112,16 +114,16 @@ abstract class _ClientControllerBase with Store {
 
   Future<ClientModel> _postCreate() async {
     var model = ClientCreateModel(
-        name: name,
-        cpf: cpf,
-        date: date,
-        telcel: telcel,
-        telfix: telfix,
-        email: email,
-        address: address,
-        sector: sector,
-        city: city,
-        state: state);
+      name: name,
+      cpf: cpf,
+      date: date,
+      telcel: telcel,
+      telfix: telfix,
+      email: email,
+      address: address,
+      sector: sector,
+      city: city,
+    );
     try {
       var res = await repository.postClient(model);
       return res;
@@ -176,11 +178,23 @@ abstract class _ClientControllerBase with Store {
     return null;
   }
 
-  void patchClient() async {
-    _patchClient(dataClientModel);
+  void patchClient(String id) async {
+    _patchClient(dataClientModel, id);
   }
 
-  Future<ClientModel> _patchClient(ClientCreateModel model) async {
+  Future<ClientModel> _patchClient(ClientCreateModel model, id) async {
+    var model = ClientCreateModel(
+        id: id,
+        name: this.name,
+        cpf: this.cpf,
+        date: this.date,
+        telcel: this.telcel,
+        telfix: this.telfix,
+        email: this.email,
+        address: this.address,
+        sector: this.sector,
+        city: this.city,
+        state: this.state);
     try {
       var res = await repository.patchClient(model);
       return res;

@@ -95,8 +95,8 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                   icon: Icon(
                     Icons.perm_identity,
                   ),
-                  hintText: 'Nome Completo',
-                  labelText: 'Digite seu nome',
+                  hintText: 'Digite o nome',
+                  labelText: 'Nome Completo',
                   onChanged: (value) {
                     _clientController.name = value;
                   },
@@ -112,8 +112,8 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                   icon: Icon(
                     Icons.perm_identity,
                   ),
-                  hintText: 'CPF',
-                  labelText: 'Digite seu CPF',
+                  hintText: 'Digite seu CPF',
+                  labelText: 'CPF',
                   onChanged: (value) {
                     _clientController.cpf = value;
                   },
@@ -121,42 +121,31 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                 );
               },
             ),
+            SizedBox(
+              height: 5,
+            ),
             Observer(
               builder: (_) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    SizedBox(
-                      height: 16,
-                    ),
-                    Text(
-                      '           Data de anivesário',
-                      style: TextStyle(
-                          color: Theme.of(context).primaryColor, fontSize: 12),
-                      textAlign: TextAlign.start,
-                    ),
-                    DateTimeField(
-                      key: formKey,
-                      initialValue: DateTime.now(),
-                      decoration: InputDecoration(
-                        icon: Icon(Icons.calendar_today),
-                      ),
-                      format: format,
-                      onShowPicker: (context, currentValue) async {
-                        final date = await showDatePicker(
-                            context: context,
-                            firstDate: DateTime(1900),
-                            initialDate: currentValue ?? DateTime.now(),
-                            lastDate: DateTime(2100));
-                        if (date != null) {
-                          _clientController.date = date.toString();
-                          print(date);
-                        }
-                        return date;
-                      },
-                    ),
-                  ],
+                return DateTimeField(
+                  key: formKey,
+                  initialValue: DateTime.now(),
+                  decoration: InputDecoration(
+                    icon: Icon(Icons.calendar_today),
+                    labelText: "Data de anivesário",
+                    labelStyle: TextStyle(color: Theme.of(context).accentColor),
+                  ),
+                  format: format,
+                  onShowPicker: (context, currentValue) async {
+                    final date = await showDatePicker(
+                        context: context,
+                        firstDate: DateTime(1900),
+                        initialDate: currentValue ?? DateTime.now(),
+                        lastDate: DateTime(2100));
+                    if (date != null) {
+                      _clientController.date = date.toString();
+                    }
+                    return date;
+                  },
                 );
               },
             ),
@@ -164,11 +153,11 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
               builder: (_) {
                 return TextFieldCreate(
                   keyboardType: TextInputType.emailAddress,
-                  maxLength: 38,
+                  maxLength: 32,
                   icon: Icon(
                     Icons.email,
                   ),
-                  hintText: 'Digite seu E-mail',
+                  hintText: 'Digite o E-mail',
                   labelText: 'E-mail',
                   onChanged: (value) {
                     _clientController.email = value;
@@ -185,7 +174,7 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                   icon: Icon(
                     Icons.smartphone,
                   ),
-                  hintText: 'Digite seu número móvel',
+                  hintText: 'Digite o número móvel',
                   labelText: 'Telefone Celular',
                   onChanged: (value) {
                     _clientController.telcel = value;
@@ -202,7 +191,7 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                   icon: Icon(
                     Icons.phone,
                   ),
-                  hintText: 'Digite seu telefone fixo',
+                  hintText: 'Digite o telefone fixo',
                   labelText: 'Telefone Fixo',
                   onChanged: (value) {
                     _clientController.telfix = value;
@@ -217,7 +206,7 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                   keyboardType: TextInputType.text,
                   maxLength: 38,
                   icon: Icon(Icons.home),
-                  hintText: 'Digite seu endereço',
+                  hintText: 'Digite o endereço',
                   labelText: 'Endereço',
                   onChanged: (value) {
                     _clientController.address = value;
@@ -232,8 +221,8 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                   keyboardType: TextInputType.text,
                   maxLength: 38,
                   icon: Icon(FontAwesomeIcons.streetView),
-                  labelText: 'Bairro',
                   hintText: 'Digite o bairro',
+                  labelText: 'Bairro',
                   onChanged: (value) {
                     _clientController.sector = value;
                   },
@@ -247,8 +236,8 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                   icon: Icon(
                     Icons.location_city,
                   ),
-                  labelText: 'Cidade',
                   hintText: 'Digite a cidade',
+                  labelText: 'Cidade',
                   keyboardType: TextInputType.text,
                   onChanged: (value) {
                     _clientController.city = value;
@@ -263,8 +252,8 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                   icon: Icon(
                     FontAwesomeIcons.mapMarkedAlt,
                   ),
-                  labelText: 'Estado',
                   hintText: 'Digite o estado',
+                  labelText: 'Estado',
                   keyboardType: TextInputType.text,
                   onChanged: (value) {
                     _clientController.state = value;
@@ -282,73 +271,3 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
     );
   }
 }
-
-/* createClient(BuildContext context) async {
-    var bloc = Provider.of<ClientBloc>(context);
-    var res = await bloc.createClient(client);
-
-    if (res == null) {
-      final snackBar = SnackBar(
-        content: Text('Não foi possível realizar o cadastro'),
-      );
-      _scaffoldKey.currentState.showSnackBar(snackBar);
-    } else {
-      return showDialog(
-        context: context,
-        child: AlertDialog(
-          actions: <Widget>[
-            Padding(
-              padding: EdgeInsets.all(20),
-              child: Center(
-                child: Text(
-                  "Usuario Criado Com Sucesso",
-                  style: TextStyle(fontSize: 16),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            FlatButton(
-              child: Text("OK"),
-              onPressed: () {
-                Navigator.pushReplacementNamed(
-                    context, RouteGeneratorController.ROUTE_HOME);
-              },
-            )
-          ],
-        ),
-      );
-    }
-  }
-}
- 
-}*/
-
-/* Padding(
-                  padding: const EdgeInsets.only(top: 18, bottom: 0),
-                  child: Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(right: 16),
-                        child: Icon(Icons.calendar_today),
-                      ),
-                      Expanded(
-                        child: RaisedButton(
-                          colorBrightness: Brightness.light,
-                          elevation: 5,
-                          color: Theme.of(context).primaryColor,
-                          onPressed: () =>
-                              _clientController.selectDate(context),
-                          child: Text(
-                            'Nascimento:  ${_clientController.dateForm}                        ',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ); */

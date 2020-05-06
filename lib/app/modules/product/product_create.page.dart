@@ -128,43 +128,29 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
               ),
               Observer(
                 builder: (_) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Text(
-                        '            Tempo Médio Gasto',
-                        style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontSize: 12),
-                        textAlign: TextAlign.start,
-                      ),
-                      DateTimeField(
-                        key: formKey,
-                        initialValue: DateTime.now(),
-                        decoration: InputDecoration(
-                          icon: Icon(
-                            Icons.hourglass_empty,
-                            size: 26,
-                          ),
+                  return DateTimeField(
+                    key: formKey,
+                    initialValue: DateTime.now(),
+                    decoration: InputDecoration(
+                      labelText: "Tempo Médio Gasto",
+                      labelStyle:
+                          TextStyle(color: Theme.of(context).primaryColor),
+                      border: OutlineInputBorder(),
+                    ),
+                    format: format,
+                    onShowPicker: (context, currentValue) async {
+                      final time = await showTimePicker(
+                        context: context,
+                        initialTime: TimeOfDay.fromDateTime(
+                          currentValue ?? DateTime.now(),
                         ),
-                        format: format,
-                        onShowPicker: (context, currentValue) async {
-                          final time = await showTimePicker(
-                              context: context,
-                              initialTime: TimeOfDay.fromDateTime(
-                                  currentValue ?? DateTime.now()));
-                          if (time != null) {
-                            _productController.averagetime = time.toString();
-                            print(time);
-                          }
-                          return DateTimeField.convert(time);
-                        },
-                      ),
-                    ],
+                      );
+                      if (time != null) {
+                        _productController.averagetime = time.toString();
+                        print(time);
+                      }
+                      return DateTimeField.convert(time);
+                    },
                   );
                 },
               ),

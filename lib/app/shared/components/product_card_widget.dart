@@ -36,7 +36,7 @@ class ProductCard extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(top: 8, bottom: 4),
                     child: Text(
-                      item.title = item.title = item.title.length > 34
+                      item.title.length > 22
                           ? item.title.substring(0, 22) + '...'
                           : item.title,
                       style: TextStyle(
@@ -47,7 +47,7 @@ class ProductCard extends StatelessWidget {
                   Row(
                     children: <Widget>[
                       Text(
-                        "Valor Serviço: R\$ ${item.price}",
+                        "Valor Serviço: R\$ ${item.price.toString()}",
                         style: TextStyle(
                           fontSize: 12,
                           color: Theme.of(context).accentColor,

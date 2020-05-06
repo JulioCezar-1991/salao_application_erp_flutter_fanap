@@ -2,52 +2,41 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class TextFieldUpdate extends StatelessWidget {
-  final Icon icon;
   final String labelText;
-
+  final String initialValue;
   final int maxLength;
   final TextInputType keyboardType;
   final Function onChanged;
   final String errorText;
-  final Function onTap;
 
   const TextFieldUpdate({
-    @required this.icon,
-    @required this.labelText,
-    this.maxLength,
+    @required this.maxLength,
     @required this.keyboardType,
-    this.onChanged,
-    this.errorText,
-    this.onTap,
+    @required this.onChanged,
+    @required this.initialValue,
+    @required this.labelText,
+    @required this.errorText,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       inputFormatters: [LengthLimitingTextInputFormatter(maxLength)],
       keyboardType: keyboardType,
-      cursorColor: Theme.of(context).accentColor,
       decoration: InputDecoration(
-        border: OutlineInputBorder(),
         errorText: errorText,
-        hoverColor: Colors.red,
-        focusColor: Colors.red,
-        alignLabelWithHint: false,
-        counterStyle: TextStyle(color: Colors.transparent),
-        icon: icon,
+        border: OutlineInputBorder(),
         labelText: labelText,
-        labelStyle: TextStyle(
-          color: Theme.of(context).accentColor,
-          fontWeight: FontWeight.w400,
-          fontSize: 16,
-        ),
+        labelStyle: TextStyle(color: Theme.of(context).primaryColor),
       ),
+
+      initialValue: initialValue,
+      onChanged: onChanged,
       style: TextStyle(
-        fontSize: 20,
+        fontSize: 18,
         color: Colors.black,
       ),
-      onChanged: onChanged,
-      onTap: onTap,
+      //Controlador de entada de dado
     );
   }
 }
