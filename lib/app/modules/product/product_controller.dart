@@ -51,6 +51,23 @@ abstract class _ProductControllerBase with Store {
   }
 
   @observable
+  String type = '';
+
+  @action
+  void validateType(String value) {
+    error.type = isNull(value) || value.isEmpty ? 'Tipo invalida' : null;
+  }
+
+  List<String> listType = [
+    'Tipo de Serviço',
+    'Pintura das Unhas',
+    'Pintura de Cabelo',
+    'Depilação',
+    'Lavagem',
+    'Corte',
+  ];
+
+  @observable
   String averagetime = '';
 
   @action
@@ -67,6 +84,7 @@ abstract class _ProductControllerBase with Store {
         title: title,
         description: description,
         averagetime: averagetime,
+        type: type,
         price: double.parse(price));
     try {
       var res = await _repository.postProduct(model);
@@ -80,13 +98,15 @@ abstract class _ProductControllerBase with Store {
 
   void validateAll() async {
     validateTitle(title);
-    validateDescription(description);
     validateAverageTime(averagetime);
     validatePrice(price);
+    validateDescription(description);
+    validateType(type);
     if (error.title == null &&
         error.description == null &&
         error.averagetime == null &&
-        error.price == null) {
+        error.price == null &&
+        error.type == null) {
       _postCreate().then((procuct) async {
         if (procuct != null) {
           _postCreate();
@@ -114,9 +134,9 @@ abstract class _ProductControllerBase with Store {
     _patchProduct(dataProductModel, id);
   }
 
-  Future<ProductModel> _patchProduct(ProductCreateModel model, id) async {
+  Future<ProductModel> _patchProduct(ProductCreateModel model, sId) async {
     var model = ProductCreateModel(
-      id: id,
+      sId: sId,
       title: this.title,
       /* price: this.price.toString(), */
       averagetime: this.averagetime,
@@ -146,6 +166,9 @@ abstract class _FormProductErrorState with Store {
   String price;
 
   @observable
+  String type;
+
+  @observable
   String averagetime;
 
   @computed
@@ -153,5 +176,6 @@ abstract class _FormProductErrorState with Store {
       title != null ||
       description != null ||
       price != null ||
+      type != null ||
       averagetime != null;
 }

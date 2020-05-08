@@ -27,16 +27,6 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
     final format = DateFormat("dd/MM/yyyy");
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(
-            Icons.close,
-          ),
-          onPressed: () {
-            Modular.to.pushReplacementNamed(
-              '/home',
-            );
-          },
-        ),
         title: Text(
           "Detalhes do Cliente",
           style: TextStyle(fontSize: 18),

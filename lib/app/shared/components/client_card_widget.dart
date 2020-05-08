@@ -35,9 +35,11 @@ class ClientCard extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(top: 3, bottom: 4),
                     child: Text(
-                      item.name.length > 36
-                          ? item.name.substring(0, 32) + '...'
-                          : item.name,
+                      item.name != null
+                          ? (item.name.length >= 32
+                              ? item.name.substring(0, 29) + '...'
+                              : item.name)
+                          : 'Consumidor Final',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Theme.of(context).accentColor),
@@ -46,9 +48,11 @@ class ClientCard extends StatelessWidget {
                   Row(
                     children: <Widget>[
                       Text(
-                        item.sector.length > 23
-                            ? item.sector.substring(0, 20) + '...'
-                            : item.sector,
+                        item.sector != null
+                            ? (item.sector.length >= 18
+                                ? item.sector.substring(0, 16) + '...'
+                                : item.sector)
+                            : 'Sem Setor',
                         style: TextStyle(
                           fontSize: 12,
                           color: Theme.of(context).accentColor,
@@ -58,9 +62,11 @@ class ClientCard extends StatelessWidget {
                         child: Text(" - "),
                       ),
                       Text(
-                        item.city.length > 12
-                            ? item.city.substring(0, 12) + '...'
-                            : item.city,
+                        item.city != null
+                            ? (item.city.length >= 12
+                                ? item.city.substring(0, 11) + '...'
+                                : item.city)
+                            : 'Sem Setor',
                         style: TextStyle(
                           fontSize: 12,
                           color: Theme.of(context).accentColor,
@@ -73,16 +79,16 @@ class ClientCard extends StatelessWidget {
                     child: Row(
                       children: <Widget>[
                         Text(
-                          item.telcel,
+                          item.telcel == null ? 'Sem Celular' : item.telcel,
                           style: TextStyle(
                               fontSize: 12,
                               color: Theme.of(context).accentColor),
                         ),
                         SizedBox(
-                          width: 8,
+                          width: 22,
                         ),
                         Text(
-                          item.telfix,
+                          item.telfix == null ? 'Sem Fone Fixo' : item.telfix,
                           style: TextStyle(
                               fontSize: 12,
                               color: Theme.of(context).accentColor),

@@ -4,10 +4,11 @@ import 'package:projeto_fanap/app/modules/analytics/analytics_page.dart';
 import 'package:projeto_fanap/app/modules/client/client_controller.dart';
 import 'package:projeto_fanap/app/modules/client/client_create_page.dart';
 import 'package:projeto_fanap/app/modules/client/client_page.dart';
+import 'package:projeto_fanap/app/modules/order/order_controller.dart';
+import 'package:projeto_fanap/app/modules/order/order_page.dart';
 import 'package:projeto_fanap/app/modules/product/product_page.dart';
 import 'package:projeto_fanap/app/modules/product/product_controller.dart';
 import 'package:projeto_fanap/app/modules/product/product_create.page.dart';
-import 'package:projeto_fanap/app/modules/sheduling/scheduling_page.dart';
 import 'package:projeto_fanap/app/shared/components/drawer_home_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,6 +20,7 @@ class _HomePageState extends State<HomePage> {
   PageController _controllerPage = PageController(initialPage: 0);
   final _clientController = Modular.get<ClientController>();
   final _productController = Modular.get<ProductController>();
+  final _orderController = Modular.get<OrderController>();
 
   var _scaffoldkey = GlobalKey<ScaffoldState>();
 
@@ -46,6 +48,11 @@ class _HomePageState extends State<HomePage> {
               if (_controlePagina == 1) {
                 _productController.fetchProduct();
               }
+              if (_controlePagina == 2) {
+                _orderController.fetchOrderOpen();
+                _orderController.fetchOrderDone();
+                _orderController.fetchOrderCanceled();
+              }
             },
           ),
           IconButton(
@@ -69,7 +76,7 @@ class _HomePageState extends State<HomePage> {
             child: ProductPage(),
           ),
           Center(
-            child: SchedulingPage(),
+            child: OrderPage(),
           ),
           Center(
             child: AnalyticsPage(),

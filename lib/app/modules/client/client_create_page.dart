@@ -34,7 +34,7 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
           },
         ),
         title: Text(
-          "Criar Cliente",
+          "Cadastrar Novo Cliente",
         ),
         actions: <Widget>[
           Padding(

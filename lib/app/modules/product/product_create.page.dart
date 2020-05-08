@@ -15,6 +15,8 @@ class ProductCreatePage extends StatefulWidget {
 class _ProductCreatePageState extends State<ProductCreatePage> {
   final _productController = Modular.get<ProductController>();
 
+  String dropdownValue = 'Tipo de Serviço';
+
   final formKey = GlobalKey<FormState>();
 
   final format = DateFormat("HH:mm");
@@ -22,19 +24,8 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(
-            Icons.close,
-          ),
-          onPressed: () {
-            Modular.to.pushReplacementNamed(
-              '/home',
-              arguments: 1,
-            );
-          },
-        ),
         title: Text(
-          "Criar Serviço",
+          "Cadastrar Novo Serviço",
         ),
         actions: <Widget>[
           Padding(
@@ -84,99 +75,167 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20),
-        child: Form(
-          child: Column(
-            children: <Widget>[
-              Observer(
-                builder: (_) {
-                  return TextFieldCreate(
-                    keyboardType: TextInputType.text,
-                    maxLength: 38,
+        child: Column(
+          children: <Widget>[
+            Observer(
+              builder: (_) {
+                return TextFieldCreate(
+                  keyboardType: TextInputType.text,
+                  maxLength: 38,
+                  icon: Icon(
+                    FontAwesomeIcons.cut,
+                    size: 22,
+                  ),
+                  hintText: 'Digite o serviço',
+                  labelText: 'Nome do serviço',
+                  onChanged: (value) {
+                    _productController.title = value;
+                  },
+                  errorText: _productController.error.title,
+                );
+              },
+            ),
+            Observer(
+              builder: (_) {
+                return Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: TextFieldCreate(
+                    keyboardType: TextInputType.number,
+                    maxLength: 5,
                     icon: Icon(
-                      FontAwesomeIcons.cut,
-                      size: 22,
+                      Icons.attach_money,
+                      size: 26,
                     ),
-                    hintText: 'Digite o serviço',
-                    labelText: 'Nome do serviço',
+                    hintText: 'Digite o valor',
+                    labelText: 'Valor do produto',
                     onChanged: (value) {
-                      _productController.title = value;
+                      _productController.price = value;
                     },
-                    errorText: _productController.error.title,
-                  );
-                },
-              ),
-              Observer(
-                builder: (_) {
-                  return Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: TextFieldCreate(
-                      keyboardType: TextInputType.number,
-                      maxLength: 5,
+                    errorText: _productController.error.price,
+                  ),
+                );
+              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(right: 16),
+                  child: Icon(
+                    Icons.description,
+                    color: Colors.grey,
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    height: 50,
+                    child: DropdownButton(
+                      value: dropdownValue,
+                      isExpanded: true,
                       icon: Icon(
-                        Icons.attach_money,
-                        size: 26,
+                        Icons.arrow_downward,
+                        color: Theme.of(context).primaryColor,
                       ),
-                      hintText: 'Digite o valor',
-                      labelText: 'Valor do produto',
-                      onChanged: (value) {
-                        _productController.price = value;
+                      iconSize: 24,
+                      elevation: 16,
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      underline: Container(
+                        height: 2,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      items: _productController.listType
+                          .map<DropdownMenuItem<String>>(
+                        (String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        },
+                      ).toList(),
+                      onChanged: (String newValue) {
+                        _productController.type = newValue;
+                        setState(
+                          () {
+                            dropdownValue = newValue;
+                          },
+                        );
                       },
-                      errorText: _productController.error.price,
                     ),
-                  );
-                },
-              ),
-              Observer(
-                builder: (_) {
-                  return DateTimeField(
-                    key: formKey,
-                    initialValue: DateTime.now(),
-                    decoration: InputDecoration(
-                      labelText: "Tempo Médio Gasto",
-                      labelStyle:
-                          TextStyle(color: Theme.of(context).primaryColor),
-                      border: OutlineInputBorder(),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Observer(
+              builder: (_) {
+                return Row(
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.only(right: 16),
+                      child: Icon(
+                        Icons.timer,
+                        color: Colors.grey,
+                      ),
                     ),
-                    format: format,
-                    onShowPicker: (context, currentValue) async {
-                      final time = await showTimePicker(
-                        context: context,
-                        initialTime: TimeOfDay.fromDateTime(
-                          currentValue ?? DateTime.now(),
+                    Expanded(
+                      child: Container(
+                        child: DateTimeField(
+                          key: formKey,
+                          initialValue: DateTime.now(),
+                          decoration: InputDecoration(
+                            labelText: "Tempo Médio Gasto",
+                            labelStyle: TextStyle(
+                                color: Theme.of(context).primaryColor),
+                          ),
+                          format: format,
+                          onShowPicker: (context, currentValue) async {
+                            final time = await showTimePicker(
+                              context: context,
+                              initialTime: TimeOfDay.fromDateTime(
+                                currentValue ?? DateTime.now(),
+                              ),
+                            );
+                            if (time != null) {
+                              _productController.averagetime = time.toString();
+                              print(time);
+                            }
+                            return DateTimeField.convert(time);
+                          },
                         ),
-                      );
-                      if (time != null) {
-                        _productController.averagetime = time.toString();
-                        print(time);
-                      }
-                      return DateTimeField.convert(time);
-                    },
-                  );
-                },
-              ),
-              Observer(
-                builder: (_) {
-                  return Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: TextFieldCreate(
-                      keyboardType: TextInputType.text,
-                      maxLength: 67,
-                      icon: Icon(
-                        Icons.details,
-                        size: 26,
                       ),
-                      hintText: 'Detalhes do produto',
-                      labelText: 'Observações',
-                      onChanged: (value) {
-                        _productController.description = value;
-                      },
-                      errorText: _productController.error.description,
                     ),
-                  );
-                },
-              ),
-            ],
-          ),
+                  ],
+                );
+              },
+            ),
+            Observer(
+              builder: (_) {
+                return Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: TextFieldCreate(
+                    keyboardType: TextInputType.text,
+                    maxLength: 67,
+                    icon: Icon(
+                      Icons.details,
+                      size: 26,
+                    ),
+                    hintText: 'Detalhes do produto',
+                    labelText: 'Observações',
+                    onChanged: (value) {
+                      _productController.description = value;
+                    },
+                    errorText: _productController.error.description,
+                  ),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );

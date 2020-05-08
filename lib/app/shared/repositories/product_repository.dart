@@ -1,10 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:projeto_fanap/app/shared/models/category_model.dart';
 import 'package:projeto_fanap/app/shared/models/product_create_model.dart';
 import 'package:projeto_fanap/app/shared/models/product_list_model.dart';
 import 'package:projeto_fanap/app/shared/models/product_model.dart';
-import 'package:projeto_fanap/app/shared/utils/setting_util.dart';
 
 class ProductRepository {
   final Dio dio;
@@ -15,14 +13,6 @@ class ProductRepository {
     Response response = await dio.get('/products');
     return (response.data as List)
         .map((item) => ProductListModel.fromJson(item))
-        .toList();
-  }
-
-  Future<List<ServiceCategory>> getCategory() async {
-    var url = "${Settings.apiUrl}/categoria";
-    Response response = await Dio().get(url);
-    return (response.data as List)
-        .map((item) => ServiceCategory.fromJson(item))
         .toList();
   }
 

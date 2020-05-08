@@ -18,6 +18,12 @@ class ProductDetailsPage extends StatefulWidget {
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
   final _productController = Modular.get<ProductController>();
 
+  Future<String> drop() async {
+    return _productController.type.toString();
+  }
+
+  String dropdownValue = 'Tipo de Serviço';
+
   final formKey = GlobalKey<FormState>();
   final format = DateFormat("HH:mm");
 
@@ -25,16 +31,6 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(
-            Icons.close,
-          ),
-          onPressed: () {
-            Modular.to.pushReplacementNamed(
-              '/home',
-            );
-          },
-        ),
         title: Text(
           "Detalhes do Produto",
           style: TextStyle(fontSize: 18),
@@ -202,6 +198,50 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   },
                 );
               },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              padding: EdgeInsets.all(8),
+              decoration: new BoxDecoration(
+                border: Border.all(
+                  color: Colors.grey,
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.circular(4),
+                shape: BoxShape.rectangle,
+              ),
+              child: DropdownButton(
+                value: dropdownValue,
+                isExpanded: true,
+                icon: Icon(
+                  Icons.arrow_downward,
+                  color: Theme.of(context).primaryColor,
+                ),
+                iconSize: 24,
+                elevation: 16,
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                ),
+                underline: Container(
+                  height: 2,
+                  color: Theme.of(context).primaryColor,
+                ),
+                items: _productController.listType
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                onChanged: (String newValue) {
+                  _productController.type = newValue;
+                  setState(() {
+                    dropdownValue = newValue;
+                  });
+                },
+              ),
             ),
             SizedBox(
               height: 20,
