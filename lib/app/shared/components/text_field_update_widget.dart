@@ -7,6 +7,7 @@ class TextFieldUpdate extends StatelessWidget {
   final int maxLength;
   final TextInputType keyboardType;
   final Function onChanged;
+  final List<TextInputFormatter> inputFormatters;
   final String errorText;
 
   const TextFieldUpdate({
@@ -16,12 +17,16 @@ class TextFieldUpdate extends StatelessWidget {
     @required this.initialValue,
     @required this.labelText,
     @required this.errorText,
+    this.inputFormatters,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      inputFormatters: [LengthLimitingTextInputFormatter(maxLength)],
+      cursorColor: Theme.of(context).accentColor,
+      inputFormatters: inputFormatters == null
+          ? [LengthLimitingTextInputFormatter(maxLength)]
+          : inputFormatters,
       keyboardType: keyboardType,
       decoration: InputDecoration(
         errorText: errorText,

@@ -1,6 +1,5 @@
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
 import 'package:projeto_fanap/app/modules/product/product_controller.dart';
@@ -105,7 +104,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           ),
                           onPressed: () {
                             try {
-                              _productController.deleteProduct();
+                              _productController.deleteProduct(widget.item.sId);
                               _productController.fetchProduct();
                               Modular.to.popAndPushNamed(
                                 '/home',
@@ -136,67 +135,54 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         padding: EdgeInsets.only(top: 12, left: 20, bottom: 6, right: 20),
         child: Column(
           children: <Widget>[
-            Observer(
-              builder: (_) {
-                return TextFieldUpdate(
-                  keyboardType: TextInputType.text,
-                  initialValue: widget.item.title,
-                  labelText: 'Titulo',
-                  onChanged: (value) {
-                    _productController.title = value;
-                  },
-                  errorText: _productController.error.title,
-                  maxLength: 38,
-                );
+            TextFieldUpdate(
+              keyboardType: TextInputType.text,
+              initialValue: widget.item.title,
+              labelText: 'Titulo',
+              onChanged: (value) {
+                _productController.title = value;
               },
+              errorText: _productController.error.title,
+              maxLength: 38,
             ),
             SizedBox(
               height: 20,
             ),
-            Observer(
-              builder: (_) {
-                return TextFieldUpdate(
-                  keyboardType: TextInputType.text,
-                  initialValue: widget.item.price.toString(),
-                  labelText: 'Valor',
-                  onChanged: (value) {
-                    _productController.price = value;
-                  },
-                  errorText: _productController.error.price,
-                  maxLength: 11,
-                );
+            TextFieldUpdate(
+              maxLength: 6,
+              keyboardType: TextInputType.text,
+              initialValue: widget.item.price.toString(),
+              labelText: 'Valor',
+              onChanged: (value) {
+                _productController.price = value;
               },
+              errorText: _productController.error.price,
             ),
             SizedBox(
               height: 20,
             ),
             // Data de Aniversario
-            Observer(
-              builder: (_) {
-                return DateTimeField(
-                  key: formKey,
-                  initialValue: DateTime.now(),
-                  decoration: InputDecoration(
-                    labelText: "Tempo Médio Gasto",
-                    labelStyle:
-                        TextStyle(color: Theme.of(context).primaryColor),
-                    border: OutlineInputBorder(),
+            DateTimeField(
+              key: formKey,
+              initialValue: DateTime.now(),
+              decoration: InputDecoration(
+                labelText: "Tempo Médio Gasto",
+                labelStyle: TextStyle(color: Theme.of(context).primaryColor),
+                border: OutlineInputBorder(),
+              ),
+              format: format,
+              onShowPicker: (context, currentValue) async {
+                final time = await showTimePicker(
+                  context: context,
+                  initialTime: TimeOfDay.fromDateTime(
+                    currentValue ?? DateTime.now(),
                   ),
-                  format: format,
-                  onShowPicker: (context, currentValue) async {
-                    final time = await showTimePicker(
-                      context: context,
-                      initialTime: TimeOfDay.fromDateTime(
-                        currentValue ?? DateTime.now(),
-                      ),
-                    );
-                    if (time != null) {
-                      _productController.averagetime = time.toString();
-                      print(time);
-                    }
-                    return DateTimeField.convert(time);
-                  },
                 );
+                if (time != null) {
+                  _productController.averagetime = time.toString();
+                  print(time);
+                }
+                return DateTimeField.convert(time);
               },
             ),
             SizedBox(
@@ -246,19 +232,15 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             SizedBox(
               height: 20,
             ),
-            Observer(
-              builder: (_) {
-                return TextFieldUpdate(
-                  keyboardType: TextInputType.text,
-                  initialValue: widget.item.description,
-                  labelText: 'Observação',
-                  onChanged: (value) {
-                    _productController.description = value;
-                  },
-                  errorText: _productController.error.description,
-                  maxLength: 32,
-                );
+            TextFieldUpdate(
+              keyboardType: TextInputType.text,
+              initialValue: widget.item.description,
+              labelText: 'Observação',
+              onChanged: (value) {
+                _productController.description = value;
               },
+              errorText: _productController.error.description,
+              maxLength: 32,
             ),
           ],
         ),

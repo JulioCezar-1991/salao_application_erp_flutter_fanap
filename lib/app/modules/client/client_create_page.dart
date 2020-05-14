@@ -4,6 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:projeto_fanap/app/modules/client/client_controller.dart';
 import 'package:projeto_fanap/app/shared/components/text_field_create_widget.dart';
 
@@ -21,18 +22,17 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
 
     final format = DateFormat("dd/MM/yyyy");
 
+    var maskCpfFormatter = MaskTextInputFormatter(
+        mask: "###.###.###-##", filter: {"#": RegExp(r'[0-9]')});
+
+    var maskTelFixFormatter = MaskTextInputFormatter(
+        mask: "(##) ####-####", filter: {"#": RegExp(r'[0-9]')});
+
+    var maskTelCelFormatter = MaskTextInputFormatter(
+        mask: "(##) #####-####", filter: {"#": RegExp(r'[0-9]')});
+
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(
-            Icons.close,
-          ),
-          onPressed: () {
-            Modular.to.pushReplacementNamed(
-              '/home',
-            );
-          },
-        ),
         title: Text(
           "Cadastrar Novo Cliente",
         ),
@@ -87,118 +87,97 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
         padding: EdgeInsets.only(top: 12, left: 20, bottom: 6, right: 20),
         child: Column(
           children: <Widget>[
-            Observer(
-              builder: (_) {
-                return TextFieldCreate(
-                  keyboardType: TextInputType.text,
-                  maxLength: 38,
-                  icon: Icon(
-                    Icons.perm_identity,
-                  ),
-                  hintText: 'Digite o nome',
-                  labelText: 'Nome Completo',
-                  onChanged: (value) {
-                    _clientController.name = value;
-                  },
-                  errorText: _clientController.error.name,
-                );
+            TextFieldCreate(
+              keyboardType: TextInputType.text,
+              maxLength: 38,
+              icon: Icon(
+                Icons.perm_identity,
+              ),
+              hintText: 'Digite o nome',
+              labelText: 'Nome Completo',
+              onChanged: (value) {
+                _clientController.name = value;
               },
+              errorText: _clientController.error.name,
             ),
-            Observer(
-              builder: (_) {
-                return TextFieldCreate(
-                  keyboardType: TextInputType.number,
-                  maxLength: 11,
-                  icon: Icon(
-                    Icons.perm_identity,
-                  ),
-                  hintText: 'Digite seu CPF',
-                  labelText: 'CPF',
-                  onChanged: (value) {
-                    _clientController.cpf = value;
-                  },
-                  errorText: _clientController.error.cpf,
-                );
+            TextFieldCreate(
+              inputFormatters: [maskCpfFormatter],
+              keyboardType: TextInputType.number,
+              maxLength: 11,
+              icon: Icon(
+                Icons.perm_identity,
+              ),
+              hintText: 'Digite seu CPF',
+              labelText: 'CPF',
+              onChanged: (value) {
+                _clientController.cpf = value;
               },
+              errorText: _clientController.error.cpf,
             ),
             SizedBox(
               height: 5,
             ),
-            Observer(
-              builder: (_) {
-                return DateTimeField(
-                  key: formKey,
-                  initialValue: DateTime.now(),
-                  decoration: InputDecoration(
-                    icon: Icon(Icons.calendar_today),
-                    labelText: "Data de anivesário",
-                    labelStyle: TextStyle(color: Theme.of(context).accentColor),
-                  ),
-                  format: format,
-                  onShowPicker: (context, currentValue) async {
-                    final date = await showDatePicker(
-                        context: context,
-                        firstDate: DateTime(1900),
-                        initialDate: currentValue ?? DateTime.now(),
-                        lastDate: DateTime(2100));
-                    if (date != null) {
-                      _clientController.date = date.toString();
-                    }
-                    return date;
-                  },
-                );
+            DateTimeField(
+              key: formKey,
+              initialValue: DateTime.now(),
+              decoration: InputDecoration(
+                icon: Icon(Icons.calendar_today),
+                labelText: "Data de anivesário",
+                labelStyle: TextStyle(color: Theme.of(context).accentColor),
+              ),
+              format: format,
+              onShowPicker: (context, currentValue) async {
+                final date = await showDatePicker(
+                    context: context,
+                    firstDate: DateTime(1900),
+                    initialDate: currentValue ?? DateTime.now(),
+                    lastDate: DateTime(2100));
+                if (date != null) {
+                  _clientController.date = date.toString();
+                }
+                return date;
               },
             ),
-            Observer(
-              builder: (_) {
-                return TextFieldCreate(
-                  keyboardType: TextInputType.emailAddress,
-                  maxLength: 32,
-                  icon: Icon(
-                    Icons.email,
-                  ),
-                  hintText: 'Digite o E-mail',
-                  labelText: 'E-mail',
-                  onChanged: (value) {
-                    _clientController.email = value;
-                  },
-                  errorText: _clientController.error.email,
-                );
+            TextFieldCreate(
+              keyboardType: TextInputType.emailAddress,
+              maxLength: 32,
+              icon: Icon(
+                Icons.email,
+              ),
+              hintText: 'Digite o E-mail',
+              labelText: 'E-mail',
+              onChanged: (value) {
+                _clientController.email = value;
               },
+              errorText: _clientController.error.email,
             ),
-            Observer(
-              builder: (_) {
-                return TextFieldCreate(
-                  keyboardType: TextInputType.phone,
-                  maxLength: 12,
-                  icon: Icon(
-                    Icons.smartphone,
-                  ),
-                  hintText: 'Digite o número móvel',
-                  labelText: 'Telefone Celular',
-                  onChanged: (value) {
-                    _clientController.telcel = value;
-                  },
-                  errorText: _clientController.error.telcel,
-                );
+            TextFieldCreate(
+              inputFormatters: [maskTelCelFormatter],
+              keyboardType: TextInputType.phone,
+              maxLength: 12,
+              icon: Icon(
+                Icons.smartphone,
+              ),
+              hintText: 'Digite o número móvel',
+              labelText: 'Telefone Celular',
+              onChanged: (value) {
+                _clientController.telcel = value;
               },
+              errorText: _clientController.error.telcel,
             ),
-            Observer(
-              builder: (_) {
-                return TextFieldCreate(
-                  keyboardType: TextInputType.phone,
-                  maxLength: 12,
-                  icon: Icon(
-                    Icons.phone,
-                  ),
-                  hintText: 'Digite o telefone fixo',
-                  labelText: 'Telefone Fixo',
-                  onChanged: (value) {
-                    _clientController.telfix = value;
-                  },
-                  errorText: _clientController.error.telfix,
-                );
+            TextFieldCreate(
+              inputFormatters: [maskTelFixFormatter],
+              keyboardType: TextInputType.phone,
+              maxLength: 12,
+              icon: Icon(
+                Icons.phone,
+              ),
+              hintText: 'Digite o telefone fixo',
+              labelText: 'Telefone Fixo',
+              onChanged: (value) {
+                _clientController.telfix = value;
               },
+              errorText: _clientController.error.telfix,
             ),
             Observer(
               builder: (_) {
@@ -219,7 +198,7 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
               builder: (_) {
                 return TextFieldCreate(
                   keyboardType: TextInputType.text,
-                  maxLength: 38,
+                  maxLength: 28,
                   icon: Icon(FontAwesomeIcons.streetView),
                   hintText: 'Digite o bairro',
                   labelText: 'Bairro',
@@ -233,12 +212,13 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
             Observer(
               builder: (_) {
                 return TextFieldCreate(
+                  keyboardType: TextInputType.text,
+                  maxLength: 28,
                   icon: Icon(
                     Icons.location_city,
                   ),
                   hintText: 'Digite a cidade',
                   labelText: 'Cidade',
-                  keyboardType: TextInputType.text,
                   onChanged: (value) {
                     _clientController.city = value;
                   },

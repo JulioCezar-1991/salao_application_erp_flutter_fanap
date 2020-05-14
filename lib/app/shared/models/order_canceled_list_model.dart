@@ -1,54 +1,66 @@
 class OrderCanceledListModel {
-  String subtotal;
   String status;
   String sId;
-  Customer customer;
-  Client client;
   String number;
+  Customer customer;
+  Customer client;
+  String schedulingdate;
+  String schedulinghour;
   List<Itens> itens;
+  double subtotal;
+  String createDate;
 
   OrderCanceledListModel(
-      {this.subtotal,
-      this.status,
+      {this.status,
       this.sId,
+      this.number,
       this.customer,
       this.client,
-      this.number,
-      this.itens});
+      this.schedulingdate,
+      this.schedulinghour,
+      this.itens,
+      this.subtotal,
+      this.createDate});
 
   OrderCanceledListModel.fromJson(Map<String, dynamic> json) {
-    subtotal = json['subtotal'];
     status = json['status'];
     sId = json['_id'];
+    number = json['number'];
     customer = json['customer'] != null
         ? new Customer.fromJson(json['customer'])
         : null;
     client =
-        json['client'] != null ? new Client.fromJson(json['client']) : null;
-    number = json['number'];
+        json['client'] != null ? new Customer.fromJson(json['client']) : null;
+    schedulingdate = json['schedulingdate'];
+    schedulinghour = json['schedulinghour'];
     if (json['itens'] != null) {
       itens = new List<Itens>();
       json['itens'].forEach((v) {
         itens.add(new Itens.fromJson(v));
       });
     }
+    subtotal = json[subtotal];
+    createDate = json['createDate'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['subtotal'] = this.subtotal;
     data['status'] = this.status;
     data['_id'] = this.sId;
+    data['number'] = this.number;
     if (this.customer != null) {
       data['customer'] = this.customer.toJson();
     }
     if (this.client != null) {
       data['client'] = this.client.toJson();
     }
-    data['number'] = this.number;
+    data['schedulingdate'] = this.schedulingdate;
+    data['schedulinghour'] = this.schedulinghour;
     if (this.itens != null) {
       data['itens'] = this.itens.map((v) => v.toJson()).toList();
     }
+    data['subtotal'] = this.subtotal;
+    data['createDate'] = this.createDate;
     return data;
   }
 }
@@ -56,32 +68,13 @@ class OrderCanceledListModel {
 class Customer {
   String sId;
   String name;
-
-  Customer({this.sId, this.name});
-
-  Customer.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    name = json['name'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['name'] = this.name;
-    return data;
-  }
-}
-
-class Client {
-  String sId;
-  String name;
   String telcel;
   String telfix;
   String email;
 
-  Client({this.sId, this.name, this.telcel, this.telfix, this.email});
+  Customer({this.sId, this.name, this.telcel, this.telfix, this.email});
 
-  Client.fromJson(Map<String, dynamic> json) {
+  Customer.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     name = json['name'];
     telcel = json['telcel'];

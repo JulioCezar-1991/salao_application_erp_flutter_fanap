@@ -1,5 +1,6 @@
 import 'package:mobx/mobx.dart';
 import 'package:projeto_fanap/app/shared/models/client_create_model.dart';
+import 'package:projeto_fanap/app/shared/models/client_delete_model.dart';
 import 'package:projeto_fanap/app/shared/models/client_list_model.dart';
 import 'package:projeto_fanap/app/shared/models/client_model.dart';
 import 'package:projeto_fanap/app/shared/repositories/client_repository.dart';
@@ -29,8 +30,6 @@ abstract class _ClientControllerBase with Store {
   @observable
   String name = '';
 
-  @action
-  setName(String name) {}
   @action
   void validateName(String value) {
     error.name = isNull(value) || value.isEmpty ? 'Nome inválido' : null;
@@ -155,25 +154,21 @@ abstract class _ClientControllerBase with Store {
         error.sector == null &&
         error.city == null &&
         error.state == null) {
-      _postCreate().then((client) async {
-        if (client != null) {
-          _postCreate();
-        }
-      });
+      _postCreate().then((client) async {});
     }
   }
 
-  void deleteClient() async {
-    _deleteClient();
+  void deleteClient(String id) async {
+    _deleteClient(id);
   }
 
-  Future<ClientModel> _deleteClient() async {
+  Future<ClientModel> _deleteClient(id) async {
+    var model = ClientDeleteModel(id: id);
     try {
-      var res = await repository.deleteClient();
+      var res = await repository.deleteClient(model);
       return res;
     } catch (error) {
       dataClientModel = null;
-      print(error);
     }
     return null;
   }

@@ -1,5 +1,6 @@
 import 'package:mobx/mobx.dart';
 import 'package:projeto_fanap/app/shared/models/product_create_model.dart';
+import 'package:projeto_fanap/app/shared/models/product_delete_model.dart';
 import 'package:projeto_fanap/app/shared/models/product_list_model.dart';
 import 'package:projeto_fanap/app/shared/models/product_model.dart';
 import 'package:projeto_fanap/app/shared/repositories/product_repository.dart';
@@ -73,7 +74,7 @@ abstract class _ProductControllerBase with Store {
   @action
   void validateAverageTime(String value) {
     error.averagetime =
-        isNull(value) || value.isEmpty ? 'Valor inválido' : null;
+        isNull(value) || value.isEmpty ? 'Tempo médio inválido' : null;
   }
 
   @observable
@@ -107,25 +108,21 @@ abstract class _ProductControllerBase with Store {
         error.averagetime == null &&
         error.price == null &&
         error.type == null) {
-      _postCreate().then((procuct) async {
-        if (procuct != null) {
-          _postCreate();
-        }
-      });
+      _postCreate().then((procuct) async {});
     }
   }
 
-  void deleteProduct() async {
-    _deleteProduct();
+  void deleteProduct(String id) async {
+    _deleteProduct(id);
   }
 
-  Future<ProductModel> _deleteProduct() async {
+  Future<ProductModel> _deleteProduct(String id) async {
+    var model = ProductDeleteModel(id: id);
     try {
-      var res = await _repository.deleteProduct();
+      var res = await _repository.deleteProduct(model);
       return res;
     } catch (error) {
       dataProductModel = null;
-      print(error);
     }
     return null;
   }
@@ -134,9 +131,9 @@ abstract class _ProductControllerBase with Store {
     _patchProduct(dataProductModel, id);
   }
 
-  Future<ProductModel> _patchProduct(ProductCreateModel model, sId) async {
+  Future<ProductModel> _patchProduct(ProductCreateModel model, id) async {
     var model = ProductCreateModel(
-      sId: sId,
+      id: id,
       title: this.title,
       /* price: this.price.toString(), */
       averagetime: this.averagetime,

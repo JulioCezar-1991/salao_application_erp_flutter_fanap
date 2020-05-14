@@ -3,22 +3,22 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:projeto_fanap/app/shared/models/user_authenticate_model.dart';
 import 'package:projeto_fanap/app/shared/models/user_model.dart';
-import 'package:projeto_fanap/app/shared/repositories/account_repository.dart';
+import 'package:projeto_fanap/app/shared/repositories/user_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:validators/validators.dart';
 
-part 'login_controller.g.dart';
+part 'user_controller.g.dart';
 
-class LoginController = _LoginControllerBase with _$LoginController;
+class UserController = _UserControllerBase with _$UserController;
 
-abstract class _LoginControllerBase with Store {
-  final FormLoginErrorState error = FormLoginErrorState();
+abstract class _UserControllerBase with Store {
+  final FormUserErrorState error = FormUserErrorState();
+  final UserRepository repository;
 
-  final AccountRepository repository;
-  var user = UserModel();
-  _LoginControllerBase(this.repository) {
+  _UserControllerBase(this.repository) {
     user = null;
   }
+  var user = UserModel();
 
   @observable
   String email = '';
@@ -70,9 +70,9 @@ abstract class _LoginControllerBase with Store {
   }
 }
 
-class FormLoginErrorState = _FormLoginErrorState with _$FormLoginErrorState;
+class FormUserErrorState = _FormUserErrorState with _$FormUserErrorState;
 
-abstract class _FormLoginErrorState with Store {
+abstract class _FormUserErrorState with Store {
   @observable
   String email;
 

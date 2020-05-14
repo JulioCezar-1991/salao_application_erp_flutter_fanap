@@ -13,6 +13,6 @@ abstract class _SplashBase with Store {
     if (userData != null) {
       return Modular.to.pushReplacementNamed('/home');
     }
-    return Modular.to.pushReplacementNamed('/login');
+    return Modular.to.pushReplacementNamed('/user');
   }
 }

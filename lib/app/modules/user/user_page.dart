@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:projeto_fanap/app/modules/login/login_controller.dart';
+import 'package:projeto_fanap/app/modules/user/user_controller.dart';
 import 'package:projeto_fanap/app/shared/components/circle_button_widget.dart';
 
-class LoginPage extends StatefulWidget {
+class UserPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _UserPageState createState() => _UserPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _UserPageState extends State<UserPage> {
   @override
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
-    final _loginController = Modular.get<LoginController>();
+    final _userController = Modular.get<UserController>();
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -49,9 +49,8 @@ class _LoginPageState extends State<LoginPage> {
                       builder: (_) {
                         return _textFild(
                             icon: Icons.person,
-                            onChanged: (value) =>
-                                _loginController.email = value,
-                            errorText: _loginController.error.email,
+                            onChanged: (value) => _userController.email = value,
+                            errorText: _userController.error.email,
                             context: context,
                             hintText: 'E-Mail',
                             labelText: 'Digite o Email');
@@ -66,8 +65,8 @@ class _LoginPageState extends State<LoginPage> {
                             obscureText: true,
                             icon: Icons.lock_outline,
                             onChanged: (value) =>
-                                _loginController.password = value,
-                            errorText: _loginController.error.password,
+                                _userController.password = value,
+                            errorText: _userController.error.password,
                             context: context,
                             hintText: 'Senha',
                             labelText: 'Digite a Senha');
@@ -89,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
               height: 50,
               label: "ENTRAR",
               onTap: () {
-                _loginController.validateAll();
+                _userController.validateAll();
               },
             ),
             Padding(

@@ -1,15 +1,23 @@
 import 'package:dio/dio.dart';
 import 'package:projeto_fanap/app/shared/models/user_authenticate_model.dart';
 import 'package:projeto_fanap/app/shared/models/user_create_model.dart';
+import 'package:projeto_fanap/app/shared/models/user_list_model.dart';
 import 'package:projeto_fanap/app/shared/models/user_model.dart';
 import 'package:projeto_fanap/app/shared/utils/setting_util.dart';
 
-class AccountRepository {
+class UserRepository {
   final Dio dio;
 
-  AccountRepository(this.dio);
+  UserRepository(this.dio);
 
   UserModel userModel = UserModel();
+
+  Future<List<UserListModel>> getAllUser() async {
+    Response response = await dio.get('/customers');
+    return (response.data as List)
+        .map((item) => UserListModel.fromJson(item))
+        .toList();
+  }
 
   Future authenticate(AuthenticateModel model) async {
     var url = "${Settings.apiUrl}/customers/authenticate";

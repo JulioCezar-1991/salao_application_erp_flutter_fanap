@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:projeto_fanap/app/shared/models/client_model.dart';
 import 'package:projeto_fanap/app/shared/models/order_all_list_model.dart';
 import 'package:projeto_fanap/app/shared/models/order_canceled_list_model.dart';
 import 'package:projeto_fanap/app/shared/models/order_create_model.dart';
@@ -14,7 +13,7 @@ class OrderRepository {
   OrderRepository(this.dio);
 
   Future<List<OrderAllListModel>> getOrderAll() async {
-    Response response = await dio.get('/orders/open');
+    Response response = await dio.get('/orders');
     return (response.data as List)
         .map((item) => OrderAllListModel.fromJson(item))
         .toList();
@@ -53,9 +52,9 @@ class OrderRepository {
     return OrderModel.fromJson(response.data);
   }
 
-  Future<ClientModel> patchOrder(OrderCreateModel model) async {
+  Future<OrderModel> patchOrder(OrderCreateModel model) async {
     Response response = await dio.patch('/orders', data: model);
     debugPrint("resposta: ${response.data}");
-    return ClientModel.fromJson(response.data);
+    return OrderModel.fromJson(response.data);
   }
 }

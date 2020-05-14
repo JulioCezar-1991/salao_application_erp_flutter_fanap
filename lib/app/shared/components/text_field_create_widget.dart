@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class TextFieldCreate extends StatelessWidget {
+  final List<TextInputFormatter> inputFormatters;
   final Icon icon;
   final String labelText;
   final String hintText;
@@ -18,12 +19,15 @@ class TextFieldCreate extends StatelessWidget {
     @required this.keyboardType,
     this.onChanged,
     this.errorText,
+    this.inputFormatters,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      inputFormatters: [LengthLimitingTextInputFormatter(maxLength)],
+      inputFormatters: inputFormatters == null
+          ? [LengthLimitingTextInputFormatter(maxLength)]
+          : inputFormatters,
       keyboardType: keyboardType,
       cursorColor: Theme.of(context).accentColor,
       decoration: InputDecoration(
@@ -31,7 +35,6 @@ class TextFieldCreate extends StatelessWidget {
         hintText: hintText,
         hoverColor: Colors.red,
         focusColor: Colors.red,
-        alignLabelWithHint: false,
         counterStyle: TextStyle(color: Colors.transparent),
         icon: icon,
         labelText: labelText,

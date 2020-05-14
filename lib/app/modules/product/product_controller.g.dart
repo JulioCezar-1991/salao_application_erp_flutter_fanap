@@ -77,6 +77,23 @@ mixin _$ProductController on _ProductControllerBase, Store {
     }, _$priceAtom, name: '${_$priceAtom.name}_set');
   }
 
+  final _$typeAtom = Atom(name: '_ProductControllerBase.type');
+
+  @override
+  String get type {
+    _$typeAtom.context.enforceReadPolicy(_$typeAtom);
+    _$typeAtom.reportObserved();
+    return super.type;
+  }
+
+  @override
+  set type(String value) {
+    _$typeAtom.context.conditionallyRunInAction(() {
+      super.type = value;
+      _$typeAtom.reportChanged();
+    }, _$typeAtom, name: '${_$typeAtom.name}_set');
+  }
+
   final _$averagetimeAtom = Atom(name: '_ProductControllerBase.averagetime');
 
   @override
@@ -156,6 +173,16 @@ mixin _$ProductController on _ProductControllerBase, Store {
   }
 
   @override
+  void validateType(String value) {
+    final _$actionInfo = _$_ProductControllerBaseActionController.startAction();
+    try {
+      return super.validateType(value);
+    } finally {
+      _$_ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void validateAverageTime(String value) {
     final _$actionInfo = _$_ProductControllerBaseActionController.startAction();
     try {
@@ -222,6 +249,23 @@ mixin _$FormProductErrorState on _FormProductErrorState, Store {
       super.price = value;
       _$priceAtom.reportChanged();
     }, _$priceAtom, name: '${_$priceAtom.name}_set');
+  }
+
+  final _$typeAtom = Atom(name: '_FormProductErrorState.type');
+
+  @override
+  String get type {
+    _$typeAtom.context.enforceReadPolicy(_$typeAtom);
+    _$typeAtom.reportObserved();
+    return super.type;
+  }
+
+  @override
+  set type(String value) {
+    _$typeAtom.context.conditionallyRunInAction(() {
+      super.type = value;
+      _$typeAtom.reportChanged();
+    }, _$typeAtom, name: '${_$typeAtom.name}_set');
   }
 
   final _$averagetimeAtom = Atom(name: '_FormProductErrorState.averagetime');

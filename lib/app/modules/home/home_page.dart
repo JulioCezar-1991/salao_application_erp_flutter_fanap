@@ -5,6 +5,7 @@ import 'package:projeto_fanap/app/modules/client/client_controller.dart';
 import 'package:projeto_fanap/app/modules/client/client_create_page.dart';
 import 'package:projeto_fanap/app/modules/client/client_page.dart';
 import 'package:projeto_fanap/app/modules/order/order_controller.dart';
+import 'package:projeto_fanap/app/modules/order/order_create_page.dart';
 import 'package:projeto_fanap/app/modules/order/order_page.dart';
 import 'package:projeto_fanap/app/modules/product/product_page.dart';
 import 'package:projeto_fanap/app/modules/product/product_controller.dart';
@@ -105,8 +106,12 @@ class _HomePageState extends State<HomePage> {
                   ),
                 );
               } else if (_controlePagina == 2) {
-                /* Navigator.pushNamed(
-                    context, RouteGeneratorController.ROUTE_CREATESCHEDUNLING); */
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => OrderCreatePage(),
+                  ),
+                );
               }
             },
             child: Icon(

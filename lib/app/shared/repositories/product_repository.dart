@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto_fanap/app/shared/models/product_create_model.dart';
+import 'package:projeto_fanap/app/shared/models/product_delete_model.dart';
 import 'package:projeto_fanap/app/shared/models/product_list_model.dart';
 import 'package:projeto_fanap/app/shared/models/product_model.dart';
 
@@ -21,13 +22,14 @@ class ProductRepository {
     return ProductModel.fromJson(response.data[0]);
   }
 
-  Future<ProductModel> deleteProduct() async {
-    Response response = await dio.delete('/products');
+  Future<ProductModel> deleteProduct(ProductDeleteModel model) async {
+    Response response = await dio.delete('/products', data: model);
     debugPrint("resposta: ${response.statusCode}");
     return ProductModel.fromJson(response.data);
   }
 
   Future<ProductModel> patchProduct(ProductCreateModel model) async {
+    if (model.description == null) {}
     Response response = await dio.patch('/products', data: model);
     debugPrint("resposta: ${response.data}");
     return ProductModel.fromJson(response.data);

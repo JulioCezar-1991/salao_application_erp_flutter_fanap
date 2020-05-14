@@ -61,6 +61,128 @@ mixin _$OrderController on _OrderControllerBase, Store {
     }, _$ordersCanceledAtom, name: '${_$ordersCanceledAtom.name}_set');
   }
 
+  final _$idUserAtom = Atom(name: '_OrderControllerBase.idUser');
+
+  @override
+  String get idUser {
+    _$idUserAtom.context.enforceReadPolicy(_$idUserAtom);
+    _$idUserAtom.reportObserved();
+    return super.idUser;
+  }
+
+  @override
+  set idUser(String value) {
+    _$idUserAtom.context.conditionallyRunInAction(() {
+      super.idUser = value;
+      _$idUserAtom.reportChanged();
+    }, _$idUserAtom, name: '${_$idUserAtom.name}_set');
+  }
+
+  final _$idClientAtom = Atom(name: '_OrderControllerBase.idClient');
+
+  @override
+  String get idClient {
+    _$idClientAtom.context.enforceReadPolicy(_$idClientAtom);
+    _$idClientAtom.reportObserved();
+    return super.idClient;
+  }
+
+  @override
+  set idClient(String value) {
+    _$idClientAtom.context.conditionallyRunInAction(() {
+      super.idClient = value;
+      _$idClientAtom.reportChanged();
+    }, _$idClientAtom, name: '${_$idClientAtom.name}_set');
+  }
+
+  final _$schedulingHourAtom =
+      Atom(name: '_OrderControllerBase.schedulingHour');
+
+  @override
+  String get schedulingHour {
+    _$schedulingHourAtom.context.enforceReadPolicy(_$schedulingHourAtom);
+    _$schedulingHourAtom.reportObserved();
+    return super.schedulingHour;
+  }
+
+  @override
+  set schedulingHour(String value) {
+    _$schedulingHourAtom.context.conditionallyRunInAction(() {
+      super.schedulingHour = value;
+      _$schedulingHourAtom.reportChanged();
+    }, _$schedulingHourAtom, name: '${_$schedulingHourAtom.name}_set');
+  }
+
+  final _$schedulingDateAtom =
+      Atom(name: '_OrderControllerBase.schedulingDate');
+
+  @override
+  String get schedulingDate {
+    _$schedulingDateAtom.context.enforceReadPolicy(_$schedulingDateAtom);
+    _$schedulingDateAtom.reportObserved();
+    return super.schedulingDate;
+  }
+
+  @override
+  set schedulingDate(String value) {
+    _$schedulingDateAtom.context.conditionallyRunInAction(() {
+      super.schedulingDate = value;
+      _$schedulingDateAtom.reportChanged();
+    }, _$schedulingDateAtom, name: '${_$schedulingDateAtom.name}_set');
+  }
+
+  final _$statusAtom = Atom(name: '_OrderControllerBase.status');
+
+  @override
+  String get status {
+    _$statusAtom.context.enforceReadPolicy(_$statusAtom);
+    _$statusAtom.reportObserved();
+    return super.status;
+  }
+
+  @override
+  set status(String value) {
+    _$statusAtom.context.conditionallyRunInAction(() {
+      super.status = value;
+      _$statusAtom.reportChanged();
+    }, _$statusAtom, name: '${_$statusAtom.name}_set');
+  }
+
+  final _$subtotalAtom = Atom(name: '_OrderControllerBase.subtotal');
+
+  @override
+  double get subtotal {
+    _$subtotalAtom.context.enforceReadPolicy(_$subtotalAtom);
+    _$subtotalAtom.reportObserved();
+    return super.subtotal;
+  }
+
+  @override
+  set subtotal(double value) {
+    _$subtotalAtom.context.conditionallyRunInAction(() {
+      super.subtotal = value;
+      _$subtotalAtom.reportChanged();
+    }, _$subtotalAtom, name: '${_$subtotalAtom.name}_set');
+  }
+
+  final _$dataOrderModelAtom =
+      Atom(name: '_OrderControllerBase.dataOrderModel');
+
+  @override
+  OrderCreateModel get dataOrderModel {
+    _$dataOrderModelAtom.context.enforceReadPolicy(_$dataOrderModelAtom);
+    _$dataOrderModelAtom.reportObserved();
+    return super.dataOrderModel;
+  }
+
+  @override
+  set dataOrderModel(OrderCreateModel value) {
+    _$dataOrderModelAtom.context.conditionallyRunInAction(() {
+      super.dataOrderModel = value;
+      _$dataOrderModelAtom.reportChanged();
+    }, _$dataOrderModelAtom, name: '${_$dataOrderModelAtom.name}_set');
+  }
+
   final _$_OrderControllerBaseActionController =
       ActionController(name: '_OrderControllerBase');
 
@@ -93,6 +215,56 @@ mixin _$OrderController on _OrderControllerBase, Store {
       _$_OrderControllerBaseActionController.endAction(_$actionInfo);
     }
   }
+
+  @override
+  void validateIdUser(String value) {
+    final _$actionInfo = _$_OrderControllerBaseActionController.startAction();
+    try {
+      return super.validateIdUser(value);
+    } finally {
+      _$_OrderControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void validateIdClient(String value) {
+    final _$actionInfo = _$_OrderControllerBaseActionController.startAction();
+    try {
+      return super.validateIdClient(value);
+    } finally {
+      _$_OrderControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void validateHour(String value) {
+    final _$actionInfo = _$_OrderControllerBaseActionController.startAction();
+    try {
+      return super.validateHour(value);
+    } finally {
+      _$_OrderControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void validateDate(String value) {
+    final _$actionInfo = _$_OrderControllerBaseActionController.startAction();
+    try {
+      return super.validateDate(value);
+    } finally {
+      _$_OrderControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void validadeStatus(String value) {
+    final _$actionInfo = _$_OrderControllerBaseActionController.startAction();
+    try {
+      return super.validadeStatus(value);
+    } finally {
+      _$_OrderControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
 }
 
 mixin _$FormOrderErrorState on _FormOrderErrorState, Store {
@@ -102,173 +274,90 @@ mixin _$FormOrderErrorState on _FormOrderErrorState, Store {
   bool get hasErrors =>
       (_$hasErrorsComputed ??= Computed<bool>(() => super.hasErrors)).value;
 
-  final _$nameAtom = Atom(name: '_FormOrderErrorState.name');
+  final _$idUserAtom = Atom(name: '_FormOrderErrorState.idUser');
 
   @override
-  String get name {
-    _$nameAtom.context.enforceReadPolicy(_$nameAtom);
-    _$nameAtom.reportObserved();
-    return super.name;
+  String get idUser {
+    _$idUserAtom.context.enforceReadPolicy(_$idUserAtom);
+    _$idUserAtom.reportObserved();
+    return super.idUser;
   }
 
   @override
-  set name(String value) {
-    _$nameAtom.context.conditionallyRunInAction(() {
-      super.name = value;
-      _$nameAtom.reportChanged();
-    }, _$nameAtom, name: '${_$nameAtom.name}_set');
+  set idUser(String value) {
+    _$idUserAtom.context.conditionallyRunInAction(() {
+      super.idUser = value;
+      _$idUserAtom.reportChanged();
+    }, _$idUserAtom, name: '${_$idUserAtom.name}_set');
   }
 
-  final _$cpfAtom = Atom(name: '_FormOrderErrorState.cpf');
+  final _$idClientAtom = Atom(name: '_FormOrderErrorState.idClient');
 
   @override
-  String get cpf {
-    _$cpfAtom.context.enforceReadPolicy(_$cpfAtom);
-    _$cpfAtom.reportObserved();
-    return super.cpf;
-  }
-
-  @override
-  set cpf(String value) {
-    _$cpfAtom.context.conditionallyRunInAction(() {
-      super.cpf = value;
-      _$cpfAtom.reportChanged();
-    }, _$cpfAtom, name: '${_$cpfAtom.name}_set');
-  }
-
-  final _$dateAtom = Atom(name: '_FormOrderErrorState.date');
-
-  @override
-  String get date {
-    _$dateAtom.context.enforceReadPolicy(_$dateAtom);
-    _$dateAtom.reportObserved();
-    return super.date;
+  String get idClient {
+    _$idClientAtom.context.enforceReadPolicy(_$idClientAtom);
+    _$idClientAtom.reportObserved();
+    return super.idClient;
   }
 
   @override
-  set date(String value) {
-    _$dateAtom.context.conditionallyRunInAction(() {
-      super.date = value;
-      _$dateAtom.reportChanged();
-    }, _$dateAtom, name: '${_$dateAtom.name}_set');
+  set idClient(String value) {
+    _$idClientAtom.context.conditionallyRunInAction(() {
+      super.idClient = value;
+      _$idClientAtom.reportChanged();
+    }, _$idClientAtom, name: '${_$idClientAtom.name}_set');
   }
 
-  final _$telcelAtom = Atom(name: '_FormOrderErrorState.telcel');
+  final _$schedulingHourAtom =
+      Atom(name: '_FormOrderErrorState.schedulingHour');
 
   @override
-  String get telcel {
-    _$telcelAtom.context.enforceReadPolicy(_$telcelAtom);
-    _$telcelAtom.reportObserved();
-    return super.telcel;
-  }
-
-  @override
-  set telcel(String value) {
-    _$telcelAtom.context.conditionallyRunInAction(() {
-      super.telcel = value;
-      _$telcelAtom.reportChanged();
-    }, _$telcelAtom, name: '${_$telcelAtom.name}_set');
-  }
-
-  final _$telfixAtom = Atom(name: '_FormOrderErrorState.telfix');
-
-  @override
-  String get telfix {
-    _$telfixAtom.context.enforceReadPolicy(_$telfixAtom);
-    _$telfixAtom.reportObserved();
-    return super.telfix;
+  String get schedulingHour {
+    _$schedulingHourAtom.context.enforceReadPolicy(_$schedulingHourAtom);
+    _$schedulingHourAtom.reportObserved();
+    return super.schedulingHour;
   }
 
   @override
-  set telfix(String value) {
-    _$telfixAtom.context.conditionallyRunInAction(() {
-      super.telfix = value;
-      _$telfixAtom.reportChanged();
-    }, _$telfixAtom, name: '${_$telfixAtom.name}_set');
+  set schedulingHour(String value) {
+    _$schedulingHourAtom.context.conditionallyRunInAction(() {
+      super.schedulingHour = value;
+      _$schedulingHourAtom.reportChanged();
+    }, _$schedulingHourAtom, name: '${_$schedulingHourAtom.name}_set');
   }
 
-  final _$emailAtom = Atom(name: '_FormOrderErrorState.email');
+  final _$schedulingDateAtom =
+      Atom(name: '_FormOrderErrorState.schedulingDate');
 
   @override
-  String get email {
-    _$emailAtom.context.enforceReadPolicy(_$emailAtom);
-    _$emailAtom.reportObserved();
-    return super.email;
-  }
-
-  @override
-  set email(String value) {
-    _$emailAtom.context.conditionallyRunInAction(() {
-      super.email = value;
-      _$emailAtom.reportChanged();
-    }, _$emailAtom, name: '${_$emailAtom.name}_set');
-  }
-
-  final _$addressAtom = Atom(name: '_FormOrderErrorState.address');
-
-  @override
-  String get address {
-    _$addressAtom.context.enforceReadPolicy(_$addressAtom);
-    _$addressAtom.reportObserved();
-    return super.address;
+  String get schedulingDate {
+    _$schedulingDateAtom.context.enforceReadPolicy(_$schedulingDateAtom);
+    _$schedulingDateAtom.reportObserved();
+    return super.schedulingDate;
   }
 
   @override
-  set address(String value) {
-    _$addressAtom.context.conditionallyRunInAction(() {
-      super.address = value;
-      _$addressAtom.reportChanged();
-    }, _$addressAtom, name: '${_$addressAtom.name}_set');
+  set schedulingDate(String value) {
+    _$schedulingDateAtom.context.conditionallyRunInAction(() {
+      super.schedulingDate = value;
+      _$schedulingDateAtom.reportChanged();
+    }, _$schedulingDateAtom, name: '${_$schedulingDateAtom.name}_set');
   }
 
-  final _$sectorAtom = Atom(name: '_FormOrderErrorState.sector');
+  final _$statusAtom = Atom(name: '_FormOrderErrorState.status');
 
   @override
-  String get sector {
-    _$sectorAtom.context.enforceReadPolicy(_$sectorAtom);
-    _$sectorAtom.reportObserved();
-    return super.sector;
-  }
-
-  @override
-  set sector(String value) {
-    _$sectorAtom.context.conditionallyRunInAction(() {
-      super.sector = value;
-      _$sectorAtom.reportChanged();
-    }, _$sectorAtom, name: '${_$sectorAtom.name}_set');
-  }
-
-  final _$cityAtom = Atom(name: '_FormOrderErrorState.city');
-
-  @override
-  String get city {
-    _$cityAtom.context.enforceReadPolicy(_$cityAtom);
-    _$cityAtom.reportObserved();
-    return super.city;
+  String get status {
+    _$statusAtom.context.enforceReadPolicy(_$statusAtom);
+    _$statusAtom.reportObserved();
+    return super.status;
   }
 
   @override
-  set city(String value) {
-    _$cityAtom.context.conditionallyRunInAction(() {
-      super.city = value;
-      _$cityAtom.reportChanged();
-    }, _$cityAtom, name: '${_$cityAtom.name}_set');
-  }
-
-  final _$stateAtom = Atom(name: '_FormOrderErrorState.state');
-
-  @override
-  String get state {
-    _$stateAtom.context.enforceReadPolicy(_$stateAtom);
-    _$stateAtom.reportObserved();
-    return super.state;
-  }
-
-  @override
-  set state(String value) {
-    _$stateAtom.context.conditionallyRunInAction(() {
-      super.state = value;
-      _$stateAtom.reportChanged();
-    }, _$stateAtom, name: '${_$stateAtom.name}_set');
+  set status(String value) {
+    _$statusAtom.context.conditionallyRunInAction(() {
+      super.status = value;
+      _$statusAtom.reportChanged();
+    }, _$statusAtom, name: '${_$statusAtom.name}_set');
   }
 }

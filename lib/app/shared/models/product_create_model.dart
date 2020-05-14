@@ -1,5 +1,5 @@
 class ProductCreateModel {
-  String sId;
+  String id;
   String title;
   String description;
   String type;
@@ -7,7 +7,7 @@ class ProductCreateModel {
   String averagetime;
 
   ProductCreateModel({
-    this.sId,
+    this.id,
     this.title,
     this.description,
     this.type,
@@ -16,17 +16,17 @@ class ProductCreateModel {
   });
 
   ProductCreateModel.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
+    id = json['_id'];
     title = json['title'];
     description = json['description'];
     type = json['type'];
-    price = json['price'];
+    price = json[price];
     averagetime = json['averagetime'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
+    data['id'] = this.id;
     data['title'] = this.title;
     data['description'] = this.description;
     data['type'] = this.type;
@@ -36,7 +36,3 @@ class ProductCreateModel {
     return data;
   }
 }
-
-/* String id;
-id = json['id'];
-data['id'] = this.id; */

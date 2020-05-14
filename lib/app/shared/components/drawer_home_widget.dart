@@ -24,7 +24,7 @@ class _DrawerHomeWidgetState extends State<DrawerHomeWidget> {
                   scale: 6.1,
                 ),
                 Text(
-                  "Julio Cezar Pereira Pinto",
+                  "Julio Cezar",
                   style: TextStyle(
                     fontSize: 16.0,
                   ),

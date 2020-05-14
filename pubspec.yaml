@@ -40,6 +40,9 @@ dependencies:
   flutter_modular: ^1.1.2
   
   datetime_picker_formfield: ^1.0.0
+  autocomplete_textfield: ^1.6.4
+  mask_text_input_formatter: ^1.0.6
+  flutter_masked_text: ^0.8.0
 
 dev_dependencies:
   flutter_launcher_icons: "^0.7.3"
