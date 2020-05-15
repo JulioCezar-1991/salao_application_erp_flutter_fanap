@@ -95,24 +95,6 @@ mixin _$OrderController on _OrderControllerBase, Store {
     }, _$idClientAtom, name: '${_$idClientAtom.name}_set');
   }
 
-  final _$schedulingHourAtom =
-      Atom(name: '_OrderControllerBase.schedulingHour');
-
-  @override
-  String get schedulingHour {
-    _$schedulingHourAtom.context.enforceReadPolicy(_$schedulingHourAtom);
-    _$schedulingHourAtom.reportObserved();
-    return super.schedulingHour;
-  }
-
-  @override
-  set schedulingHour(String value) {
-    _$schedulingHourAtom.context.conditionallyRunInAction(() {
-      super.schedulingHour = value;
-      _$schedulingHourAtom.reportChanged();
-    }, _$schedulingHourAtom, name: '${_$schedulingHourAtom.name}_set');
-  }
-
   final _$schedulingDateAtom =
       Atom(name: '_OrderControllerBase.schedulingDate');
 
@@ -231,16 +213,6 @@ mixin _$OrderController on _OrderControllerBase, Store {
     final _$actionInfo = _$_OrderControllerBaseActionController.startAction();
     try {
       return super.validateIdClient(value);
-    } finally {
-      _$_OrderControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void validateHour(String value) {
-    final _$actionInfo = _$_OrderControllerBaseActionController.startAction();
-    try {
-      return super.validateHour(value);
     } finally {
       _$_OrderControllerBaseActionController.endAction(_$actionInfo);
     }

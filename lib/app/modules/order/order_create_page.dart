@@ -89,9 +89,12 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Text(
-          user.name,
-          style: TextStyle(fontSize: 18.0),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            user.name,
+            style: TextStyle(fontSize: 18.0),
+          ),
         ),
       ],
     );
@@ -103,9 +106,12 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Text(
-          user.name,
-          style: TextStyle(fontSize: 18.0),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            user.name,
+            style: TextStyle(fontSize: 18.0),
+          ),
         ),
       ],
     );
@@ -276,7 +282,6 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
                         initialTime: TimeOfDay.fromDateTime(
                             currentValue ?? DateTime.now()),
                       );
-                      _orderController.schedulingHour = time.toString();
                       _orderController.schedulingDate = date.toString();
                       return DateTimeField.combine(date, time);
                     } else {

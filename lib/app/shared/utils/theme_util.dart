@@ -15,7 +15,7 @@ ThemeData appTheme() {
     accentColor: accentColor,
     backgroundColor: backgroundColor,
     bottomAppBarColor: bottomAppBarColor,
-    cursorColor: cursorColor,
+    cursorColor: accentColor,
     appBarTheme: AppBarTheme(
       textTheme: TextTheme(
         title: TextStyle(

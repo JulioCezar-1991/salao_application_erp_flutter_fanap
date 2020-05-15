@@ -68,8 +68,12 @@ abstract class _ProductControllerBase with Store {
     'Corte',
   ];
 
-  @observable
   String averagetime = '';
+
+  @action
+  String setAveragetime(String value) {
+    return averagetime = value;
+  }
 
   @action
   void validateAverageTime(String value) {
@@ -100,7 +104,7 @@ abstract class _ProductControllerBase with Store {
   void validateAll() async {
     validateTitle(title);
     validateAverageTime(averagetime);
-    validatePrice(price);
+    validatePrice(price.toString());
     validateDescription(description);
     validateType(type);
     if (error.title == null &&
@@ -134,10 +138,11 @@ abstract class _ProductControllerBase with Store {
   Future<ProductModel> _patchProduct(ProductCreateModel model, id) async {
     var model = ProductCreateModel(
       id: id,
-      title: this.title,
-      /* price: this.price.toString(), */
-      averagetime: this.averagetime,
-      description: this.description,
+      title: title,
+      price: double.parse(price),
+      type: type,
+      averagetime: averagetime,
+      description: description,
     );
     try {
       var res = await _repository.patchProduct(model);

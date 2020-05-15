@@ -94,23 +94,6 @@ mixin _$ProductController on _ProductControllerBase, Store {
     }, _$typeAtom, name: '${_$typeAtom.name}_set');
   }
 
-  final _$averagetimeAtom = Atom(name: '_ProductControllerBase.averagetime');
-
-  @override
-  String get averagetime {
-    _$averagetimeAtom.context.enforceReadPolicy(_$averagetimeAtom);
-    _$averagetimeAtom.reportObserved();
-    return super.averagetime;
-  }
-
-  @override
-  set averagetime(String value) {
-    _$averagetimeAtom.context.conditionallyRunInAction(() {
-      super.averagetime = value;
-      _$averagetimeAtom.reportChanged();
-    }, _$averagetimeAtom, name: '${_$averagetimeAtom.name}_set');
-  }
-
   final _$dataProductModelAtom =
       Atom(name: '_ProductControllerBase.dataProductModel');
 
@@ -177,6 +160,16 @@ mixin _$ProductController on _ProductControllerBase, Store {
     final _$actionInfo = _$_ProductControllerBaseActionController.startAction();
     try {
       return super.validateType(value);
+    } finally {
+      _$_ProductControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String setAveragetime(String value) {
+    final _$actionInfo = _$_ProductControllerBaseActionController.startAction();
+    try {
+      return super.setAveragetime(value);
     } finally {
       _$_ProductControllerBaseActionController.endAction(_$actionInfo);
     }

@@ -23,7 +23,6 @@ class TextFieldUpdate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      cursorColor: Theme.of(context).accentColor,
       inputFormatters: inputFormatters == null
           ? [LengthLimitingTextInputFormatter(maxLength)]
           : inputFormatters,
@@ -32,9 +31,10 @@ class TextFieldUpdate extends StatelessWidget {
         errorText: errorText,
         border: OutlineInputBorder(),
         labelText: labelText,
-        labelStyle: TextStyle(color: Theme.of(context).primaryColor),
+        labelStyle: TextStyle(
+          color: Theme.of(context).primaryColor,
+        ),
       ),
-
       initialValue: initialValue,
       onChanged: onChanged,
       style: TextStyle(

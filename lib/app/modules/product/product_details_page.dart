@@ -1,5 +1,6 @@
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
 import 'package:projeto_fanap/app/modules/product/product_controller.dart';
@@ -17,17 +18,13 @@ class ProductDetailsPage extends StatefulWidget {
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
   final _productController = Modular.get<ProductController>();
 
-  Future<String> drop() async {
-    return _productController.type.toString();
-  }
-
-  String dropdownValue = 'Tipo de Serviço';
-
-  final formKey = GlobalKey<FormState>();
   final format = DateFormat("HH:mm");
 
   @override
   Widget build(BuildContext context) {
+    _productController.type = widget.item.type;
+    _productController.averagetime = widget.item.averagetime;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -135,112 +132,121 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         padding: EdgeInsets.only(top: 12, left: 20, bottom: 6, right: 20),
         child: Column(
           children: <Widget>[
-            TextFieldUpdate(
-              keyboardType: TextInputType.text,
-              initialValue: widget.item.title,
-              labelText: 'Titulo',
-              onChanged: (value) {
-                _productController.title = value;
-              },
-              errorText: _productController.error.title,
-              maxLength: 38,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            TextFieldUpdate(
-              maxLength: 6,
-              keyboardType: TextInputType.text,
-              initialValue: widget.item.price.toString(),
-              labelText: 'Valor',
-              onChanged: (value) {
-                _productController.price = value;
-              },
-              errorText: _productController.error.price,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            // Data de Aniversario
-            DateTimeField(
-              key: formKey,
-              initialValue: DateTime.now(),
-              decoration: InputDecoration(
-                labelText: "Tempo Médio Gasto",
-                labelStyle: TextStyle(color: Theme.of(context).primaryColor),
-                border: OutlineInputBorder(),
+            Observer(
+              builder: (_) => TextFieldUpdate(
+                keyboardType: TextInputType.text,
+                initialValue: widget.item.title,
+                labelText: 'Titulo',
+                onChanged: (value) {
+                  _productController.title = value;
+                },
+                errorText: _productController.error.title,
+                maxLength: 38,
               ),
-              format: format,
-              onShowPicker: (context, currentValue) async {
-                final time = await showTimePicker(
-                  context: context,
-                  initialTime: TimeOfDay.fromDateTime(
-                    currentValue ?? DateTime.now(),
-                  ),
-                );
-                if (time != null) {
-                  _productController.averagetime = time.toString();
-                  print(time);
-                }
-                return DateTimeField.convert(time);
-              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Observer(
+              builder: (_) => TextFieldUpdate(
+                maxLength: 6,
+                keyboardType: TextInputType.text,
+                initialValue: widget.item.price.toString(),
+                labelText: 'Valor',
+                onChanged: (value) {
+                  _productController.price = value;
+                },
+                errorText: _productController.error.price,
+              ),
             ),
             SizedBox(
               height: 20,
             ),
             Container(
-              padding: EdgeInsets.all(8),
-              decoration: new BoxDecoration(
-                border: Border.all(
-                  color: Colors.grey,
-                  width: 1,
+              child: DateTimeField(
+                format: format,
+                initialValue: DateTime.parse(_productController.averagetime),
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  suffixIcon: Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: Icon(Icons.clear),
+                  ),
+                  labelText: "Tempo Médio Gasto",
+                  labelStyle: TextStyle(color: Theme.of(context).primaryColor),
                 ),
-                borderRadius: BorderRadius.circular(4),
-                shape: BoxShape.rectangle,
-              ),
-              child: DropdownButton(
-                value: dropdownValue,
-                isExpanded: true,
-                icon: Icon(
-                  Icons.arrow_downward,
-                  color: Theme.of(context).primaryColor,
-                ),
-                iconSize: 24,
-                elevation: 16,
-                style: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                ),
-                underline: Container(
-                  height: 2,
-                  color: Theme.of(context).primaryColor,
-                ),
-                items: _productController.listType
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
+                onShowPicker: (context, currentValue) async {
+                  final time = await showTimePicker(
+                    context: context,
+                    initialTime: TimeOfDay.fromDateTime(
+                      currentValue ?? DateTime.now(),
+                    ),
                   );
-                }).toList(),
-                onChanged: (String newValue) {
-                  _productController.type = newValue;
-                  setState(() {
-                    dropdownValue = newValue;
-                  });
+                  if (currentValue != null) {
+                    _productController.averagetime =
+                        DateTimeField.convert(time).toString();
+                  }
+                  return DateTimeField.convert(time);
                 },
               ),
             ),
             SizedBox(
               height: 20,
             ),
-            TextFieldUpdate(
-              keyboardType: TextInputType.text,
-              initialValue: widget.item.description,
-              labelText: 'Observação',
-              onChanged: (value) {
-                _productController.description = value;
-              },
-              errorText: _productController.error.description,
-              maxLength: 32,
+            Observer(
+              builder: (_) => Container(
+                padding: EdgeInsets.all(8),
+                decoration: new BoxDecoration(
+                  border: Border.all(
+                    color: Colors.grey,
+                    width: 1,
+                  ),
+                  borderRadius: BorderRadius.circular(4),
+                  shape: BoxShape.rectangle,
+                ),
+                child: DropdownButton(
+                  value: _productController.type,
+                  isExpanded: true,
+                  icon: Icon(
+                    Icons.arrow_downward,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  iconSize: 24,
+                  elevation: 16,
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  underline: Container(
+                    height: 2,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  items: _productController.listType
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (String newValue) {
+                    _productController.type = newValue;
+                  },
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Observer(
+              builder: (_) => TextFieldUpdate(
+                keyboardType: TextInputType.text,
+                initialValue: widget.item.description,
+                labelText: 'Observação',
+                onChanged: (value) {
+                  _productController.description = value;
+                },
+                errorText: _productController.error.description,
+                maxLength: 32,
+              ),
             ),
           ],
         ),

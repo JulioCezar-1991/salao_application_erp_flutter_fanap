@@ -29,13 +29,10 @@ class TextFieldCreate extends StatelessWidget {
           ? [LengthLimitingTextInputFormatter(maxLength)]
           : inputFormatters,
       keyboardType: keyboardType,
-      cursorColor: Theme.of(context).accentColor,
       decoration: InputDecoration(
         errorText: errorText,
         hintText: hintText,
         hoverColor: Colors.red,
-        focusColor: Colors.red,
-        counterStyle: TextStyle(color: Colors.transparent),
         icon: icon,
         labelText: labelText,
         labelStyle: TextStyle(

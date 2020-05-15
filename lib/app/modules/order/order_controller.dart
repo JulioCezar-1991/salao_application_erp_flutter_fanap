@@ -70,15 +70,6 @@ abstract class _OrderControllerBase with Store {
   }
 
   @observable
-  String schedulingHour = '';
-
-  @action
-  void validateHour(String value) {
-    error.schedulingHour =
-        isNull(value) || value.isEmpty ? 'Horario inválido' : null;
-  }
-
-  @observable
   String schedulingDate = '';
 
   @action
@@ -88,7 +79,7 @@ abstract class _OrderControllerBase with Store {
   }
 
   @observable
-  String status = '';
+  String status = 'Status do Serviço';
 
   @action
   void validadeStatus(String value) {
@@ -107,7 +98,6 @@ abstract class _OrderControllerBase with Store {
       customer: idUser,
       client: idClient,
       schedulingdate: schedulingDate,
-      schedulinghour: schedulingHour,
       status: status,
       subtotal: subtotal,
     );
@@ -124,7 +114,6 @@ abstract class _OrderControllerBase with Store {
   void validateCreateAll() async {
     validateIdUser(idUser);
     validateIdClient(idClient);
-    validateHour(schedulingHour);
     validateDate(schedulingDate);
     validadeStatus(status);
     if (error.idUser == null &&

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:projeto_fanap/app/modules/order/order_controller.dart';
-import 'package:projeto_fanap/app/shared/components/text_field_update_widget.dart';
 import 'package:projeto_fanap/app/shared/models/order_done_list_model.dart';
 
 class OrderDoneDetailsPage extends StatefulWidget {
@@ -122,7 +119,7 @@ class _OrderDoneDetailsPageState extends State<OrderDoneDetailsPage> {
         padding: EdgeInsets.only(top: 12, left: 20, bottom: 6, right: 20),
         child: Column(
           children: <Widget>[
-            Observer(
+            /* Observer(
               builder: (_) {
                 return TextFieldUpdate(
                   keyboardType: TextInputType.text,
@@ -135,7 +132,7 @@ class _OrderDoneDetailsPageState extends State<OrderDoneDetailsPage> {
                   maxLength: 38,
                 );
               },
-            ),
+            ), */
             SizedBox(
               height: 20,
             ),

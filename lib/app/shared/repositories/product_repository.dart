@@ -19,6 +19,7 @@ class ProductRepository {
 
   Future<ProductModel> postProduct(ProductCreateModel model) async {
     Response response = await dio.post('/products', data: model);
+    debugPrint("resposta: ${response.data}");
     return ProductModel.fromJson(response.data[0]);
   }
 

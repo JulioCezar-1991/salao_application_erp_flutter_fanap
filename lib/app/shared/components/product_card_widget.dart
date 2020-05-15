@@ -58,7 +58,7 @@ class ProductCard extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(top: 2.5, bottom: 6),
                     child: Text(
-                      'Tempo Médio Gasto: ${item.averagetime.substring(10, 15)}h',
+                      'Tempo Médio Gasto: ${item.averagetime.substring(10, 16)}h',
                       style: TextStyle(
                           fontSize: 12, color: Theme.of(context).accentColor),
                     ),
