@@ -10,7 +10,7 @@ import 'package:projeto_fanap/app/shared/models/product_list_model.dart';
 class ProductDetailsPage extends StatefulWidget {
   final ProductListModel item;
 
-  const ProductDetailsPage({Key key, this.item}) : super(key: key);
+  const ProductDetailsPage({Key key, this.item});
   @override
   _ProductDetailsPageState createState() => _ProductDetailsPageState();
 }
@@ -162,49 +162,47 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             SizedBox(
               height: 20,
             ),
-            Container(
-              child: DateTimeField(
-                format: format,
-                initialValue: DateTime.parse(_productController.averagetime),
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  suffixIcon: Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Icon(Icons.clear),
-                  ),
-                  labelText: "Tempo Médio Gasto",
-                  labelStyle: TextStyle(color: Theme.of(context).primaryColor),
+            DateTimeField(
+              format: format,
+              initialValue: DateTime.parse(_productController.averagetime),
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                suffixIcon: Padding(
+                  padding: EdgeInsets.only(left: 20),
+                  child: Icon(Icons.clear),
                 ),
-                onShowPicker: (context, currentValue) async {
-                  final time = await showTimePicker(
-                    context: context,
-                    initialTime: TimeOfDay.fromDateTime(
-                      currentValue ?? DateTime.now(),
-                    ),
-                  );
-                  if (currentValue != null) {
-                    _productController.averagetime =
-                        DateTimeField.convert(time).toString();
-                  }
-                  return DateTimeField.convert(time);
-                },
+                labelText: "Tempo Médio Gasto",
+                labelStyle: TextStyle(color: Theme.of(context).primaryColor),
               ),
+              onShowPicker: (context, currentValue) async {
+                final time = await showTimePicker(
+                  context: context,
+                  initialTime: TimeOfDay.fromDateTime(
+                    currentValue ?? DateTime.now(),
+                  ),
+                );
+                if (currentValue != null) {
+                  _productController.averagetime =
+                      DateTimeField.convert(time).toString();
+                }
+                return DateTimeField.convert(time);
+              },
             ),
             SizedBox(
               height: 20,
             ),
-            Observer(
-              builder: (_) => Container(
-                padding: EdgeInsets.all(8),
-                decoration: new BoxDecoration(
-                  border: Border.all(
-                    color: Colors.grey,
-                    width: 1,
-                  ),
-                  borderRadius: BorderRadius.circular(4),
-                  shape: BoxShape.rectangle,
+            Container(
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.grey,
+                  width: 1,
                 ),
-                child: DropdownButton(
+                borderRadius: BorderRadius.circular(4),
+                shape: BoxShape.rectangle,
+              ),
+              child: Observer(
+                builder: (_) => DropdownButton(
                   value: _productController.type,
                   isExpanded: true,
                   icon: Icon(
@@ -238,6 +236,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             ),
             Observer(
               builder: (_) => TextFieldUpdate(
+                maxLines: 4,
                 keyboardType: TextInputType.text,
                 initialValue: widget.item.description,
                 labelText: 'Observação',
@@ -245,7 +244,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   _productController.description = value;
                 },
                 errorText: _productController.error.description,
-                maxLength: 32,
+                maxLength: 112,
               ),
             ),
           ],

@@ -4,6 +4,7 @@ import 'package:projeto_fanap/app/modules/analytics/analytics_page.dart';
 import 'package:projeto_fanap/app/modules/client/client_controller.dart';
 import 'package:projeto_fanap/app/modules/client/client_create_page.dart';
 import 'package:projeto_fanap/app/modules/client/client_page.dart';
+import 'package:projeto_fanap/app/modules/customer/customer_controller.dart';
 import 'package:projeto_fanap/app/modules/order/order_controller.dart';
 import 'package:projeto_fanap/app/modules/order/order_create_page.dart';
 import 'package:projeto_fanap/app/modules/order/order_page.dart';
@@ -19,6 +20,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   PageController _controllerPage = PageController(initialPage: 0);
+  final _customerController = Modular.get<CustomerController>();
   final _clientController = Modular.get<ClientController>();
   final _productController = Modular.get<ProductController>();
   final _orderController = Modular.get<OrderController>();
@@ -44,6 +46,7 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.refresh),
             onPressed: () {
               if (_controlePagina == 0) {
+                _customerController.fetchCustomer();
                 _clientController.fetchClient();
               }
               if (_controlePagina == 1) {

@@ -16,12 +16,11 @@ class ProductCreatePage extends StatefulWidget {
 class _ProductCreatePageState extends State<ProductCreatePage> {
   final _productController = Modular.get<ProductController>();
 
-  String dropdownValue = 'Tipo de Serviço';
-
   var maskTelFixFormatter = MaskTextInputFormatter(
       mask: "(##) ####-####", filter: {"#": RegExp(r'[0-9]')});
 
   final format = DateFormat("HH:mm");
+  String dropdownValue;
 
   @override
   Widget build(BuildContext context) {
@@ -117,59 +116,6 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
               ),
             ),
             SizedBox(
-              height: 20,
-            ),
-            Row(
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.only(right: 16),
-                  child: Icon(
-                    Icons.description,
-                    color: Colors.grey,
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    height: 50,
-                    child: DropdownButton(
-                      value: dropdownValue,
-                      isExpanded: true,
-                      icon: Icon(
-                        Icons.arrow_downward,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      iconSize: 24,
-                      elevation: 16,
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      underline: Container(
-                        height: 2,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      items: _productController.listType
-                          .map<DropdownMenuItem<String>>(
-                        (String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        },
-                      ).toList(),
-                      onChanged: (String newValue) {
-                        _productController.type = newValue;
-                        setState(
-                          () {
-                            dropdownValue = newValue;
-                          },
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
               height: 10,
             ),
             Row(
@@ -211,12 +157,66 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
                 ),
               ],
             ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(right: 16),
+                  child: Icon(
+                    Icons.description,
+                    color: Colors.grey,
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    height: 50,
+                    child: Observer(
+                      builder: (_) => DropdownButton(
+                        value: _productController.type,
+                        isExpanded: true,
+                        icon: Icon(
+                          Icons.arrow_downward,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        iconSize: 24,
+                        elevation: 16,
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        underline: Container(
+                          height: 2,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        items: _productController.listType
+                            .map<DropdownMenuItem<String>>(
+                          (String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          },
+                        ).toList(),
+                        onChanged: (String newValue) {
+                          _productController.type = newValue;
+                          setState(() {
+                            dropdownValue = newValue;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
             Observer(
               builder: (_) => Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: TextFieldCreate(
+                  maxLines: 4,
                   keyboardType: TextInputType.text,
-                  maxLength: 67,
+                  maxLength: 112,
                   icon: Icon(
                     Icons.details,
                     size: 26,

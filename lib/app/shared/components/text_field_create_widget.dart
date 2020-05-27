@@ -10,6 +10,7 @@ class TextFieldCreate extends StatelessWidget {
   final TextInputType keyboardType;
   final Function onChanged;
   final String errorText;
+  final int maxLines;
 
   const TextFieldCreate({
     @required this.icon,
@@ -20,6 +21,7 @@ class TextFieldCreate extends StatelessWidget {
     this.onChanged,
     this.errorText,
     this.inputFormatters,
+    this.maxLines,
   });
 
   @override
@@ -29,6 +31,7 @@ class TextFieldCreate extends StatelessWidget {
           ? [LengthLimitingTextInputFormatter(maxLength)]
           : inputFormatters,
       keyboardType: keyboardType,
+      maxLines: maxLines,
       decoration: InputDecoration(
         errorText: errorText,
         hintText: hintText,

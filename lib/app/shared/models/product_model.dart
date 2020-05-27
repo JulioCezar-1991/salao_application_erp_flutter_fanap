@@ -26,7 +26,7 @@ class ProductModel {
     title = json['title'];
     description = json['description'];
     type = json['type'];
-    price = json['price'];
+    price = double.parse(json['price'].toString());
     averagetime = json['averagetime'];
     createDate = json['createDate'];
     iV = json['__v'];

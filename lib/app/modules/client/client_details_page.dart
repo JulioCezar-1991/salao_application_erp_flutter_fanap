@@ -19,14 +19,12 @@ class ClientDetailsPage extends StatefulWidget {
 }
 
 class _ClientDetailsPageState extends State<ClientDetailsPage> {
+  final _clientController = Modular.get<ClientController>();
+  final formKey = GlobalKey<FormState>();
+  final format = DateFormat("dd/MM/yyyy");
+
   @override
   Widget build(BuildContext context) {
-    final _clientController = Modular.get<ClientController>();
-
-    final formKey = GlobalKey<FormState>();
-
-    final format = DateFormat("dd/MM/yyyy");
-
     var maskTelFixFormatter = MaskTextInputFormatter(
         mask: "(##) ####-####", filter: {"#": RegExp(r'[0-9]')});
 
@@ -35,6 +33,8 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
 
     var maskCpfFormatter = MaskTextInputFormatter(
         mask: "###.###.###-##", filter: {"#": RegExp(r'[0-9]')});
+
+    _clientController.date = widget.item.date;
 
     return Scaffold(
       appBar: AppBar(
@@ -175,10 +175,10 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
               height: 20,
             ),
             // Data de Aniversario
-            Observer(
-              builder: (_) => DateTimeField(
+            Container(
+              child: DateTimeField(
                 key: formKey,
-                initialValue: DateTime.now(),
+                initialValue: DateTime.parse(_clientController.date),
                 decoration: InputDecoration(
                   labelText: "Data de anivesário",
                   labelStyle: TextStyle(color: Theme.of(context).primaryColor),
@@ -193,7 +193,7 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
                       lastDate: DateTime(2100));
                   if (date != null) {
                     _clientController.date = date.toString();
-                    print(date);
+                    print(_clientController.date);
                   }
                   return date;
                 },

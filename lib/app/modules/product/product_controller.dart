@@ -35,15 +35,6 @@ abstract class _ProductControllerBase with Store {
   }
 
   @observable
-  String description = '';
-
-  @action
-  void validateDescription(String value) {
-    error.description =
-        isNull(value) || value.isEmpty ? 'Descrição invalida' : null;
-  }
-
-  @observable
   String price = '';
 
   @action
@@ -52,11 +43,12 @@ abstract class _ProductControllerBase with Store {
   }
 
   @observable
-  String type = '';
+  String type = 'Tipo de Serviço';
 
   @action
   void validateType(String value) {
-    error.type = isNull(value) || value.isEmpty ? 'Tipo invalida' : null;
+    error.type =
+        isNull(value) || value.isEmpty ? 'Tipo de Serviço inválido' : null;
   }
 
   List<String> listType = [
@@ -71,14 +63,18 @@ abstract class _ProductControllerBase with Store {
   String averagetime = '';
 
   @action
-  String setAveragetime(String value) {
-    return averagetime = value;
+  void validateAveragetime(String value) {
+    error.averagetime =
+        isNull(value) || value.isEmpty ? 'Tempo de serviço inválido' : null;
   }
 
+  @observable
+  String description = '';
+
   @action
-  void validateAverageTime(String value) {
-    error.averagetime =
-        isNull(value) || value.isEmpty ? 'Tempo médio inválido' : null;
+  void validateDescription(String value) {
+    error.description =
+        isNull(value) || value.isEmpty ? 'Descrição invalida' : null;
   }
 
   @observable
@@ -103,13 +99,10 @@ abstract class _ProductControllerBase with Store {
 
   void validateAll() async {
     validateTitle(title);
-    validateAverageTime(averagetime);
     validatePrice(price.toString());
     validateDescription(description);
-    validateType(type);
     if (error.title == null &&
         error.description == null &&
-        error.averagetime == null &&
         error.price == null &&
         error.type == null) {
       _postCreate().then((procuct) async {});
@@ -139,7 +132,7 @@ abstract class _ProductControllerBase with Store {
     var model = ProductCreateModel(
       id: id,
       title: title,
-      price: double.parse(price),
+      price: price == "" ? null : double.parse(price),
       type: type,
       averagetime: averagetime,
       description: description,
@@ -162,22 +155,22 @@ abstract class _FormProductErrorState with Store {
   String title;
 
   @observable
-  String description;
+  String price;
 
   @observable
-  String price;
+  String averagetime;
 
   @observable
   String type;
 
   @observable
-  String averagetime;
+  String description;
 
   @computed
   bool get hasErrors =>
       title != null ||
-      description != null ||
       price != null ||
+      averagetime != null ||
       type != null ||
-      averagetime != null;
+      description != null;
 }

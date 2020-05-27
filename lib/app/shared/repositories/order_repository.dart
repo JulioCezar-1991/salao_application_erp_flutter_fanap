@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_fanap/app/shared/models/order_all_list_model.dart';
 import 'package:projeto_fanap/app/shared/models/order_canceled_list_model.dart';
 import 'package:projeto_fanap/app/shared/models/order_create_model.dart';
+import 'package:projeto_fanap/app/shared/models/order_delete_model.dart';
 import 'package:projeto_fanap/app/shared/models/order_done_list_model.dart';
 import 'package:projeto_fanap/app/shared/models/order_model.dart';
 import 'package:projeto_fanap/app/shared/models/order_open_list_model.dart';
@@ -46,8 +47,8 @@ class OrderRepository {
     return OrderModel.fromJson(response.data);
   }
 
-  Future<OrderModel> deleteOrder() async {
-    Response response = await dio.delete('/orders');
+  Future<OrderModel> deleteOrder(OrderDeleteModel model) async {
+    Response response = await dio.delete('/orders', data: model);
     debugPrint("resposta: ${response.statusCode}");
     return OrderModel.fromJson(response.data);
   }

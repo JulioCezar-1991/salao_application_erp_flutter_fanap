@@ -9,6 +9,7 @@ class TextFieldUpdate extends StatelessWidget {
   final Function onChanged;
   final List<TextInputFormatter> inputFormatters;
   final String errorText;
+  final int maxLines;
 
   const TextFieldUpdate({
     @required this.maxLength,
@@ -18,6 +19,7 @@ class TextFieldUpdate extends StatelessWidget {
     @required this.labelText,
     @required this.errorText,
     this.inputFormatters,
+    this.maxLines,
   });
 
   @override
@@ -27,6 +29,7 @@ class TextFieldUpdate extends StatelessWidget {
           ? [LengthLimitingTextInputFormatter(maxLength)]
           : inputFormatters,
       keyboardType: keyboardType,
+      maxLines: maxLines,
       decoration: InputDecoration(
         errorText: errorText,
         border: OutlineInputBorder(),

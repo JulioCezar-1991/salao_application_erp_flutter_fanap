@@ -87,32 +87,36 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
         padding: EdgeInsets.only(top: 12, left: 20, bottom: 6, right: 20),
         child: Column(
           children: <Widget>[
-            TextFieldCreate(
-              keyboardType: TextInputType.text,
-              maxLength: 38,
-              icon: Icon(
-                Icons.perm_identity,
+            Observer(
+              builder: (_) => TextFieldCreate(
+                keyboardType: TextInputType.text,
+                maxLength: 38,
+                icon: Icon(
+                  Icons.perm_identity,
+                ),
+                hintText: 'Digite o nome',
+                labelText: 'Nome Completo',
+                onChanged: (value) {
+                  _clientController.name = value;
+                },
+                errorText: _clientController.error.name,
               ),
-              hintText: 'Digite o nome',
-              labelText: 'Nome Completo',
-              onChanged: (value) {
-                _clientController.name = value;
-              },
-              errorText: _clientController.error.name,
             ),
-            TextFieldCreate(
-              inputFormatters: [maskCpfFormatter],
-              keyboardType: TextInputType.number,
-              maxLength: 11,
-              icon: Icon(
-                Icons.perm_identity,
+            Observer(
+              builder: (_) => TextFieldCreate(
+                inputFormatters: [maskCpfFormatter],
+                keyboardType: TextInputType.number,
+                maxLength: 11,
+                icon: Icon(
+                  Icons.perm_identity,
+                ),
+                hintText: 'Digite seu CPF',
+                labelText: 'CPF',
+                onChanged: (value) {
+                  _clientController.cpf = value;
+                },
+                errorText: _clientController.error.cpf,
               ),
-              hintText: 'Digite seu CPF',
-              labelText: 'CPF',
-              onChanged: (value) {
-                _clientController.cpf = value;
-              },
-              errorText: _clientController.error.cpf,
             ),
             SizedBox(
               height: 5,
@@ -138,46 +142,52 @@ class _ClientCreatePageState extends State<ClientCreatePage> {
                 return date;
               },
             ),
-            TextFieldCreate(
-              keyboardType: TextInputType.emailAddress,
-              maxLength: 32,
-              icon: Icon(
-                Icons.email,
+            Observer(
+              builder: (_) => TextFieldCreate(
+                keyboardType: TextInputType.emailAddress,
+                maxLength: 32,
+                icon: Icon(
+                  Icons.email,
+                ),
+                hintText: 'Digite o E-mail',
+                labelText: 'E-mail',
+                onChanged: (value) {
+                  _clientController.email = value;
+                },
+                errorText: _clientController.error.email,
               ),
-              hintText: 'Digite o E-mail',
-              labelText: 'E-mail',
-              onChanged: (value) {
-                _clientController.email = value;
-              },
-              errorText: _clientController.error.email,
             ),
-            TextFieldCreate(
-              inputFormatters: [maskTelCelFormatter],
-              keyboardType: TextInputType.phone,
-              maxLength: 12,
-              icon: Icon(
-                Icons.smartphone,
+            Observer(
+              builder: (_) => TextFieldCreate(
+                inputFormatters: [maskTelCelFormatter],
+                keyboardType: TextInputType.phone,
+                maxLength: 12,
+                icon: Icon(
+                  Icons.smartphone,
+                ),
+                hintText: 'Digite o número móvel',
+                labelText: 'Telefone Celular',
+                onChanged: (value) {
+                  _clientController.telcel = value;
+                },
+                errorText: _clientController.error.telcel,
               ),
-              hintText: 'Digite o número móvel',
-              labelText: 'Telefone Celular',
-              onChanged: (value) {
-                _clientController.telcel = value;
-              },
-              errorText: _clientController.error.telcel,
             ),
-            TextFieldCreate(
-              inputFormatters: [maskTelFixFormatter],
-              keyboardType: TextInputType.phone,
-              maxLength: 12,
-              icon: Icon(
-                Icons.phone,
+            Observer(
+              builder: (_) => TextFieldCreate(
+                inputFormatters: [maskTelFixFormatter],
+                keyboardType: TextInputType.phone,
+                maxLength: 12,
+                icon: Icon(
+                  Icons.phone,
+                ),
+                hintText: 'Digite o telefone fixo',
+                labelText: 'Telefone Fixo',
+                onChanged: (value) {
+                  _clientController.telfix = value;
+                },
+                errorText: _clientController.error.telfix,
               ),
-              hintText: 'Digite o telefone fixo',
-              labelText: 'Telefone Fixo',
-              onChanged: (value) {
-                _clientController.telfix = value;
-              },
-              errorText: _clientController.error.telfix,
             ),
             Observer(
               builder: (_) {

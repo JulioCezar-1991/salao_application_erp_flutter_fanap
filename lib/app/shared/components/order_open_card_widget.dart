@@ -33,36 +33,55 @@ class OrderOpenCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.only(top: 3, bottom: 4),
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 3, bottom: 4),
-                      child: Text(
-                        item.client.name != null
-                            ? (item.client.name.length >= 32
-                                ? item.client.name.substring(0, 29) + '...'
-                                : item.client.name)
-                            : 'Consumidor Final',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context).accentColor),
-                      ),
+                    padding: EdgeInsets.only(top: 5, bottom: 0),
+                    child: Text(
+                      item.client.name != null
+                          ? (item.client.name.length >= 32
+                              ? item.client.name.substring(0, 29) + '...'
+                              : item.client.name)
+                          : 'Consumidor Final',
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).accentColor),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 2.5, bottom: 4),
-                    child: Row(
-                      children: <Widget>[
-                        Text(
-                          item.status,
-                          style: TextStyle(
-                              fontSize: 12,
-                              color: Theme.of(context).accentColor),
-                        ),
-                        SizedBox(
-                          width: 8,
-                        ),
-                      ],
+                    padding: const EdgeInsets.only(top: 4, bottom: 2),
+                    child: Text(
+                      "Agendamento: ${item.schedulingdate.substring(8, 10)}/${item.schedulingdate.substring(5, 7)}/${item.schedulingdate.substring(0, 4)} - ${item.schedulingdate.substring(11, 13)}:${item.schedulingdate.substring(14, 16)}",
+                      style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).accentColor),
                     ),
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(top: 3.5, bottom: 4),
+                        child: Row(
+                          children: <Widget>[
+                            Text(
+                              "Registro: ${item.createDate.substring(8, 10)}/${item.createDate.substring(5, 7)}/${item.createDate.substring(0, 4)}-${item.createDate.substring(11, 13)}:${item.createDate.substring(14, 16)}",
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  color: Theme.of(context).accentColor),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Text(
+                              item.status,
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.w900),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

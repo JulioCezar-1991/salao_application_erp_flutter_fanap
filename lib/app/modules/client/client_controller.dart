@@ -44,13 +44,7 @@ abstract class _ClientControllerBase with Store {
   }
 
   // Metodos Data Nascimento
-  @observable
   String date = '';
-
-  @action
-  void validateDate(String value) {
-    error.date = isNull(value) || value.isEmpty ? 'Data inválida' : null;
-  }
 
   @observable
   String email = '';
@@ -113,16 +107,16 @@ abstract class _ClientControllerBase with Store {
 
   Future<ClientModel> _postCreate() async {
     var model = ClientCreateModel(
-      name: name,
-      cpf: cpf,
-      date: date,
-      telcel: telcel,
-      telfix: telfix,
-      email: email,
-      address: address,
-      sector: sector,
-      city: city,
-    );
+        name: name,
+        cpf: cpf,
+        date: date,
+        telcel: telcel,
+        telfix: telfix,
+        email: email,
+        address: address,
+        sector: sector,
+        city: city,
+        state: state);
     try {
       var res = await repository.postClient(model);
       return res;
@@ -136,7 +130,6 @@ abstract class _ClientControllerBase with Store {
   void validateCreateAll() async {
     validateName(name);
     validateCPF(cpf);
-    validateDate(date);
     validateEmail(email);
     validateTelCel(telcel);
     validateTelFix(telfix);
@@ -146,7 +139,6 @@ abstract class _ClientControllerBase with Store {
     validateState(state);
     if (error.name == null &&
         error.cpf == null &&
-        error.date == null &&
         error.email == null &&
         error.telcel == null &&
         error.telfix == null &&
@@ -210,9 +202,6 @@ abstract class _FormClientErrorState with Store {
   String cpf;
 
   @observable
-  String date;
-
-  @observable
   String telcel;
 
   @observable
@@ -237,7 +226,6 @@ abstract class _FormClientErrorState with Store {
   bool get hasErrors =>
       name != null ||
       cpf != null ||
-      date != null ||
       telcel != null ||
       telfix != null ||
       email != null ||

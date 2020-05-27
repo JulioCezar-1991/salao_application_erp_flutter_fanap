@@ -5,7 +5,7 @@ class OrderOpenListModel {
   Customer customer;
   Customer client;
   String schedulingdate;
-  String schedulinghour;
+
   List<Itens> itens;
   double subtotal;
   String createDate;
@@ -17,7 +17,6 @@ class OrderOpenListModel {
       this.customer,
       this.client,
       this.schedulingdate,
-      this.schedulinghour,
       this.itens,
       this.subtotal,
       this.createDate});
@@ -32,7 +31,6 @@ class OrderOpenListModel {
     client =
         json['client'] != null ? new Customer.fromJson(json['client']) : null;
     schedulingdate = json['schedulingdate'];
-    schedulinghour = json['schedulinghour'];
     if (json['itens'] != null) {
       itens = new List<Itens>();
       json['itens'].forEach((v) {
@@ -55,7 +53,6 @@ class OrderOpenListModel {
       data['client'] = this.client.toJson();
     }
     data['schedulingdate'] = this.schedulingdate;
-    data['schedulinghour'] = this.schedulinghour;
     if (this.itens != null) {
       data['itens'] = this.itens.map((v) => v.toJson()).toList();
     }

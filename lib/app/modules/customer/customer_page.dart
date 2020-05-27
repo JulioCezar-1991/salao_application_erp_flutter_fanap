@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:projeto_fanap/app/modules/user/user_controller.dart';
+import 'package:projeto_fanap/app/modules/customer/customer_controller.dart';
 import 'package:projeto_fanap/app/shared/components/circle_button_widget.dart';
 
-class UserPage extends StatefulWidget {
+class CustomerPage extends StatefulWidget {
   @override
-  _UserPageState createState() => _UserPageState();
+  _CustomerPageState createState() => _CustomerPageState();
 }
 
-class _UserPageState extends State<UserPage> {
+class _CustomerPageState extends State<CustomerPage> {
   @override
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
-    final _userController = Modular.get<UserController>();
+    final _customerController = Modular.get<CustomerController>();
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -49,8 +49,9 @@ class _UserPageState extends State<UserPage> {
                       builder: (_) {
                         return _textFild(
                             icon: Icons.person,
-                            onChanged: (value) => _userController.email = value,
-                            errorText: _userController.error.email,
+                            onChanged: (value) =>
+                                _customerController.email = value,
+                            errorText: _customerController.error.email,
                             context: context,
                             hintText: 'E-Mail',
                             labelText: 'Digite o Email');
@@ -65,8 +66,8 @@ class _UserPageState extends State<UserPage> {
                             obscureText: true,
                             icon: Icons.lock_outline,
                             onChanged: (value) =>
-                                _userController.password = value,
-                            errorText: _userController.error.password,
+                                _customerController.password = value,
+                            errorText: _customerController.error.password,
                             context: context,
                             hintText: 'Senha',
                             labelText: 'Digite a Senha');
@@ -88,7 +89,7 @@ class _UserPageState extends State<UserPage> {
               height: 50,
               label: "ENTRAR",
               onTap: () {
-                _userController.validateAll();
+                _customerController.validateAll();
               },
             ),
             Padding(

@@ -60,23 +60,6 @@ mixin _$ClientController on _ClientControllerBase, Store {
     }, _$cpfAtom, name: '${_$cpfAtom.name}_set');
   }
 
-  final _$dateAtom = Atom(name: '_ClientControllerBase.date');
-
-  @override
-  String get date {
-    _$dateAtom.context.enforceReadPolicy(_$dateAtom);
-    _$dateAtom.reportObserved();
-    return super.date;
-  }
-
-  @override
-  set date(String value) {
-    _$dateAtom.context.conditionallyRunInAction(() {
-      super.date = value;
-      _$dateAtom.reportChanged();
-    }, _$dateAtom, name: '${_$dateAtom.name}_set');
-  }
-
   final _$emailAtom = Atom(name: '_ClientControllerBase.email');
 
   @override
@@ -248,16 +231,6 @@ mixin _$ClientController on _ClientControllerBase, Store {
   }
 
   @override
-  void validateDate(String value) {
-    final _$actionInfo = _$_ClientControllerBaseActionController.startAction();
-    try {
-      return super.validateDate(value);
-    } finally {
-      _$_ClientControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void validateEmail(String value) {
     final _$actionInfo = _$_ClientControllerBaseActionController.startAction();
     try {
@@ -367,23 +340,6 @@ mixin _$FormClientErrorState on _FormClientErrorState, Store {
       super.cpf = value;
       _$cpfAtom.reportChanged();
     }, _$cpfAtom, name: '${_$cpfAtom.name}_set');
-  }
-
-  final _$dateAtom = Atom(name: '_FormClientErrorState.date');
-
-  @override
-  String get date {
-    _$dateAtom.context.enforceReadPolicy(_$dateAtom);
-    _$dateAtom.reportObserved();
-    return super.date;
-  }
-
-  @override
-  set date(String value) {
-    _$dateAtom.context.conditionallyRunInAction(() {
-      super.date = value;
-      _$dateAtom.reportChanged();
-    }, _$dateAtom, name: '${_$dateAtom.name}_set');
   }
 
   final _$telcelAtom = Atom(name: '_FormClientErrorState.telcel');

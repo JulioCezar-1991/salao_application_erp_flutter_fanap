@@ -1,4 +1,4 @@
-class UserListModel {
+class CustomerListModel {
   List<String> roles;
   bool active;
   String sId;
@@ -9,7 +9,7 @@ class UserListModel {
   String createDate;
   int iV;
 
-  UserListModel(
+  CustomerListModel(
       {this.roles,
       this.active,
       this.sId,
@@ -20,7 +20,7 @@ class UserListModel {
       this.createDate,
       this.iV});
 
-  UserListModel.fromJson(Map<String, dynamic> json) {
+  CustomerListModel.fromJson(Map<String, dynamic> json) {
     roles = json['roles'].cast<String>();
     active = json['active'];
     sId = json['_id'];

@@ -43,23 +43,6 @@ mixin _$ProductController on _ProductControllerBase, Store {
     }, _$titleAtom, name: '${_$titleAtom.name}_set');
   }
 
-  final _$descriptionAtom = Atom(name: '_ProductControllerBase.description');
-
-  @override
-  String get description {
-    _$descriptionAtom.context.enforceReadPolicy(_$descriptionAtom);
-    _$descriptionAtom.reportObserved();
-    return super.description;
-  }
-
-  @override
-  set description(String value) {
-    _$descriptionAtom.context.conditionallyRunInAction(() {
-      super.description = value;
-      _$descriptionAtom.reportChanged();
-    }, _$descriptionAtom, name: '${_$descriptionAtom.name}_set');
-  }
-
   final _$priceAtom = Atom(name: '_ProductControllerBase.price');
 
   @override
@@ -92,6 +75,23 @@ mixin _$ProductController on _ProductControllerBase, Store {
       super.type = value;
       _$typeAtom.reportChanged();
     }, _$typeAtom, name: '${_$typeAtom.name}_set');
+  }
+
+  final _$descriptionAtom = Atom(name: '_ProductControllerBase.description');
+
+  @override
+  String get description {
+    _$descriptionAtom.context.enforceReadPolicy(_$descriptionAtom);
+    _$descriptionAtom.reportObserved();
+    return super.description;
+  }
+
+  @override
+  set description(String value) {
+    _$descriptionAtom.context.conditionallyRunInAction(() {
+      super.description = value;
+      _$descriptionAtom.reportChanged();
+    }, _$descriptionAtom, name: '${_$descriptionAtom.name}_set');
   }
 
   final _$dataProductModelAtom =
@@ -136,16 +136,6 @@ mixin _$ProductController on _ProductControllerBase, Store {
   }
 
   @override
-  void validateDescription(String value) {
-    final _$actionInfo = _$_ProductControllerBaseActionController.startAction();
-    try {
-      return super.validateDescription(value);
-    } finally {
-      _$_ProductControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void validatePrice(String value) {
     final _$actionInfo = _$_ProductControllerBaseActionController.startAction();
     try {
@@ -166,20 +156,20 @@ mixin _$ProductController on _ProductControllerBase, Store {
   }
 
   @override
-  String setAveragetime(String value) {
+  void validateAveragetime(String value) {
     final _$actionInfo = _$_ProductControllerBaseActionController.startAction();
     try {
-      return super.setAveragetime(value);
+      return super.validateAveragetime(value);
     } finally {
       _$_ProductControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void validateAverageTime(String value) {
+  void validateDescription(String value) {
     final _$actionInfo = _$_ProductControllerBaseActionController.startAction();
     try {
-      return super.validateAverageTime(value);
+      return super.validateDescription(value);
     } finally {
       _$_ProductControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -210,23 +200,6 @@ mixin _$FormProductErrorState on _FormProductErrorState, Store {
     }, _$titleAtom, name: '${_$titleAtom.name}_set');
   }
 
-  final _$descriptionAtom = Atom(name: '_FormProductErrorState.description');
-
-  @override
-  String get description {
-    _$descriptionAtom.context.enforceReadPolicy(_$descriptionAtom);
-    _$descriptionAtom.reportObserved();
-    return super.description;
-  }
-
-  @override
-  set description(String value) {
-    _$descriptionAtom.context.conditionallyRunInAction(() {
-      super.description = value;
-      _$descriptionAtom.reportChanged();
-    }, _$descriptionAtom, name: '${_$descriptionAtom.name}_set');
-  }
-
   final _$priceAtom = Atom(name: '_FormProductErrorState.price');
 
   @override
@@ -242,6 +215,23 @@ mixin _$FormProductErrorState on _FormProductErrorState, Store {
       super.price = value;
       _$priceAtom.reportChanged();
     }, _$priceAtom, name: '${_$priceAtom.name}_set');
+  }
+
+  final _$averagetimeAtom = Atom(name: '_FormProductErrorState.averagetime');
+
+  @override
+  String get averagetime {
+    _$averagetimeAtom.context.enforceReadPolicy(_$averagetimeAtom);
+    _$averagetimeAtom.reportObserved();
+    return super.averagetime;
+  }
+
+  @override
+  set averagetime(String value) {
+    _$averagetimeAtom.context.conditionallyRunInAction(() {
+      super.averagetime = value;
+      _$averagetimeAtom.reportChanged();
+    }, _$averagetimeAtom, name: '${_$averagetimeAtom.name}_set');
   }
 
   final _$typeAtom = Atom(name: '_FormProductErrorState.type');
@@ -261,20 +251,20 @@ mixin _$FormProductErrorState on _FormProductErrorState, Store {
     }, _$typeAtom, name: '${_$typeAtom.name}_set');
   }
 
-  final _$averagetimeAtom = Atom(name: '_FormProductErrorState.averagetime');
+  final _$descriptionAtom = Atom(name: '_FormProductErrorState.description');
 
   @override
-  String get averagetime {
-    _$averagetimeAtom.context.enforceReadPolicy(_$averagetimeAtom);
-    _$averagetimeAtom.reportObserved();
-    return super.averagetime;
+  String get description {
+    _$descriptionAtom.context.enforceReadPolicy(_$descriptionAtom);
+    _$descriptionAtom.reportObserved();
+    return super.description;
   }
 
   @override
-  set averagetime(String value) {
-    _$averagetimeAtom.context.conditionallyRunInAction(() {
-      super.averagetime = value;
-      _$averagetimeAtom.reportChanged();
-    }, _$averagetimeAtom, name: '${_$averagetimeAtom.name}_set');
+  set description(String value) {
+    _$descriptionAtom.context.conditionallyRunInAction(() {
+      super.description = value;
+      _$descriptionAtom.reportChanged();
+    }, _$descriptionAtom, name: '${_$descriptionAtom.name}_set');
   }
 }

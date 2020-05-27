@@ -1,4 +1,4 @@
-class UserCreaterModel {
+class CustomerCreaterModel {
   List<String> roles;
   String name;
   String telcel;
@@ -6,7 +6,7 @@ class UserCreaterModel {
   String login;
   String password;
 
-  UserCreaterModel({
+  CustomerCreaterModel({
     this.roles,
     this.name,
     this.telcel,
@@ -15,7 +15,7 @@ class UserCreaterModel {
     this.password,
   });
 
-  UserCreaterModel.fromJson(Map<String, dynamic> json) {
+  CustomerCreaterModel.fromJson(Map<String, dynamic> json) {
     roles = json['roles'].cast<String>();
     name = json['name'];
     telcel = json['telcel'];
