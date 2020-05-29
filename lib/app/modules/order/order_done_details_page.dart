@@ -156,7 +156,7 @@ class _OrderDoneDetailsPageState extends State<OrderDoneDetailsPage> {
         ],
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(top: 12, left: 20, bottom: 6, right: 20),
+        padding: EdgeInsets.only(left: 20, bottom: 6, right: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[

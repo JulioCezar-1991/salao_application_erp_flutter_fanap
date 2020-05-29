@@ -113,9 +113,11 @@ abstract class _OrderControllerBase with Store {
     error.status = isNull(value) || value.isEmpty ? 'Status Inválido' : null;
   }
 
-  var listProduct = List<ProductList>();
+  @observable
+  List<Map<String, dynamic>> listProduct = [];
 
-  var product = ProductList();
+  @observable
+  Map<String, dynamic> product = {};
 
   @observable
   String c = '';
@@ -125,21 +127,22 @@ abstract class _OrderControllerBase with Store {
 
   String changeSubtotal() {
     double subTotal = 0;
-    for (var i = 0; i < listProduct.length; i++) {
-      subTotal += listProduct[i].price;
+    for (product in listProduct) {
+      subTotal += product['price'];
     }
     return subtotal = subTotal.toString();
   }
 
   Future<OrderModel> _postCreate() async {
     var model = OrderCreateModel(
-        customer: idCustomer,
-        client: idClient,
-        schedulingdate: schedulingDate,
-        status: status,
-        /* itens: listProduct, */
-        formPayment: payment,
-        subtotal: double.parse(subtotal));
+      customer: idCustomer,
+      client: idClient,
+      schedulingdate: schedulingDate,
+      status: status,
+      items: listProduct,
+      formPayment: payment,
+      subtotal: 123,
+    );
 
     try {
       var res = await repository.postOrder(model);
@@ -161,6 +164,7 @@ abstract class _OrderControllerBase with Store {
       client: idClient,
       schedulingdate: schedulingDate,
       formPayment: payment,
+      /*  itens: , */
       status: status,
     );
     try {

@@ -80,7 +80,7 @@ class Product {
   Product.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     title = json['title'];
-    price = json['price'];
+    price = double.parse(json['price'].toString());
     averagetime = json['averagetime'];
   }
 

@@ -24,20 +24,6 @@ class ClientCreateModel {
       this.city,
       this.state});
 
-  ClientCreateModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    cpf = json['cpf'];
-    date = json['date'];
-    telcel = json['telcel'];
-    telfix = json['telfix'];
-    email = json['email'];
-    address = json['address'];
-    sector = json['sector'];
-    city = json['city'];
-    state = json['state'];
-  }
-
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;

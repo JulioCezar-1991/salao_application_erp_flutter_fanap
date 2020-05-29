@@ -1,12 +1,8 @@
-import 'dart:convert';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
-import 'package:projeto_fanap/app/shared/models/customer_authenticate_model.dart';
+import 'package:projeto_fanap/app/shared/models/customer_create_model.dart';
 import 'package:projeto_fanap/app/shared/models/customer_list_model.dart';
 import 'package:projeto_fanap/app/shared/models/customer_model.dart';
-
 import 'package:projeto_fanap/app/shared/repositories/customer_repository.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:validators/validators.dart';
 
 part 'customer_controller.g.dart';
@@ -16,6 +12,11 @@ class CustomerController = _CustomerControllerBase with _$CustomerController;
 abstract class _CustomerControllerBase with Store {
   final FormCustomerErrorState error = FormCustomerErrorState();
   final CustomerRepository repository;
+
+  List<String> listRoles = [
+    'Administrador',
+    'Usuário',
+  ];
 
   @observable
   ObservableFuture<List<CustomerListModel>> customers;
@@ -29,54 +30,87 @@ abstract class _CustomerControllerBase with Store {
     fetchCustomer();
   }
 
-  var customer = CustomerModel();
+  @observable
+  String name = '';
+
+  @action
+  void validateName(String value) {
+    error.name = isNull(value) || value.isEmpty ? 'Nome inválido' : null;
+  }
 
   @observable
   String email = '';
 
-  @observable
-  String password = '';
-
   @action
   void validateEmail(String value) {
-    error.email = isEmail(value) ? null : 'E-mail inválido';
+    error.email = isEmail(value) ? null : 'Email inválido';
   }
+
+  @observable
+  String telcel = '';
+
+  @action
+  void validateTelCel(String value) {
+    error.telcel = isNull(value) || value.isEmpty ? 'Telefone inválido' : null;
+  }
+
+  @observable
+  String telfix = '';
+
+  @action
+  void validateTelFix(String value) {
+    error.telfix = isNull(value) || value.isEmpty ? 'Telefone inválido' : null;
+  }
+
+  @observable
+  String roles = '';
+
+  @action
+  void validateRoles(String value) {
+    error.roles = isNull(value) || value.isEmpty ? 'Telefone inválido' : null;
+  }
+
+  /*var customer = CustomerModel();*/
+  @observable
+  String password = '';
 
   @action
   void validatePassword(String value) {
     error.password = isNull(value) || value.isEmpty ? 'Senha invalida' : null;
   }
 
-  Future<CustomerModel> authenticate() async {
-    var model = AuthenticateModel(
+  @observable
+  var dataClientModel = CustomerCreaterModel();
+
+  Future<CustomerModel> _postCreate() async {
+    var model = CustomerCreaterModel(
+      name: name,
+      telcel: telcel,
+      telfix: telfix,
       email: email,
-      password: password,
     );
-
     try {
-      var prefs = await SharedPreferences.getInstance();
-      var res = await repository.authenticate(model);
-      customer = res;
-      await prefs.setString('customer', jsonEncode(res));
-
+      var res = await repository.customerPost(model);
       return res;
-    } catch (e) {
-      print(e);
-      customer = null;
-      return null;
+    } catch (ex) {
+      print(ex);
+      dataClientModel = null;
     }
+    return null;
   }
 
   void validateAll() async {
-    validatePassword(password);
+    validateName(name);
+    validateTelCel(telcel);
+    validateTelFix(telfix);
     validateEmail(email);
-    if (error.password == null && error.email == null) {
-      authenticate().then((customer) async {
-        if (customer != null) {
-          return Modular.to.pushReplacementNamed('/home');
-        }
-        return null;
-      });
+    validatePassword(password);
+    if (error.name == null &&
+        error.email == null &&
+        error.telcel == null &&
+        error.telfix == null &&
+        error.password == null) {
+      _postCreate().then((client) async {});
     }
   }
 }
@@ -86,11 +120,29 @@ class FormCustomerErrorState = _FormcustomerErrorState
 
 abstract class _FormcustomerErrorState with Store {
   @observable
+  String name;
+
+  @observable
+  String telcel;
+
+  @observable
+  String telfix;
+
+  @observable
   String email;
 
   @observable
   String password;
 
+  @observable
+  String roles;
+
   @computed
-  bool get hasErrors => email != null || password != null;
+  bool get hasErrors =>
+      name != null ||
+      telcel != null ||
+      telfix != null ||
+      email != null ||
+      password != null ||
+      roles != null;
 }

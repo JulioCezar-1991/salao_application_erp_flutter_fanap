@@ -1,205 +1,70 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:projeto_fanap/app/modules/customer/customer_controller.dart';
-import 'package:projeto_fanap/app/shared/components/circle_button_widget.dart';
+import 'package:projeto_fanap/app/modules/customer/customer_create.page.dart';
+import 'package:projeto_fanap/app/shared/components/customer_card_widget.dart';
 
-class CustomerPage extends StatefulWidget {
-  @override
-  _CustomerPageState createState() => _CustomerPageState();
-}
-
-class _CustomerPageState extends State<CustomerPage> {
+class CustomerPage extends StatelessWidget {
+  final String _title = "Gerencia de Usuários";
   @override
   Widget build(BuildContext context) {
-    Size _size = MediaQuery.of(context).size;
     final _customerController = Modular.get<CustomerController>();
-
     return Scaffold(
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(
-            horizontal: _size.width / 20, vertical: _size.width / 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.only(
-                  top: _size.width / 25, bottom: _size.width / 50),
-              width: _size.width / 2.5,
-              child: Image.asset("assets/logo.png"),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(14),
-                color: Theme.of(context).backgroundColor,
-                boxShadow: [
-                  BoxShadow(
-                      color: Theme.of(context).accentColor, blurRadius: 2),
-                ],
-              ),
-              child: Form(
-                child: Column(
-                  children: <Widget>[
-                    Observer(
-                      builder: (_) {
-                        return _textFild(
-                            icon: Icons.person,
-                            onChanged: (value) =>
-                                _customerController.email = value,
-                            errorText: _customerController.error.email,
-                            context: context,
-                            hintText: 'E-Mail',
-                            labelText: 'Digite o Email');
-                      },
-                    ),
-                    SizedBox(
-                      height: 24,
-                    ),
-                    Observer(
-                      builder: (_) {
-                        return _textFild(
-                            obscureText: true,
-                            icon: Icons.lock_outline,
-                            onChanged: (value) =>
-                                _customerController.password = value,
-                            errorText: _customerController.error.password,
-                            context: context,
-                            hintText: 'Senha',
-                            labelText: 'Digite a Senha');
-                      },
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                  ],
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).backgroundColor,
+        title: Text(
+          "  ${this._title}",
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.refresh),
+            onPressed: () {
+              _customerController.fetchCustomer();
+            },
+          ),
+          SizedBox(
+            width: 10,
+          )
+        ],
+      ),
+      body: Observer(
+        builder: (_) {
+          if (_customerController.customers.error != null) {
+            return Center(
+              child: IconButton(
+                icon: Icon(
+                  Icons.replay,
+                  size: 40,
                 ),
+                onPressed: () {
+                  _customerController.fetchCustomer();
+                },
               ),
-            ),
-            SizedBox(
-              height: 25,
-            ),
-            CircleButtonWidget(
-              textColor: Colors.white,
-              icon: null,
-              height: 50,
-              label: "ENTRAR",
-              onTap: () {
-                _customerController.validateAll();
-              },
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: _size.width * 0.12),
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                      child: Divider(
-                    color: Colors.black,
-                    height: 15,
-                  )),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Text(
-                      "NOSSAS REDES",
-                      style: TextStyle(
-                          color: Theme.of(context).accentColor,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Expanded(
-                    child: Divider(
-                      color: Colors.black,
-                      height: _size.height / 40,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: _size.width * 0.08),
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: CircleButtonWidget(
-                      height: 45,
-                      backgroundColor: Colors.blue,
-                      icon: Icon(
-                        FontAwesomeIcons.facebookF,
-                        color: Colors.white,
-                        size: 18,
-                      ),
-                      label: "FACEBOOK",
-                      onTap: () {},
-                    ),
-                  ),
-                  Container(
-                    width: 20,
-                  ),
-                  Expanded(
-                    child: CircleButtonWidget(
-                      height: 45,
-                      backgroundColor: Colors.red[700],
-                      icon: Icon(
-                        FontAwesomeIcons.google,
-                        color: Colors.white,
-                        size: 18,
-                      ),
-                      label: "GOOGLE",
-                      onTap: () {},
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+            );
+          }
+          if (_customerController.customers.value == null) {
+            return Center(child: CircularProgressIndicator());
+          }
+          var list = _customerController.customers.value;
+          return ListView.builder(
+            itemCount: list.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: CustomerCard(
+                  item: list[index],
+                ),
+              );
+            },
+          );
+        },
       ),
-    );
-  }
-
-  Widget _textFild(
-      {@required icon,
-      @required context,
-      @required labelText,
-      @required hintText,
-      bool obscureText = false,
-      Function onChanged,
-      errorText}) {
-    return TextField(
-      obscureText: obscureText,
-      onChanged: onChanged,
-      keyboardType: TextInputType.text,
-      decoration: InputDecoration(
-        fillColor: Colors.white,
-        enabled: true,
-        enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
-        ),
-        icon: Icon(
-          icon,
-          color: Colors.white,
-          size: 26,
-        ),
-        labelText: labelText,
-        labelStyle: TextStyle(color: Colors.white, fontSize: 15),
-        hintText: hintText,
-        hintMaxLines: 20,
-        errorText: errorText,
-        hintStyle: TextStyle(
-          fontSize: 17.0,
-          color: Colors.grey,
-          letterSpacing: 2,
-          decoration: TextDecoration.none,
-        ),
-      ),
-      style: TextStyle(
-        fontSize: 20,
-        color: Colors.white,
-      ),
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (_) => CustomerCreatePage()));
+          }),
     );
   }
 }

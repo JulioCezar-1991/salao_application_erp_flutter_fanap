@@ -171,6 +171,40 @@ mixin _$OrderController on _OrderControllerBase, Store {
     }, _$statusAtom, name: '${_$statusAtom.name}_set');
   }
 
+  final _$listProductAtom = Atom(name: '_OrderControllerBase.listProduct');
+
+  @override
+  List<Map<String, dynamic>> get listProduct {
+    _$listProductAtom.context.enforceReadPolicy(_$listProductAtom);
+    _$listProductAtom.reportObserved();
+    return super.listProduct;
+  }
+
+  @override
+  set listProduct(List<Map<String, dynamic>> value) {
+    _$listProductAtom.context.conditionallyRunInAction(() {
+      super.listProduct = value;
+      _$listProductAtom.reportChanged();
+    }, _$listProductAtom, name: '${_$listProductAtom.name}_set');
+  }
+
+  final _$productAtom = Atom(name: '_OrderControllerBase.product');
+
+  @override
+  Map<String, dynamic> get product {
+    _$productAtom.context.enforceReadPolicy(_$productAtom);
+    _$productAtom.reportObserved();
+    return super.product;
+  }
+
+  @override
+  set product(Map<String, dynamic> value) {
+    _$productAtom.context.conditionallyRunInAction(() {
+      super.product = value;
+      _$productAtom.reportChanged();
+    }, _$productAtom, name: '${_$productAtom.name}_set');
+  }
+
   final _$cAtom = Atom(name: '_OrderControllerBase.c');
 
   @override

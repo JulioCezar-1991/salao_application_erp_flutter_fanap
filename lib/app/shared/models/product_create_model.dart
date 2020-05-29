@@ -15,15 +15,6 @@ class ProductCreateModel {
     this.averagetime,
   });
 
-  ProductCreateModel.fromJson(Map<String, dynamic> json) {
-    id = json['_id'];
-    title = json['title'];
-    description = json['description'];
-    type = json['type'];
-    price = json[price];
-    averagetime = json['averagetime'];
-  }
-
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;

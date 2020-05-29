@@ -1,34 +1,38 @@
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:intl/intl.dart';
-import 'package:projeto_fanap/app/modules/product/product_controller.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:projeto_fanap/app/modules/customer/customer_controller.dart';
 import 'package:projeto_fanap/app/shared/components/text_field_update_widget.dart';
-import 'package:projeto_fanap/app/shared/models/product_list_model.dart';
+import 'package:projeto_fanap/app/shared/models/customer_list_model.dart';
 
-class ProductDetailsPage extends StatefulWidget {
-  final ProductListModel item;
+class CustomerDetailsPage extends StatefulWidget {
+  final CustomerListModel item;
 
-  const ProductDetailsPage({Key key, this.item});
+  const CustomerDetailsPage({Key key, this.item});
+
   @override
-  _ProductDetailsPageState createState() => _ProductDetailsPageState();
+  _CustomerDetailsPageState createState() => _CustomerDetailsPageState();
 }
 
-class _ProductDetailsPageState extends State<ProductDetailsPage> {
-  final _productController = Modular.get<ProductController>();
-
-  final format = DateFormat("HH:mm");
+class _CustomerDetailsPageState extends State<CustomerDetailsPage> {
+  final _customerController = Modular.get<CustomerController>();
 
   @override
   Widget build(BuildContext context) {
-    _productController.type = widget.item.type;
-    _productController.averagetime = widget.item.averagetime;
+    var maskTelFixFormatter = MaskTextInputFormatter(
+        mask: "(##) ####-####", filter: {"#": RegExp(r'[0-9]')});
+
+    var maskTelCelFormatter = MaskTextInputFormatter(
+        mask: "(##) #####-####", filter: {"#": RegExp(r'[0-9]')});
+
+    _customerController.roles = widget.item.roles[0];
 
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Detalhes do Produto",
+          "Detalhes do Cliente",
           style: TextStyle(fontSize: 18),
         ),
         actions: <Widget>[
@@ -44,7 +48,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: Text("Confirmar Atualização do Produto"),
+                      title: Text("Confirmar Atualização do Cliente"),
                       actions: <Widget>[
                         FlatButton(
                           child: Text(
@@ -54,8 +58,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           ),
                           onPressed: () {
                             try {
-                              _productController.patchProduct(widget.item.sId);
-                              _productController.fetchProduct();
+                              /*  _customerController
+                                  .patchCustomer(widget.item.sId); */
+                              _customerController.fetchCustomer();
                               Modular.to.popAndPushNamed(
                                 '/home',
                               );
@@ -91,7 +96,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: Text("Confirmar Exclusão do Produto"),
+                      title: Text("Confirmar Exclusão do Cliente"),
                       actions: <Widget>[
                         FlatButton(
                           child: Text(
@@ -101,8 +106,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           ),
                           onPressed: () {
                             try {
-                              _productController.deleteProduct(widget.item.sId);
-                              _productController.fetchProduct();
+                              /* _customerController.deleteCustomer(widget.item.sId); */
+                              _customerController.fetchCustomer();
                               Modular.to.popAndPushNamed(
                                 '/home',
                               );
@@ -137,7 +142,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               child: Container(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Nome Produto",
+                  "Nome do Usuário",
                   style: TextStyle(color: Theme.of(context).accentColor),
                 ),
               ),
@@ -145,11 +150,11 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             Observer(
               builder: (_) => TextFieldUpdate(
                 keyboardType: TextInputType.text,
-                initialValue: widget.item.title,
+                initialValue: widget.item.name,
                 onChanged: (value) {
-                  _productController.title = value;
+                  _customerController.name = value;
                 },
-                errorText: _productController.error.title,
+                errorText: _customerController.error.name,
                 maxLength: 38,
               ),
             ),
@@ -158,20 +163,20 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               child: Container(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Preço",
+                  "E-mail",
                   style: TextStyle(color: Theme.of(context).accentColor),
                 ),
               ),
             ),
             Observer(
               builder: (_) => TextFieldUpdate(
-                maxLength: 6,
                 keyboardType: TextInputType.text,
-                initialValue: widget.item.price.toString(),
+                initialValue: widget.item.email,
                 onChanged: (value) {
-                  _productController.price = value;
+                  _customerController.email = value;
                 },
-                errorText: _productController.error.price,
+                errorText: _customerController.error.email,
+                maxLength: 32,
               ),
             ),
             Padding(
@@ -179,107 +184,103 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               child: Container(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Tempo Médio Gasto",
-                  style: TextStyle(color: Theme.of(context).accentColor),
-                ),
-              ),
-            ),
-            DateTimeField(
-              format: format,
-              initialValue: DateTime.parse(_productController.averagetime),
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                suffixIcon: Padding(
-                  padding: EdgeInsets.only(left: 20),
-                  child: Icon(Icons.clear),
-                ),
-                labelStyle: TextStyle(color: Theme.of(context).primaryColor),
-              ),
-              onShowPicker: (context, currentValue) async {
-                final time = await showTimePicker(
-                  context: context,
-                  initialTime: TimeOfDay.fromDateTime(
-                    currentValue ?? DateTime.now(),
-                  ),
-                );
-                if (currentValue != null) {
-                  _productController.averagetime =
-                      DateTimeField.convert(time).toString();
-                }
-                return DateTimeField.convert(time);
-              },
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 5, top: 10),
-              child: Container(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Tipo de Serviço",
-                  style: TextStyle(color: Theme.of(context).accentColor),
-                ),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.grey,
-                  width: 1,
-                ),
-                borderRadius: BorderRadius.circular(4),
-                shape: BoxShape.rectangle,
-              ),
-              child: Observer(
-                builder: (_) => DropdownButton(
-                  value: _productController.type,
-                  isExpanded: true,
-                  icon: Icon(
-                    Icons.arrow_downward,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  iconSize: 24,
-                  elevation: 16,
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  underline: Container(
-                    height: 2,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  items: _productController.listType
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  onChanged: (String newValue) {
-                    _productController.type = newValue;
-                  },
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 5, top: 10),
-              child: Container(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Observação",
+                  "Telefone Celular",
                   style: TextStyle(color: Theme.of(context).accentColor),
                 ),
               ),
             ),
             Observer(
               builder: (_) => TextFieldUpdate(
-                maxLines: 4,
-                keyboardType: TextInputType.text,
-                initialValue: widget.item.description,
+                inputFormatters: [maskTelCelFormatter],
+                keyboardType: TextInputType.number,
+                initialValue: widget.item.telcel,
                 onChanged: (value) {
-                  _productController.description = value;
+                  _customerController.telcel = value;
                 },
-                errorText: _productController.error.description,
-                maxLength: 112,
+                errorText: _customerController.error.telcel,
+                maxLength: 12,
               ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5, top: 10),
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Telefone Fixo",
+                  style: TextStyle(color: Theme.of(context).accentColor),
+                ),
+              ),
+            ),
+            Observer(
+              builder: (_) => TextFieldUpdate(
+                inputFormatters: [maskTelFixFormatter],
+                keyboardType: TextInputType.number,
+                initialValue: widget.item.telfix,
+                onChanged: (value) {
+                  _customerController.telfix = value;
+                },
+                errorText: _customerController.error.telfix,
+                maxLength: 12,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5, top: 10),
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Tipo de Usuário",
+                  style: TextStyle(color: Theme.of(context).accentColor),
+                ),
+              ),
+            ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.all(5),
+                    height: 62,
+                    decoration: new BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(4),
+                      shape: BoxShape.rectangle,
+                    ),
+                    child: Observer(
+                      builder: (_) => DropdownButton(
+                        value: _customerController.roles,
+                        isExpanded: true,
+                        icon: Icon(
+                          Icons.arrow_downward,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        iconSize: 24,
+                        elevation: 16,
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        underline: Container(
+                          height: 2,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        items: _customerController.listRoles
+                            .map<DropdownMenuItem<String>>(
+                          (String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          },
+                        ).toList(),
+                        onChanged: (String newValue) {
+                          _customerController.roles = newValue;
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

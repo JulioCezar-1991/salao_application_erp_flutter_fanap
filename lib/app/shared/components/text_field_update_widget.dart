@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class TextFieldUpdate extends StatelessWidget {
-  final String labelText;
   final String initialValue;
   final int maxLength;
   final TextInputType keyboardType;
@@ -16,7 +15,6 @@ class TextFieldUpdate extends StatelessWidget {
     @required this.keyboardType,
     @required this.onChanged,
     @required this.initialValue,
-    @required this.labelText,
     @required this.errorText,
     this.inputFormatters,
     this.maxLines,
@@ -33,7 +31,6 @@ class TextFieldUpdate extends StatelessWidget {
       decoration: InputDecoration(
         errorText: errorText,
         border: OutlineInputBorder(),
-        labelText: labelText,
         labelStyle: TextStyle(
           color: Theme.of(context).primaryColor,
         ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:projeto_fanap/app/modules/customer/Customer_page.dart';
 import 'package:projeto_fanap/app/modules/home/home_controller.dart';
+import 'package:projeto_fanap/app/modules/setting/setting_page.dart';
 
 class DrawerHomeWidget extends StatefulWidget {
   @override
@@ -46,21 +48,16 @@ class _DrawerHomeWidgetState extends State<DrawerHomeWidget> {
             leading:
                 Icon(Icons.person_add, color: Theme.of(context).accentColor),
             title: Text(
-              "Criar Usuário",
+              "Gerenciar Usuários",
               style: TextStyle(
                   fontSize: 16.0, color: Theme.of(context).accentColor),
             ),
-            onTap: () {},
-          ),
-          ListTile(
-            leading:
-                Icon(Icons.lock_open, color: Theme.of(context).accentColor),
-            title: Text(
-              "Permissões",
-              style: TextStyle(
-                  fontSize: 16.0, color: Theme.of(context).accentColor),
-            ),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => CustomerPage()),
+              );
+            },
           ),
           ListTile(
             leading: Icon(Icons.build, color: Theme.of(context).accentColor),
@@ -69,7 +66,12 @@ class _DrawerHomeWidgetState extends State<DrawerHomeWidget> {
               style: TextStyle(
                   fontSize: 16.0, color: Theme.of(context).accentColor),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => SettingPage()),
+              );
+            },
           ),
           SizedBox(
             height: _size.width / 1.8,

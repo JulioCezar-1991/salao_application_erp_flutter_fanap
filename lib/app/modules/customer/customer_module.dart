@@ -15,7 +15,9 @@ class CustomerModule extends ChildModule {
 
   @override
   List<Router> get routers => [
-        Router('/Customer', child: (_, args) => CustomerPage()),
+        Router('/customer', child: (_, args) => CustomerPage()),
         Router('/home', module: HomeModule())
       ];
+
+  static Inject get to => Inject<CustomerModule>.of();
 }

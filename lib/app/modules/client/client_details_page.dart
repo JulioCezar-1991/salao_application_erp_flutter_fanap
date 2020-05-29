@@ -140,14 +140,23 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
         ],
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(top: 12, left: 20, bottom: 6, right: 20),
+        padding: EdgeInsets.only(left: 20, bottom: 6, right: 20),
         child: Column(
           children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5, top: 10),
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Nome Completo",
+                  style: TextStyle(color: Theme.of(context).accentColor),
+                ),
+              ),
+            ),
             Observer(
               builder: (_) => TextFieldUpdate(
                 keyboardType: TextInputType.text,
                 initialValue: widget.item.name,
-                labelText: 'Nome Completo',
                 onChanged: (value) {
                   _clientController.name = value;
                 },
@@ -155,15 +164,21 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
                 maxLength: 38,
               ),
             ),
-            SizedBox(
-              height: 20,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5, top: 10),
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "CPF",
+                  style: TextStyle(color: Theme.of(context).accentColor),
+                ),
+              ),
             ),
             Observer(
               builder: (_) => TextFieldUpdate(
                 inputFormatters: [maskCpfFormatter],
                 keyboardType: TextInputType.number,
                 initialValue: widget.item.cpf,
-                labelText: 'CPF',
                 onChanged: (value) {
                   _clientController.cpf = value;
                 },
@@ -171,8 +186,15 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
                 maxLength: 11,
               ),
             ),
-            SizedBox(
-              height: 20,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5, top: 10),
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Data de anivesário",
+                  style: TextStyle(color: Theme.of(context).accentColor),
+                ),
+              ),
             ),
             // Data de Aniversario
             Container(
@@ -180,7 +202,6 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
                 key: formKey,
                 initialValue: DateTime.parse(_clientController.date),
                 decoration: InputDecoration(
-                  labelText: "Data de anivesário",
                   labelStyle: TextStyle(color: Theme.of(context).primaryColor),
                   border: OutlineInputBorder(),
                 ),
@@ -199,14 +220,20 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
                 },
               ),
             ),
-            SizedBox(
-              height: 20,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5, top: 10),
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "E-mail",
+                  style: TextStyle(color: Theme.of(context).accentColor),
+                ),
+              ),
             ),
             Observer(
               builder: (_) => TextFieldUpdate(
                 keyboardType: TextInputType.text,
                 initialValue: widget.item.email,
-                labelText: 'E-mail',
                 onChanged: (value) {
                   _clientController.email = value;
                 },
@@ -214,15 +241,21 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
                 maxLength: 32,
               ),
             ),
-            SizedBox(
-              height: 20,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5, top: 10),
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Telefone Celular",
+                  style: TextStyle(color: Theme.of(context).accentColor),
+                ),
+              ),
             ),
             Observer(
               builder: (_) => TextFieldUpdate(
                 inputFormatters: [maskTelCelFormatter],
                 keyboardType: TextInputType.number,
                 initialValue: widget.item.telcel,
-                labelText: 'Telefone Celular',
                 onChanged: (value) {
                   _clientController.telcel = value;
                 },
@@ -230,15 +263,21 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
                 maxLength: 12,
               ),
             ),
-            SizedBox(
-              height: 20,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5, top: 10),
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Telefone fixo",
+                  style: TextStyle(color: Theme.of(context).accentColor),
+                ),
+              ),
             ),
             Observer(
               builder: (_) => TextFieldUpdate(
                 inputFormatters: [maskTelFixFormatter],
                 keyboardType: TextInputType.number,
                 initialValue: widget.item.telfix,
-                labelText: 'Telefone fixo',
                 onChanged: (value) {
                   _clientController.telfix = value;
                 },
@@ -246,14 +285,20 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
                 maxLength: 12,
               ),
             ),
-            SizedBox(
-              height: 20,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5, top: 10),
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Endereço",
+                  style: TextStyle(color: Theme.of(context).accentColor),
+                ),
+              ),
             ),
             Observer(
               builder: (_) => TextFieldUpdate(
                 keyboardType: TextInputType.text,
                 initialValue: widget.item.address,
-                labelText: 'Endereço',
                 onChanged: (value) {
                   _clientController.address = value;
                 },
@@ -261,14 +306,20 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
                 maxLength: 38,
               ),
             ),
-            SizedBox(
-              height: 20,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5, top: 10),
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Bairro",
+                  style: TextStyle(color: Theme.of(context).accentColor),
+                ),
+              ),
             ),
             Observer(
               builder: (_) => TextFieldUpdate(
                 keyboardType: TextInputType.text,
                 initialValue: widget.item.sector,
-                labelText: 'Bairro',
                 onChanged: (value) {
                   _clientController.sector = value;
                 },
@@ -276,14 +327,20 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
                 maxLength: 38,
               ),
             ),
-            SizedBox(
-              height: 20,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5, top: 10),
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Cidade",
+                  style: TextStyle(color: Theme.of(context).accentColor),
+                ),
+              ),
             ),
             Observer(
               builder: (_) => TextFieldUpdate(
                 keyboardType: TextInputType.text,
                 initialValue: widget.item.city,
-                labelText: 'Cidade',
                 onChanged: (value) {
                   _clientController.city = value;
                 },
@@ -291,15 +348,21 @@ class _ClientDetailsPageState extends State<ClientDetailsPage> {
                 maxLength: 48,
               ),
             ),
-            SizedBox(
-              height: 20,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5, top: 10),
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Estado",
+                  style: TextStyle(color: Theme.of(context).accentColor),
+                ),
+              ),
             ),
             Observer(
               builder: (_) => TextFieldUpdate(
                 maxLength: 24,
                 keyboardType: TextInputType.text,
                 initialValue: widget.item.state,
-                labelText: 'Estado',
                 onChanged: (value) {
                   _clientController.state = value;
                 },

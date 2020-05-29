@@ -33,4 +33,6 @@ class HomeModule extends ChildModule {
         Router('/client', module: ClientModule()),
         Router('/product', module: ProductModule()),
       ];
+
+  static Inject get to => Inject<HomeModule>.of();
 }

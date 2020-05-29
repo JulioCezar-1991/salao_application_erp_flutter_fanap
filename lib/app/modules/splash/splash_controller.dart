@@ -9,10 +9,10 @@ class SplashController = _SplashBase with _$SplashController;
 abstract class _SplashBase with Store {
   Future loadUser() async {
     var prefs = await SharedPreferences.getInstance();
-    var userData = prefs.getString('user');
+    var userData = prefs.getString('customer');
     if (userData != null) {
       return Modular.to.pushReplacementNamed('/home');
     }
-    return Modular.to.pushReplacementNamed('/customer');
+    return Modular.to.pushReplacementNamed('/login');
   }
 }

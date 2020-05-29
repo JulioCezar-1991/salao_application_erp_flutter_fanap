@@ -384,17 +384,16 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
                       return a.title.compareTo(b.title);
                     },
                     itemSubmitted: (item) {
-                      _orderController.product.title = item.title;
-                      _orderController.product.price = item.price;
+                      _orderController.product = {
+                        'title': item.title,
+                        'product': item.sId,
+                        'price': item.price,
+                        'quantity': 1
+                      };
+
                       _orderController.listProduct
                           .add(_orderController.product);
 
-                      for (var i = 0;
-                          i < _orderController.listProduct.length;
-                          i++) {
-                        print(_orderController.listProduct[i].title);
-                      }
-                      _orderController.changeSubtotal();
                       setState(
                         () {
                           searchTextNameProduct.textField.controller.text =
@@ -445,23 +444,19 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
                         ],
                       ),
                     ),
-                    for (var i = 0;
-                        i < _orderController.listProduct.length;
-                        i++)
+                    for (Map<String, dynamic> p in _orderController.listProduct)
                       Row(
                         children: <Widget>[
                           Container(
                             width: _queryData.size.width / 1.6,
-                            child: Text(_orderController.listProduct[i].title),
+                            child: Text(p['title']),
                           ),
                           SizedBox(
                             height: 30,
                           ),
                           Container(
                             width: _queryData.size.width / 5.5,
-                            child: Text(
-                              _orderController.listProduct[i].price.toString(),
-                            ),
+                            child: Text('   ${p['price'].toString()}'),
                           ),
                         ],
                       ),
@@ -479,7 +474,7 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
                           builder: (_) => Container(
                             width: _queryData.size.width / 5.5,
                             child: Text(
-                              _orderController.subtotal,
+                              '   ${_orderController.changeSubtotal()}',
                             ),
                           ),
                         ),
@@ -495,52 +490,3 @@ class _OrderCreatePageState extends State<OrderCreatePage> {
     );
   }
 }
-
-/* Widget rowCustomer(CustomerListModel customer) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: <Widget>[
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          customer.name,
-          style: TextStyle(fontSize: 18.0),
-        ),
-      ),
-    ],
-  );
-}
-
-Widget rowClient(ClientListModel client) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: <Widget>[
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          client.name,
-          style: TextStyle(fontSize: 18.0),
-        ),
-      ),
-    ],
-  );
-}
-
-Widget rowProduct(ProductListModel product) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: <Widget>[
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          product.title,
-          style: TextStyle(fontSize: 18.0),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Icon(Icons.add_shopping_cart),
-      ),
-    ],
-  );
-} */
